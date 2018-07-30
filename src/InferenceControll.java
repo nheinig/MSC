@@ -9,8 +9,9 @@ public class InferenceControll {
 	public static void main(String[] args) {
 		
 		UserInterface.createUI();
+		processInput();
 		MLM.updateMLM(0);
-		//processInput();
+		
 		
 	}
 	

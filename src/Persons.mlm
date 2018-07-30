@@ -3,7 +3,7 @@ maintenance:
     mlmname: personsMLM;;
     arden: version 2.5;;
     version: 1.0;;
-    institution: institution;;
+    institution: Uni Oldenburg;;
     author: Nils Heinig;;
     specialist: ;;
     date: 2018-07-17;;
@@ -23,18 +23,20 @@ knowledge:
     type: data_driven;;
 
     data: 
-    let persons be -1;
+    	let personsThreshold be 1;
+		let persons be -1;
+		stdout := destination{stdout};
      ;;
 
     evoke: ;;
 
     logic:
-      conclude persons is less than 0;
+      conclude true;
     ;;
 
     action: 
       let persons be 1;
-      write "persons is: " || persons; 
+      write "Persons in the room: " || persons at stdout; 
       return persons;
     ;;
 
