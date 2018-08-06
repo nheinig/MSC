@@ -43,7 +43,9 @@ public class InferenceControll {
 	
 	
 	public static void main(String[] args) {
-		InputDummy.fillList();
+		InputDummy id = new InputDummy();
+		
+		id.fillList();
 		printValueLists();
 	}
 
