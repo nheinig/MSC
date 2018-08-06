@@ -1,83 +1,50 @@
-
-
-import java.io.*;
 import java.util.*;
-
 
 public class InferenceControll {
 
-	public static void main(String[] args) {
-		
-		UserInterface.createUI();
-		processInput();
-		MLM.updateMLM(0);
-		
+	static List<List<String>> listOfRules = new ArrayList<List<String>>();
+	static ArrayList<Parameter> listOfPersonValues = new ArrayList<Parameter>();
+	static ArrayList<Parameter> listOfSpO2Values = new ArrayList<Parameter>();
+	static String alarm = "None";
+	
+	
+	
+	static void printValueLists() {
+		for(int i = 0; i < listOfPersonValues.size(); i++) {
+			Parameter param;
+			param = listOfPersonValues.get(i);
+			System.out.println(param.parameterType + " " + param.parameterValue + " " + param.timestamp);
+		}
+		for(int j = 0; j < listOfSpO2Values.size(); j++) {
+		Parameter param;
+		param = listOfPersonValues.get(j);
+		System.out.println(param.parameterType + " " + param.parameterValue + " " + param.timestamp);
+		}
 		
 	}
 	
-	
-	//method for reading new Input: parameterType and parameterValue
-	static boolean processInput() {
-		String parameterType = null;
-		int parameterValue = -1;
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		
-		System.out.println("Parametertyp eingeben (end für Abbruch): ");
-		
-		//read parameterType
-		while(parameterType == null) {
-			try {
-				parameterType = reader.readLine();
-				System.out.println(parameterType);
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
+	static void handleNewParameterValue(Parameter param) {
+		if (param.parameterType.equals("persons")) {
+			listOfPersonValues.add(param);
+		} else if(param.parameterType.equals("spo2")) {
+			listOfSpO2Values.add(param);
 		}
-		
-		Scanner in = new Scanner(System.in);
-		//action when parameterType is end to end reading Input
-		if(parameterType.equals("end")) {
-			in.close();
+	}
+	
+	static boolean registerRule(List<String> rule) {
+		if (!listOfRules.contains(rule)) {
+			listOfRules.add(rule);
+			return true;
+		} else {
 			return false;
-		}		
-		//action when parameterType is persons
-		if(parameterType.equals("persons")) {		
-				try {
-					System.out.println("Anzahl an Personen im Raum: ");
-					parameterValue = in.nextInt();	
-					System.out.println(parameterValue);
-				} catch(NoSuchElementException e) {
-					e.printStackTrace();
-				}
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		InputDummy.fillList();
+		printValueLists();
+	}
 
-			KnowledgeBase.setPersons(parameterValue);
-		}
-		//action when parameterType is 
-		if(parameterType.equals("spo2")) {
-				try {
-					System.out.println("SpO2-Wert: ");
-					parameterValue = in.nextInt();	
-					System.out.println(parameterValue);
-				} catch(NoSuchElementException e) {
-					e.printStackTrace();
-				}
-			KnowledgeBase.setSpO2(parameterValue);
-		}
-		in.close();
-		return true;
-	}
-	
-	static void updateAlarmLabel(String alarm) {
-		UserInterface.updateAlarm(alarm);
-	}
-	
-	//forwards Parameters to UI
-	static void forwardParametersToUI(int parameter) {
-		UserInterface.updatePersons(parameter);
-	}
-	
-	//forwards ParameterChange to RuleBase
-	static void forwardCallToKnowledgeBase(String parameterType, int parameterValue) {
-		RuleBase.runBaseRules(parameterType, parameterValue);
-	}
 }
