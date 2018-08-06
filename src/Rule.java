@@ -6,22 +6,21 @@ public class Rule {
 	String ruleName;
 	boolean ruleRegistered = false;
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
-	static List<List<String>> listOfParameterValues = new ArrayList<List<String>>();
+	static List<Parameter> listOfParameterValues = new ArrayList<Parameter>();
 	
 	Rule(String ruleName, ArrayList<String> parameterList){
 		this.ruleName = ruleName;
 		this.listOfParametersNeeded = parameterList;
-		listOfParametersNeeded.add(ruleName);
 	}
 	
 	// method to decide if ruleAction has to be activated
-	static boolean ruleLogic() {
-		ArrayList<String> test = new ArrayList<String>();
-		test.add("persons");
-		test.add("13:28:58");
-		test.add("2");
-		listOfParameterValues.add(test);
-		System.out.println(listOfParameterValues.get(0));
+	boolean ruleLogic() {
+	//	ArrayList<String> test = new ArrayList<String>();
+	//	test.add("persons");
+	//	test.add("13:28:58");
+	//	test.add("2");
+	//	listOfParameterValues.add(test);
+	//	System.out.println(listOfParameterValues.get(0));
 		return true;
 	}
 	

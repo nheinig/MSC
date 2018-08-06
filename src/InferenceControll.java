@@ -17,7 +17,7 @@ public class InferenceControll {
 		}
 		for(int j = 0; j < listOfSpO2Values.size(); j++) {
 		Parameter param;
-		param = listOfPersonValues.get(j);
+		param = listOfSpO2Values.get(j);
 		System.out.println(param.parameterType + " " + param.parameterValue + " " + param.timestamp);
 		}
 		

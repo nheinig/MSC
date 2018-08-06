@@ -8,9 +8,9 @@ public class PersonSpO2Rule extends Rule {
 	}
 
 	// method to decide if ruleAction has to be activated
-	//boolean ruleLogic() {
-	//	return false;
-	//}
+	boolean ruleLogic() {
+		return false;
+	}
 	
 	//method that evaluates Parameters and forwards the result to the InferenceControll
 	void ruleAction() {
