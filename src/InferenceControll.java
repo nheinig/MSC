@@ -59,27 +59,35 @@ public class InferenceControll {
 		id.fillList();
 		printValueLists();
 
+		
+		//forward parameters to a dummy Rule
 		while (!listOfPersonValues.isEmpty() && !listOfSpO2Values.isEmpty()) {
 			List<String> tempList = listOfRules.get(0);
 			System.out.println(tempList);
-
+			
+			//check if a rule needs the Parameter with the type persons
 			if (tempList.contains("persons")) {
 				pspo2.setPersons(listOfPersonValues.get(0));
 			}
+			//check if a rule needs the Parameter with the type spo2
 			if (tempList.contains("spo2")) {
 				pspo2.setSpO2(listOfSpO2Values.get(0));
 			}
+			//prints the forwarded Parameters
 			System.out.println(
 					pspo2.persons.parameterType + " " + pspo2.persons.parameterValue + " " + pspo2.persons.timestamp);
 			System.out.println(pspo2.spo2.parameterType + " " + pspo2.spo2.parameterValue + " " + pspo2.spo2.timestamp);
 
+			//check if the rule has to be run
 			if (pspo2.ruleLogic()) {
 				pspo2.ruleAction();
 			} else {
+				//if the rule doesnt have to be run there is no alarm necessary
 				setAlarm("None!");
 			}
 			System.out.println(alarm);
 			
+			//remove old parameters
 			listOfPersonValues.remove(0);
 			listOfSpO2Values.remove(0);
 		}
