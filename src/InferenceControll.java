@@ -36,7 +36,7 @@ public class InferenceControll {
 	static boolean registerRule(ArrayList<String> rule) {
 		if (!listOfRules.contains(rule)) {
 			listOfRules.add(rule);
-			System.out.println(listOfRules);
+			System.out.println("List of Rules " + listOfRules);
 			return true;
 		} else {
 			return false;
@@ -52,7 +52,7 @@ public class InferenceControll {
 	public static void main(String[] args) {
 		// register Rule for people and spo2 value at IC
 		PersonSpO2Rule pspo2 = new PersonSpO2Rule("pspo2");
-		System.out.println(pspo2.listOfParametersNeeded);
+		System.out.println("Rule pspo2 parameters needed: " + pspo2.listOfParametersNeeded);
 
 		// get dummy Parameters
 		InputDummy id = new InputDummy();
@@ -63,7 +63,7 @@ public class InferenceControll {
 		//forward parameters to a dummy Rule
 		while (!listOfPersonValues.isEmpty() && !listOfSpO2Values.isEmpty()) {
 			List<String> tempList = listOfRules.get(0);
-			System.out.println(tempList);
+			System.out.println("Templist: " + tempList);
 			
 			//check if a rule needs the Parameter with the type persons
 			if (tempList.contains("persons")) {

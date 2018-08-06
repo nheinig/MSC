@@ -13,12 +13,6 @@ public class Rule {
 
 	// method to decide if ruleAction has to be activated
 	boolean ruleLogic() {
-		// ArrayList<String> test = new ArrayList<String>();
-		// test.add("persons");
-		// test.add("13:28:58");
-		// test.add("2");
-		// listOfParameterValues.add(test);
-		// System.out.println(listOfParameterValues.get(0));
 		return true;
 	}
 
@@ -39,10 +33,11 @@ public class Rule {
 
 	// method that registers the rule at the InferenceControll
 	void registerRuleAtInferenceControll() {
+		System.out.println("Rule is registred: " + ruleRegistered);
 		ruleRegistered = InferenceControll.registerRule(listOfParametersNeeded);
 		if (!ruleRegistered) {
 			System.out.println("A Rule with the same Name allready exists;");
 		} 
-		System.out.println(ruleRegistered);
+		System.out.println("Rule is registred: " + ruleRegistered);
 	}
 }
