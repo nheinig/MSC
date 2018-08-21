@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.*;
 public class InputDummy {
 	
@@ -9,7 +10,7 @@ public class InputDummy {
 	}
 	
 	void fillList() {
-		Date date0 = new Date();
+		Timestamp date0 =  new Timestamp(System.currentTimeMillis());
 		Parameter parameterValue0 = new Parameter("persons", date0, "many");
 		Parameter parameterValue1 = new Parameter("spo2", date0, "normal");
 
@@ -22,7 +23,7 @@ public class InputDummy {
 		    Thread.currentThread().interrupt();
 		}
 		
-		Date date1 = new Date();
+		Timestamp date1 =  new Timestamp(System.currentTimeMillis());
 		Parameter parameterValue2 = new Parameter("persons", date1, "many");
 		Parameter parameterValue3 = new Parameter("spo2", date1, "normal");
 		
@@ -35,7 +36,7 @@ public class InputDummy {
 		    Thread.currentThread().interrupt();
 		}
 		
-		Date date2 = new Date();
+		Timestamp date2 =  new Timestamp(System.currentTimeMillis());
 		Parameter parameterValue4 = new Parameter("persons", date2, "many");
 		Parameter parameterValue5 = new Parameter("spo2", date2, "low");
 		
@@ -48,7 +49,7 @@ public class InputDummy {
 		    Thread.currentThread().interrupt();
 		}
 		
-		Date date3 = new Date();
+		Timestamp date3 =  new Timestamp(System.currentTimeMillis());
 		Parameter parameterValue6 = new Parameter("persons", date3, "none");
 		Parameter parameterValue7 = new Parameter("spo2", date3, "low");
 		
@@ -61,7 +62,7 @@ public class InputDummy {
 		    Thread.currentThread().interrupt();
 		}
 		
-		Date date4 = new Date();
+		Timestamp date4 =  new Timestamp(System.currentTimeMillis());
 		Parameter parameterValue8 = new Parameter("persons", date4, "many");		
 		Parameter parameterValue9 = new Parameter("spo2", date4, "low");
 

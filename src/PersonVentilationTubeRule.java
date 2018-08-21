@@ -1,16 +1,19 @@
 import java.util.*;
 
-public class PersonVentilationTubeRule {
-
+public class PersonVentilationTubeRule extends Rule {
+	
+	Parameter alarm = new Parameter("PVAlarm", null, "none");
+	
 	Parameter tube = null;
 	Parameter persons = null;
-	
-	Parameter pvAlarm = new Parameter("PVAlarm", null, "none");
 	
 	Date timeOfPersons = null;
 	Date timeOfTube = null;
 	
-	int state = 0;
+	PersonVentilationTubeRule(String ruleName) {
+		super(ruleName);
+		initializeRule();
+	}
 	
 	//Method to update the state based on newParameter
 	void updateState(Parameter newParameter) {
@@ -21,15 +24,14 @@ public class PersonVentilationTubeRule {
 			System.out.println(persons);
 			//none persons in the room 
 			if(newParameter.parameterValue.equals("none")) {
-				if(state == 0|| state == 3) {
+				if(state == 0 || state == 3) {
 					state = 1;
 				} else if(state == 2|| state == 6) {
 					state = 5;
-					pvAlarm.timestamp = newParameter.timestamp;
+					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 4|| state == 8) {
 					state = 8;
 				}
-				//todo timebased reaction if state == 5
 			} 
 			//many persons in the room
 			else if(newParameter.parameterValue.equals("many")) {
@@ -37,10 +39,12 @@ public class PersonVentilationTubeRule {
 					state = 3;
 				} else if(state == 2 || state == 5) {
 					state = 6;
-					pvAlarm.timestamp = newParameter.timestamp;
+					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 4 ||state == 8) {
 					state = 7;
-				}//todo timebased reaction if state == 6
+				} else if((state == 6 && (alarm.timestamp.getTime() - newParameter.timestamp.getTime() > 5)) || state == 10) {
+					state = 9;
+				} 
 			}
 		} 
 		//what happens when the Parameter is tube
@@ -55,11 +59,13 @@ public class PersonVentilationTubeRule {
 					state = 2;
 				} else if(state == 1|| state == 8){
 					state = 5;
-					pvAlarm.timestamp = newParameter.timestamp;
+					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 3|| state == 7){
 					state = 6;
-					pvAlarm.timestamp = newParameter.timestamp;
-				} //todo timebased reaction if state == 5 or state == 6
+					alarm.timestamp = newParameter.timestamp;
+				} else if((state == 5 && (alarm.timestamp.getTime() - newParameter.timestamp.getTime() > 5)) || state == 9) {
+					state = 10;
+				} 
 			} 
 			//tube is connected
 			else if(newParameter.parameterValue.equals("connected")) {
@@ -77,19 +83,20 @@ public class PersonVentilationTubeRule {
 	
 	//method to evaluate the state machine
 	void evaluateStateMachine() {
-		if(state == 5) {
-			pvAlarm.parameterValue = "hnr";
-		} else if(state == 6) {
-			pvAlarm.parameterType = "local";
-		} else if(state == 7 || state == 8) {
-			pvAlarm.parameterValue = "none";
+		if(state == 9) {
+			alarm.parameterValue = "hnr";
+		} else if(state == 10) {
+			alarm.parameterType = "local";
 		} else {
-			pvAlarm.parameterValue = "nep";
+			alarm.parameterValue = "none";
 		}
-	}
+	}		
 	
-	Parameter forwardEvaluation() {
-		return pvAlarm;
-	}
 	
+	void initializeRule() {
+		this.listOfParametersNeeded.add(ruleName);
+		this.listOfParametersNeeded.add("persons");
+		this.listOfParametersNeeded.add("tube");
+		this.registerRuleAtInferenceControll();		
+	}
 }

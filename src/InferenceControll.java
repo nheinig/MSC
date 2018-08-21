@@ -3,32 +3,24 @@ import java.util.*;
 public class InferenceControll {
 
 	static List<List<String>> listOfRules = new ArrayList<List<String>>();
-	static ArrayList<Parameter> listOfPersonValues = new ArrayList<Parameter>();
-	static ArrayList<Parameter> listOfSpO2Values = new ArrayList<Parameter>();
+	static ArrayList<Parameter> listOfParameters = new ArrayList<Parameter>();
 	static String alarm = "None";
 
-	// helper method that prints out the lists of parameter values
+	// helper method that prints out the listOfParameters
 	static void printValueLists() {
-		for (int i = 0; i < listOfPersonValues.size(); i++) {
+		for (int i = 0; i < listOfParameters.size(); i++) {
 			Parameter param;
-			param = listOfPersonValues.get(i);
+			param = listOfParameters.get(i);
 			System.out.println(param.parameterType + " " + param.parameterValue + " " + param.timestamp);
 		}
-		for (int j = 0; j < listOfSpO2Values.size(); j++) {
-			Parameter param;
-			param = listOfSpO2Values.get(j);
-			System.out.println(param.parameterType + " " + param.parameterValue + " " + param.timestamp);
-		}
-
 	}
 
-	// method that handles new incoming Parameters and writes them in their specific
-	// Arraylist<Parameter>
+	// method that handles new incoming Parameters and writes them into the  Arraylist<Parameter> listOfParameters
 	static void handleNewParameterValue(Parameter param) {
 		if (param.parameterType.equals("persons")) {
-			listOfPersonValues.add(param);
+			listOfParameters.add(param);
 		} else if (param.parameterType.equals("spo2")) {
-			listOfSpO2Values.add(param);
+			listOfParameters.add(param);
 		}
 	}
 
@@ -52,26 +44,28 @@ public class InferenceControll {
 	public static void main(String[] args) {
 		// register Rule for people and spo2 value at IC
 		PersonSpO2Rule pspo2 = new PersonSpO2Rule("pspo2");
-		System.out.println("Rule pspo2 parameters needed: " + pspo2.listOfParametersNeeded);
-
+		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule("pvt");
+		MetaRule master = new MetaRule("meta");
+		
 		// get dummy Parameters
+		/*
 		InputDummy id = new InputDummy();
 		id.fillList();
 		printValueLists();
-
+		*/
 		
 		//forward parameters to a dummy Rule
-		while (!listOfPersonValues.isEmpty() && !listOfSpO2Values.isEmpty()) {
+		while (!listOfParameters.isEmpty() && !listOfParameters.isEmpty()) {
 			List<String> tempList = listOfRules.get(0);
 			System.out.println("Templist: " + tempList);
 			
 			//check if a rule needs the Parameter with the type persons
 			if (tempList.contains("persons")) {
-				pspo2.setPersons(listOfPersonValues.get(0));
+				pspo2.setPersons(listOfParameters.get(0));
 			}
 			//check if a rule needs the Parameter with the type spo2
 			if (tempList.contains("spo2")) {
-				pspo2.setSpO2(listOfSpO2Values.get(0));
+				pspo2.setSpO2(listOfParameters.get(0));
 			}
 			//prints the forwarded Parameters
 			System.out.println(
@@ -88,8 +82,8 @@ public class InferenceControll {
 			System.out.println(alarm);
 			
 			//remove old parameters
-			listOfPersonValues.remove(0);
-			listOfSpO2Values.remove(0);
+			listOfParameters.remove(0);
+			listOfParameters.remove(0);
 		}
 
 	}

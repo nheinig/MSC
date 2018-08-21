@@ -1,14 +1,15 @@
+import java.sql.Timestamp;
 import java.util.Date;
 public class Parameter {
 
 	String parameterType;
 	String parameterValue;
-	Date timestamp;
+	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 	
 	
-	Parameter(String pt, Date ts, String pv){
+	Parameter(String pt, Timestamp ts, String pv){
 		this.parameterType = pt;
-		this.timestamp =ts;
+		this.timestamp = ts;
 		this.parameterValue = pv;
 	}
 	
