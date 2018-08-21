@@ -1,10 +1,10 @@
 
 public class PersonVentilationTubeRule extends Rule {
 	
-	Parameter alarm = new Parameter("PVAlarm", null, "none");
+	Parameter alarm = new Parameter("pvAlarm", null, "none");
 	
-	PersonVentilationTubeRule(String ruleName) {
-		super(ruleName);
+	PersonVentilationTubeRule() {
+		super.ruleName = "PersonVentilationTubeRule";
 		initializeRule();
 	}
 	
@@ -32,7 +32,7 @@ public class PersonVentilationTubeRule extends Rule {
 					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 4 ||state == 8) {
 					state = 7;
-				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 10) {
+				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 3000)) || state == 10) {
 					state = 9;
 				} 
 			}
@@ -49,7 +49,7 @@ public class PersonVentilationTubeRule extends Rule {
 				} else if(state == 3|| state == 7){
 					state = 6;
 					alarm.timestamp = newParameter.timestamp;
-				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 9) {
+				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 3000)) || state == 9) {
 					state = 10;
 				} 
 			} 
@@ -65,6 +65,8 @@ public class PersonVentilationTubeRule extends Rule {
 			}
 			
 		}
+		System.out.println("PVT-State: " + state);
+		evaluateStateMachine();
 	}
 	
 	//method to evaluate the state machine
@@ -76,6 +78,8 @@ public class PersonVentilationTubeRule extends Rule {
 		} else {
 			alarm.parameterValue = "none";
 		}
+		System.out.println("PVT-Alarm: " + alarm.parameterValue);
+		InferenceControll.handleNewAlarm(alarm);
 	}		
 	
 	

@@ -4,6 +4,8 @@ public class InferenceControll {
 
 	static List<List<String>> listOfRules = new ArrayList<List<String>>();
 	static ArrayList<Parameter> listOfParameters = new ArrayList<Parameter>();
+	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();
+
 	static String alarm = "None";
 
 	// helper method that prints out the listOfParameters
@@ -15,14 +17,23 @@ public class InferenceControll {
 		}
 	}
 
-	// method that handles new incoming Parameters and writes them into the  Arraylist<Parameter> listOfParameters
+	// method that handles new incoming Parameters and writes them into the
+	// Arraylist<Parameter> listOfParameters
 	static void handleNewParameterValue(Parameter param) {
 		if (param.parameterType.equals("persons")) {
 			listOfParameters.add(param);
 		} else if (param.parameterType.equals("spo2")) {
 			listOfParameters.add(param);
 		}
+		// todo add event
 	}
+
+	// method that handels new Alarms created by the rules
+	static void handleNewAlarm(Parameter alarm) {
+		listOfAlarms.add(alarm);
+		// todo add event
+	}
+
 
 	// method that registers a Rule to lostOfRules
 	static boolean registerRule(ArrayList<String> rule) {
@@ -42,38 +53,82 @@ public class InferenceControll {
 	}
 
 	public static void main(String[] args) {
+		
+
 		// register Rule for people and spo2 value at IC
-		PersonSpO2Rule pspo2 = new PersonSpO2Rule("pspo2");
-		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule("pvt");
-		MetaRule master = new MetaRule("meta");
-		
+		PersonSpO2Rule pspo2 = new PersonSpO2Rule();
+		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
+		MetaRule meta = new MetaRule();
+						
 		// get dummy Parameters
-		
 		InputDummy id = new InputDummy();
 		id.fillList();
 		printValueLists();
 
-		
-		//forward parameters to a dummy Rule
-		while (!listOfParameters.isEmpty() && !listOfParameters.isEmpty()) {
-			List<String> tempList = listOfRules.get(0);
-			System.out.println("Templist: " + tempList);
-			
-			//check if a rule needs the Parameter with the type persons
-			if (tempList.contains("persons")) {
-				pspo2.setPersons(listOfParameters.get(0));
+		//forwarding of Parameters to the rules
+		while (!listOfParameters.isEmpty() && !listOfParameters.isEmpty()) {			
+			//forwards Parameters of the type "persons"
+			if (listOfParameters.get(0).parameterType.equals("persons")) {
+				for (int i = 0; i < listOfRules.size(); i++) {
+					List<String> tempList = listOfRules.get(i);
+					if (tempList.contains("persons")) {
+						switch (tempList.get(0)) {
+						case "PersonSpO2Rule":
+							pspo2.updateState(listOfParameters.get(0));
+							break;
+						case "PersonVentilationTubeRule":
+							pvt.updateState(listOfParameters.get(0));
+							break;
+						default:
+							break;
+						}
+					}
+				}
+			} 
+			//forwards Parameters of the type "spo2"
+			else if (listOfParameters.get(0).parameterType.equals("spo2")) {
+				for (int i = 0; i < listOfRules.size(); i++) {
+					List<String> tempList = listOfRules.get(i);
+					if (tempList.contains("spo2")) {
+						switch (tempList.get(0)) {
+						case "PersonSpO2Rule":
+							pspo2.updateState(listOfParameters.get(0));
+							break;
+						case "PersonVentilationTubeRule":
+							pvt.updateState(listOfParameters.get(0));
+							break;
+						default:
+							break;
+						}
+					}
+				}
+			} 
+			//forwards Parameters of the type "tube"
+			else if (listOfParameters.get(0).parameterType.equals("tube")) {
+				for (int i = 0; i < listOfRules.size(); i++) {
+					List<String> tempList = listOfRules.get(i);
+					if (tempList.contains("tube")) {
+						switch (tempList.get(0)) {
+						case "PersonSpO2Rule":
+							pspo2.updateState(listOfParameters.get(0));
+							break;
+						case "PersonVentilationTubeRule":
+							pvt.updateState(listOfParameters.get(0));
+							break;
+						default:
+							break;
+						}
+					}
+				}
 			}
-			//check if a rule needs the Parameter with the type spo2
-			if (tempList.contains("spo2")) {
-				pspo2.setSpO2(listOfParameters.get(0));
-			}
-			//prints the forwarded Parameters
-			System.out.println(
-					pspo2.persons.parameterType + " " + pspo2.persons.parameterValue + " " + pspo2.persons.timestamp);
-			System.out.println(pspo2.spo2.parameterType + " " + pspo2.spo2.parameterValue + " " + pspo2.spo2.timestamp);
-
-			//remove old parameters
+			//remove old Parameter
 			listOfParameters.remove(0);
+			
+			//forward Alarm to MetaRule
+			if(!listOfAlarms.isEmpty()) {
+				meta.updateState(listOfAlarms.get(0));
+				listOfAlarms.remove(0);		
+			}
 		}
 
 	}

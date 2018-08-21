@@ -4,13 +4,14 @@ public class MetaRule extends Rule {
 
 	Parameter alarm = new Parameter("GlobalAlarm", new Timestamp(System.currentTimeMillis()), "none");
 	
-	Parameter pvAlarm;
-	Parameter psAlarm;
+	Parameter pvAlarm = new Parameter("pvAlarm", null, "none");
+	Parameter psAlarm= new Parameter("psAlarm", null, "none");;
+
 	
 	int state = 0;
 	
-	MetaRule(String ruleName) {
-		super(ruleName);
+	MetaRule() {
+		super.ruleName = "MetaRule";
 		initializeRule();
 	}
 
@@ -18,7 +19,7 @@ public class MetaRule extends Rule {
 	void updateState(Parameter newAlarm) {
 		if(newAlarm.parameterType.equals("pvAlarm")) {
 			pvAlarm = newAlarm;
-		} else if(newAlarm.parameterType.equals("psALarm")) {
+		} else if(newAlarm.parameterType.equals("psAlarm")) {
 			psAlarm = newAlarm;
 		}
 		if(pvAlarm.parameterValue.equals("none") && psAlarm.parameterValue.equals("none")) {
@@ -30,6 +31,7 @@ public class MetaRule extends Rule {
 			state = 2;
 			alarm.timestamp = new Timestamp(System.currentTimeMillis());
 		}
+		System.out.println("Meta-State: " + state);
 		evaluateStateMachine();
 	}
 	
@@ -42,6 +44,7 @@ public class MetaRule extends Rule {
 		} else if(state == 2) {
 			alarm.parameterValue  = "local";
 		}
+		System.out.println("Meta-Alarm: " + alarm.parameterValue);
 	}
 	
 	//method to forward the globalAlarm

@@ -1,13 +1,13 @@
 
 public class PersonSpO2Rule extends Rule {
 
-	Parameter alarm = new Parameter("PSAlarm", null, "none");
+	Parameter alarm = new Parameter("psAlarm", null, "none");
 	
 	Parameter persons;
 	Parameter spo2;
 	
-	PersonSpO2Rule(String ruleName) {
-		super(ruleName);
+	PersonSpO2Rule() {
+		super.ruleName = "PersonSpO2Rule";
 		initializeRule();
 	}
 
@@ -33,7 +33,7 @@ public class PersonSpO2Rule extends Rule {
 					state = 6;
 				} else if(state == 4 ||state == 8) {
 					state = 7;
-				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 10) {
+				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000)) || state == 10) {
 					state = 9;
 				} 
 			}
@@ -50,7 +50,7 @@ public class PersonSpO2Rule extends Rule {
 				} else if(state == 3|| state == 7){
 					state = 6;
 					alarm.timestamp = newParameter.timestamp;
-				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 9) {
+				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000)) || state == 9) {
 					state = 10;
 				} 
 			} 
@@ -66,7 +66,7 @@ public class PersonSpO2Rule extends Rule {
 			}
 			
 		}
-		System.out.println("state: " + state);
+		System.out.println("PSpO2-State: " + state);
 		evaluateStateMachine();
 	}
 	
@@ -79,14 +79,19 @@ public class PersonSpO2Rule extends Rule {
 		} else {
 			alarm.parameterValue = "none";
 		}
-		System.out.println(alarm.parameterValue);
+		System.out.println("PSpO2-Alarm: " + alarm.parameterValue);
+		InferenceControll.handleNewAlarm(alarm);
 	}	
-	
-	
-	//method to get Parameters if they are missing
-	void getParameters() {
+
+	//method that initializes the rule by registering it to the InferenceControll and adding the parameters needed to the list of parameters
+	void initializeRule() {
+		this.listOfParametersNeeded.add(ruleName);
+		this.listOfParametersNeeded.add("persons");
+		this.listOfParametersNeeded.add("spo2");
+		this.registerRuleAtInferenceControll();		
 	}
-	
+		
+	//getter / setter
 	
 	void setPersons(Parameter persons) {
 		this.persons = persons;
@@ -98,12 +103,4 @@ public class PersonSpO2Rule extends Rule {
 		updateState(spo2);
 	}
 	
-	//method that initializes the rule by registering it to the InferenceControll and adding the parameters needed to the list of parameters
-	void initializeRule() {
-		this.listOfParametersNeeded.add(ruleName);
-		this.listOfParametersNeeded.add("persons");
-		this.listOfParametersNeeded.add("spo2");
-		this.registerRuleAtInferenceControll();		
-	}
-		
 }

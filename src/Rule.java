@@ -13,8 +13,7 @@ public class Rule {
 	
 	int state = 0;
 
-	Rule(String ruleName) {
-		this.ruleName = ruleName;
+	Rule() {
 	}
 
 	// method that evaluates the state machine and sets the alarm based on the state
@@ -23,10 +22,6 @@ public class Rule {
 
 	// method that updates the rule state based on a new Parameter
 	void updateState(Parameter newParameter) {
-	}
-
-	// method to get Parameters if they are missing
-	void getParameters() {
 	}
 
 	//method that forwards the result(alarm of a rule)
@@ -39,6 +34,7 @@ public class Rule {
 	void initializeRule() {
 
 	}
+
 
 	// method that registers the rule at the InferenceControll
 	void registerRuleAtInferenceControll() {
