@@ -96,9 +96,7 @@ public class InputDummy {
 		Parameter parameterValue08 = new Parameter("persons", date5, "none");		
 		Parameter parameterValue09 = new Parameter("spo2", date5, "normal");
 		Parameter parameterValue04 = new Parameter("tube", date5, "connected");
-
-
-
+		
 		listOfParameterValues.add(parameterValue00);
 		listOfParameterValues.add(parameterValue01);
 		listOfParameterValues.add(parameterValue0);

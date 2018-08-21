@@ -1,4 +1,5 @@
 import java.util.*;
+import java.awt.event.*;
 
 public class InferenceControll {
 
@@ -20,12 +21,7 @@ public class InferenceControll {
 	// method that handles new incoming Parameters and writes them into the
 	// Arraylist<Parameter> listOfParameters
 	static void handleNewParameterValue(Parameter param) {
-		if (param.parameterType.equals("persons")) {
-			listOfParameters.add(param);
-		} else if (param.parameterType.equals("spo2")) {
-			listOfParameters.add(param);
-		}
-		// todo add event
+		listOfParameters.add(param);
 	}
 
 	// method that handels new Alarms created by the rules
@@ -94,9 +90,6 @@ public class InferenceControll {
 						case "PersonSpO2Rule":
 							pspo2.updateState(listOfParameters.get(0));
 							break;
-						case "PersonVentilationTubeRule":
-							pvt.updateState(listOfParameters.get(0));
-							break;
 						default:
 							break;
 						}
@@ -109,9 +102,6 @@ public class InferenceControll {
 					List<String> tempList = listOfRules.get(i);
 					if (tempList.contains("tube")) {
 						switch (tempList.get(0)) {
-						case "PersonSpO2Rule":
-							pspo2.updateState(listOfParameters.get(0));
-							break;
 						case "PersonVentilationTubeRule":
 							pvt.updateState(listOfParameters.get(0));
 							break;

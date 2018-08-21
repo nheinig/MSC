@@ -22,14 +22,18 @@ public class MetaRule extends Rule {
 		} else if(newAlarm.parameterType.equals("psAlarm")) {
 			psAlarm = newAlarm;
 		}
-		if(pvAlarm.parameterValue.equals("none") && psAlarm.parameterValue.equals("none")) {
-			state = 0;
-		} else if(pvAlarm.parameterValue.equals("hnr") || psAlarm.parameterValue.equals("hnr") && !(state == 1)) {
+		if(pvAlarm.parameterValue.equals("hnr") || psAlarm.parameterValue.equals("hnr")) {
+			if (state != 1) {
+			alarm.timestamp = new Timestamp(System.currentTimeMillis());
+			}
 			state = 1;
-			alarm.timestamp = new Timestamp(System.currentTimeMillis());
-		} else if((pvAlarm.parameterValue.equals("local") || psAlarm.parameterValue.equals("local")) && !(state == 2)) {
+		} else if((pvAlarm.parameterValue.equals("local") || psAlarm.parameterValue.equals("local"))) {
+			if (state != 2) {
+				alarm.timestamp = new Timestamp(System.currentTimeMillis());
+				}
 			state = 2;
-			alarm.timestamp = new Timestamp(System.currentTimeMillis());
+		} else if(pvAlarm.parameterValue.equals("none") && psAlarm.parameterValue.equals("none")) {
+			state = 0;
 		}
 		System.out.println("Meta-State: " + state);
 		evaluateStateMachine();
@@ -44,7 +48,7 @@ public class MetaRule extends Rule {
 		} else if(state == 2) {
 			alarm.parameterValue  = "local";
 		}
-		System.out.println("Meta-Alarm: " + alarm.parameterValue);
+		System.out.println("Meta-Alarm: " + alarm.parameterValue + "since " + alarm.timestamp );
 	}
 	
 	//method to forward the globalAlarm
