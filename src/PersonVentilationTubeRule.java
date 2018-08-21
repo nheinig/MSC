@@ -32,7 +32,7 @@ public class PersonVentilationTubeRule extends Rule {
 					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 4 ||state == 8) {
 					state = 7;
-				} else if((state == 6 && (alarm.timestamp.getTime() - newParameter.timestamp.getTime() > 5)) || state == 10) {
+				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 10) {
 					state = 9;
 				} 
 			}
@@ -49,7 +49,7 @@ public class PersonVentilationTubeRule extends Rule {
 				} else if(state == 3|| state == 7){
 					state = 6;
 					alarm.timestamp = newParameter.timestamp;
-				} else if((state == 5 && (alarm.timestamp.getTime() - newParameter.timestamp.getTime() > 5)) || state == 9) {
+				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 9) {
 					state = 10;
 				} 
 			} 
@@ -72,7 +72,7 @@ public class PersonVentilationTubeRule extends Rule {
 		if(state == 9) {
 			alarm.parameterValue = "hnr";
 		} else if(state == 10) {
-			alarm.parameterType = "local";
+			alarm.parameterValue = "local";
 		} else {
 			alarm.parameterValue = "none";
 		}

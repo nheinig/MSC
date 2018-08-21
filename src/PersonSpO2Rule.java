@@ -21,7 +21,6 @@ public class PersonSpO2Rule extends Rule {
 					state = 1;
 				} else if(state == 2|| state == 6) {
 					state = 5;
-					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 4|| state == 8) {
 					state = 8;
 				}
@@ -32,10 +31,9 @@ public class PersonSpO2Rule extends Rule {
 					state = 3;
 				} else if(state == 2 || state == 5) {
 					state = 6;
-					alarm.timestamp = newParameter.timestamp;
 				} else if(state == 4 ||state == 8) {
 					state = 7;
-				} else if((state == 6 && (alarm.timestamp.getTime() - newParameter.timestamp.getTime() > 5)) || state == 10) {
+				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 10) {
 					state = 9;
 				} 
 			}
@@ -52,7 +50,7 @@ public class PersonSpO2Rule extends Rule {
 				} else if(state == 3|| state == 7){
 					state = 6;
 					alarm.timestamp = newParameter.timestamp;
-				} else if((state == 5 && (alarm.timestamp.getTime() - newParameter.timestamp.getTime() > 5)) || state == 9) {
+				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() > 5)) || state == 9) {
 					state = 10;
 				} 
 			} 
@@ -68,6 +66,7 @@ public class PersonSpO2Rule extends Rule {
 			}
 			
 		}
+		System.out.println("state: " + state);
 		evaluateStateMachine();
 	}
 	
@@ -76,7 +75,7 @@ public class PersonSpO2Rule extends Rule {
 		if(state == 9) {
 			alarm.parameterValue = "hnr";
 		} else if(state == 10) {
-			alarm.parameterType = "local";
+			alarm.parameterValue = "local";
 		} else {
 			alarm.parameterValue = "none";
 		}

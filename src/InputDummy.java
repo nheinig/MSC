@@ -16,7 +16,7 @@ public class InputDummy {
 
 		try        
 		{
-		    Thread.sleep(1000);
+		    Thread.sleep(3000);
 		} 
 		catch(InterruptedException ex) 
 		{
@@ -29,7 +29,7 @@ public class InputDummy {
 		
 		try        
 		{
-		    Thread.sleep(1000);
+		    Thread.sleep(3000);
 		} 
 		catch(InterruptedException ex) 
 		{
@@ -42,7 +42,7 @@ public class InputDummy {
 		
 		try        
 		{
-		    Thread.sleep(1000);
+		    Thread.sleep(3000);
 		} 
 		catch(InterruptedException ex) 
 		{
@@ -55,7 +55,7 @@ public class InputDummy {
 		
 		try        
 		{
-		    Thread.sleep(1000);
+		    Thread.sleep(3000);
 		} 
 		catch(InterruptedException ex) 
 		{
