@@ -48,7 +48,7 @@ public class MetaRule extends Rule {
 		} else if(state == 2) {
 			alarm.parameterValue  = "local";
 		}
-		System.out.println("Meta-Alarm: " + alarm.parameterValue + "since " + alarm.timestamp );
+		System.out.println("Meta-Alarm: " + alarm.parameterValue + " since " + alarm.timestamp );
 	}
 	
 	//method to forward the globalAlarm
