@@ -1,5 +1,5 @@
 import java.sql.Timestamp;
-import java.util.*;
+
 public class MetaRule extends Rule {
 
 	Parameter alarm = new Parameter("GlobalAlarm", new Timestamp(System.currentTimeMillis()), "none");

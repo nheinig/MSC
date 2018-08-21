@@ -1,14 +1,7 @@
-import java.util.*;
 
 public class PersonVentilationTubeRule extends Rule {
 	
 	Parameter alarm = new Parameter("PVAlarm", null, "none");
-	
-	Parameter tube = null;
-	Parameter persons = null;
-	
-	Date timeOfPersons = null;
-	Date timeOfTube = null;
 	
 	PersonVentilationTubeRule(String ruleName) {
 		super(ruleName);
@@ -19,9 +12,6 @@ public class PersonVentilationTubeRule extends Rule {
 	void updateState(Parameter newParameter) {
 		// what happens when its a Parameter of the type persons
 		if(newParameter.parameterType.equals("persons")) {
-			persons = newParameter;			
-			timeOfPersons = newParameter.timestamp;
-			System.out.println(persons);
 			//none persons in the room 
 			if(newParameter.parameterValue.equals("none")) {
 				if(state == 0 || state == 3) {
@@ -49,10 +39,6 @@ public class PersonVentilationTubeRule extends Rule {
 		} 
 		//what happens when the Parameter is tube
 		else if(newParameter.parameterType.equals("tube")) {
-			tube = newParameter;
-			timeOfTube = newParameter.timestamp;
-			System.out.println(tube);
-			
 			//tube is disconnected
 			if(newParameter.parameterValue.equals("disconnected")) {
 				if(state == 0|| state == 4) {

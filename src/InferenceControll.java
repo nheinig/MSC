@@ -48,11 +48,11 @@ public class InferenceControll {
 		MetaRule master = new MetaRule("meta");
 		
 		// get dummy Parameters
-		/*
+		
 		InputDummy id = new InputDummy();
 		id.fillList();
 		printValueLists();
-		*/
+
 		
 		//forward parameters to a dummy Rule
 		while (!listOfParameters.isEmpty() && !listOfParameters.isEmpty()) {
@@ -72,17 +72,7 @@ public class InferenceControll {
 					pspo2.persons.parameterType + " " + pspo2.persons.parameterValue + " " + pspo2.persons.timestamp);
 			System.out.println(pspo2.spo2.parameterType + " " + pspo2.spo2.parameterValue + " " + pspo2.spo2.timestamp);
 
-			//check if the rule has to be run
-			if (pspo2.ruleLogic()) {
-				pspo2.ruleAction();
-			} else {
-				//if the rule doesnt have to be run there is no alarm necessary
-				setAlarm("None!");
-			}
-			System.out.println(alarm);
-			
 			//remove old parameters
-			listOfParameters.remove(0);
 			listOfParameters.remove(0);
 		}
 
