@@ -1,8 +1,8 @@
 import java.util.*;
-import java.awt.event.*;
 
 public class InferenceControll {
 
+	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>(Arrays.asList("persons", "tube", "spo2"));
 	static List<List<String>> listOfRules = new ArrayList<List<String>>();
 	static ArrayList<Parameter> listOfParameters = new ArrayList<Parameter>();
 	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();
@@ -48,21 +48,31 @@ public class InferenceControll {
 		alarm = alarmtype;
 	}
 
-	public static void main(String[] args) {
-		
+	//adds available Parameters (from data stream and rules) to an ArrayList
+	static void addAvailableParameter(String parameter) {
+		if(!listOfAvailableParameters.contains(parameter)) {
+			listOfAvailableParameters.add(parameter);
+		}
+	}
+	
+	public static void main(String[] args) {	
 
 		// register Rule for people and spo2 value at IC
 		PersonSpO2Rule pspo2 = new PersonSpO2Rule();
 		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
 		MetaRule meta = new MetaRule();
-						
+		
+		ConfigurationUI cUI = new ConfigurationUI(listOfAvailableParameters);
+		cUI.updateParameterStrings(listOfAvailableParameters);
+		cUI.createConfigurationUI();		
+
 		// get dummy Parameters
 		InputDummy id = new InputDummy();
 		id.fillList();
 		printValueLists();
 
 		//forwarding of Parameters to the rules
-		while (!listOfParameters.isEmpty() && !listOfParameters.isEmpty()) {			
+		while (!listOfParameters.isEmpty()) {			
 			//forwards Parameters of the type "persons"
 			if (listOfParameters.get(0).parameterType.equals("persons")) {
 				for (int i = 0; i < listOfRules.size(); i++) {
@@ -120,7 +130,6 @@ public class InferenceControll {
 				listOfAlarms.remove(0);		
 			}
 		}
-
 	}
 
 }

@@ -9,6 +9,7 @@ public class PersonVentilationTubeRule extends Rule {
 	}
 	
 	//Method to update the state based on newParameter
+	@Override
 	void updateState(Parameter newParameter) {
 		// what happens when its a Parameter of the type persons
 		if(newParameter.parameterType.equals("persons")) {
@@ -72,6 +73,7 @@ public class PersonVentilationTubeRule extends Rule {
 	}
 	
 	//method to evaluate the state machine
+	@Override
 	void evaluateStateMachine() {
 		if(state == 9) {
 			alarm.parameterValue = "hnr";
@@ -84,11 +86,17 @@ public class PersonVentilationTubeRule extends Rule {
 		InferenceControll.handleNewAlarm(alarm);
 	}		
 	
-	
+	@Override
 	void initializeRule() {
 		this.listOfParametersNeeded.add(ruleName);
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("tube");
-		this.registerRuleAtInferenceControll();		
+		this.registerRuleAtInferenceControll();
+		InferenceControll.addAvailableParameter(getOutputType());
+	}
+	
+	@Override
+	String getOutputType() {
+		return alarm.parameterType;
 	}
 }

@@ -1,5 +1,3 @@
-
-
 import javax.swing.*;
 
 public class UserInterface {
@@ -16,7 +14,7 @@ public class UserInterface {
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//create Box
-		Box box =Box.createVerticalBox();
+		Box box = Box.createVerticalBox();
 		ui.add(box);
 		
 		//customize  labels	
@@ -31,8 +29,7 @@ public class UserInterface {
 		
 		ui.setSize(400, 400);
 		//ui.pack();
-		ui.setVisible(true);
-		
+		ui.setVisible(true);		
 	}
 	
 	

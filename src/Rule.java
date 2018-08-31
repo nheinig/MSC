@@ -35,7 +35,11 @@ public class Rule {
 
 	}
 
-
+	//forwards the OutputType (alarm.parameterType) to the IC 
+	String getOutputType() {
+		return null;
+	}
+	
 	// method that registers the rule at the InferenceControll
 	void registerRuleAtInferenceControll() {
 		System.out.println("Rule is registred: " + ruleRegistered);

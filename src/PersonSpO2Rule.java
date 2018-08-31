@@ -95,8 +95,14 @@ public class PersonSpO2Rule extends Rule {
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("spo2");
 		this.registerRuleAtInferenceControll();
+		InferenceControll.addAvailableParameter(getOutputType());
 	}
 
+	@Override
+	String getOutputType() {
+		return alarm.parameterType;
+	}
+	
 	// getter / setter
 
 	void setPersons(Parameter persons) {
