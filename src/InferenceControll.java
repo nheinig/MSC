@@ -1,5 +1,3 @@
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class InferenceControll {
@@ -34,7 +32,7 @@ public class InferenceControll {
 		// todo add event
 	}
 
-	// method that registers a Rule to lostOfRules
+	// method that registers a Rule to listOfRules OLD
 	static boolean registerRule(ArrayList<String> rule) {
 		if (!listOfRules.contains(rule)) {
 			listOfRules.add(rule);
@@ -84,8 +82,7 @@ public class InferenceControll {
 		id.fillList();
 		printValueLists();
 
-		// forwarding of Parameters to the rules
-
+		// forwarding of Parameters to the rules that need them
 		while (!listOfParameters.isEmpty()) {
 			for (int i = 0; i < ruleList.size(); i++) {
 				if (ruleList.get(i).getParametersNeeded().contains(listOfParameters.get(0).parameterType)) {

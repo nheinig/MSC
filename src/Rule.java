@@ -40,7 +40,7 @@ public class Rule {
 		return null;
 	}
 	
-	// method that registers the rule at the InferenceControll
+	// method that registers the rule at the InferenceControll OLD
 	void registerRuleAtInferenceControll() {
 		System.out.println("Rule is registred: " + ruleRegistered);
 		ruleRegistered = InferenceControll.registerRule(listOfParametersNeeded);

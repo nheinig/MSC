@@ -62,6 +62,7 @@ public class MetaRule extends Rule {
 		System.out.println("testing");
 	}
 	
+	//OLD
 	@Override
 	void initializeRule() {
 		this.listOfParametersNeeded.add(ruleName);
