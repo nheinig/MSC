@@ -8,10 +8,10 @@ public class PersonSpO2Rule extends Rule {
 
 	PersonSpO2Rule() {
 		super.ruleName = "PersonSpO2Rule";
-		initializeRule();
 	}
 
 	// Method to update the state based on newParameter
+	@Override
 	void updateState(Parameter newParameter) {
 		// what happens when its a Parameter of the type persons
 		if (newParameter.parameterType.equals("persons")) {
@@ -76,6 +76,7 @@ public class PersonSpO2Rule extends Rule {
 	}
 
 	// method to evaluate the state machine
+	@Override
 	void evaluateStateMachine() {
 		if (state == 9) {
 			alarm.parameterValue = "hnr";
@@ -90,6 +91,7 @@ public class PersonSpO2Rule extends Rule {
 
 	// method that initializes the rule by registering it to the InferenceControll
 	// and adding the parameters needed to the list of parameters
+	@Override
 	void initializeRule() {
 		this.listOfParametersNeeded.add(ruleName);
 		this.listOfParametersNeeded.add("persons");

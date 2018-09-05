@@ -49,4 +49,11 @@ public class Rule {
 		} 
 		System.out.println("Rule is registred: " + ruleRegistered);
 	}
+
+	void test() {		
+	}
+	
+	ArrayList<String> getParametersNeeded(){
+		return listOfParametersNeeded;
+	}
 }

@@ -1,3 +1,5 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class InferenceControll {
@@ -6,6 +8,8 @@ public class InferenceControll {
 	static List<List<String>> listOfRules = new ArrayList<List<String>>();
 	static ArrayList<Parameter> listOfParameters = new ArrayList<Parameter>();
 	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();
+
+	static ArrayList<Rule> ruleList = new ArrayList<Rule>();
 
 	static String alarm = "None";
 
@@ -30,7 +34,6 @@ public class InferenceControll {
 		// todo add event
 	}
 
-
 	// method that registers a Rule to lostOfRules
 	static boolean registerRule(ArrayList<String> rule) {
 		if (!listOfRules.contains(rule)) {
@@ -48,80 +51,47 @@ public class InferenceControll {
 		alarm = alarmtype;
 	}
 
-	//adds available Parameters (from data stream and rules) to an ArrayList
+	// adds available Parameters (from data stream and rules) to an ArrayList
 	static void addAvailableParameter(String parameter) {
-		if(!listOfAvailableParameters.contains(parameter)) {
+		if (!listOfAvailableParameters.contains(parameter)) {
 			listOfAvailableParameters.add(parameter);
 		}
 	}
-	
-	public static void main(String[] args) {	
 
-		// register Rule for people and spo2 value at IC
+	public static void main(String[] args) {
+
+		// register Rule for persons and spo2 value at IC
 		PersonSpO2Rule pspo2 = new PersonSpO2Rule();
+		pspo2.initializeRule();
+		ruleList.add(pspo2);
+
+		// register Rule for persons and tube value at IC
 		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
+		pvt.initializeRule();
+		ruleList.add(pvt);
+
+		// register MetaRule at IC
 		MetaRule meta = new MetaRule();
-		
+		meta.initializeRule();
+		ruleList.add(meta);
+
 		ConfigurationUI cUI = new ConfigurationUI(listOfAvailableParameters);
 		cUI.updateParameterStrings(listOfAvailableParameters);
-		cUI.createConfigurationUI();		
+		cUI.createConfigurationUI();
 
 		// get dummy Parameters
 		InputDummy id = new InputDummy();
 		id.fillList();
 		printValueLists();
 
-		//forwarding of Parameters to the rules
-		while (!listOfParameters.isEmpty()) {			
-			//forwards Parameters of the type "persons"
-			if (listOfParameters.get(0).parameterType.equals("persons")) {
-				for (int i = 0; i < listOfRules.size(); i++) {
-					List<String> tempList = listOfRules.get(i);
-					if (tempList.contains("persons")) {
-						switch (tempList.get(0)) {
-						case "PersonSpO2Rule":
-							pspo2.updateState(listOfParameters.get(0));
-							break;
-						case "PersonVentilationTubeRule":
-							pvt.updateState(listOfParameters.get(0));
-							break;
-						default:
-							break;
-						}
-					}
-				}
-			} 
-			//forwards Parameters of the type "spo2"
-			else if (listOfParameters.get(0).parameterType.equals("spo2")) {
-				for (int i = 0; i < listOfRules.size(); i++) {
-					List<String> tempList = listOfRules.get(i);
-					if (tempList.contains("spo2")) {
-						switch (tempList.get(0)) {
-						case "PersonSpO2Rule":
-							pspo2.updateState(listOfParameters.get(0));
-							break;
-						default:
-							break;
-						}
-					}
-				}
-			} 
-			//forwards Parameters of the type "tube"
-			else if (listOfParameters.get(0).parameterType.equals("tube")) {
-				for (int i = 0; i < listOfRules.size(); i++) {
-					List<String> tempList = listOfRules.get(i);
-					if (tempList.contains("tube")) {
-						switch (tempList.get(0)) {
-						case "PersonVentilationTubeRule":
-							pvt.updateState(listOfParameters.get(0));
-							break;
-						default:
-							break;
-						}
-					}
+		// forwarding of Parameters to the rules
+
+		while (!listOfParameters.isEmpty()) {
+			for (int i = 0; i < ruleList.size(); i++) {
+				if (ruleList.get(i).getParametersNeeded().contains(listOfParameters.get(0).parameterType)) {
+					ruleList.get(i).updateState(listOfParameters.get(0));
 				}
 			}
-			//remove old Parameter
 			listOfParameters.remove(0);
 			
 			//forward Alarm to MetaRule

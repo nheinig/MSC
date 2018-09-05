@@ -12,10 +12,10 @@ public class MetaRule extends Rule {
 	
 	MetaRule() {
 		super.ruleName = "MetaRule";
-		initializeRule();
 	}
 
 	//Method to update the state based on new alarm from other rules
+	@Override
 	void updateState(Parameter newAlarm) {
 		if(newAlarm.parameterType.equals("pvAlarm")) {
 			pvAlarm = newAlarm;
@@ -40,6 +40,7 @@ public class MetaRule extends Rule {
 	}
 	
 	//Method to evaluate the state machine output
+	@Override
 	void evaluateStateMachine() {
 		if(state == 0) {
 			alarm.parameterValue = "none";
@@ -56,6 +57,12 @@ public class MetaRule extends Rule {
 		return alarm;
 	}
 		
+	@Override
+	void test() {
+		System.out.println("testing");
+	}
+	
+	@Override
 	void initializeRule() {
 		this.listOfParametersNeeded.add(ruleName);
 		this.listOfParametersNeeded.add("pvAlarm");

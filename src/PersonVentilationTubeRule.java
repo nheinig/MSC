@@ -5,7 +5,6 @@ public class PersonVentilationTubeRule extends Rule {
 	
 	PersonVentilationTubeRule() {
 		super.ruleName = "PersonVentilationTubeRule";
-		initializeRule();
 	}
 	
 	//Method to update the state based on newParameter
