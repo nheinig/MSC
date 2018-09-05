@@ -1,7 +1,11 @@
+import java.sql.Timestamp;
 
 public class PersonVentilationTubeRule extends Rule {
 	
 	Parameter alarm = new Parameter("pvAlarm", null, "none");
+	
+	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
+	Timestamp tubeTS = new Timestamp(System.currentTimeMillis());
 	
 	PersonVentilationTubeRule() {
 		super.ruleName = "PersonVentilationTubeRule";
@@ -12,6 +16,7 @@ public class PersonVentilationTubeRule extends Rule {
 	void updateState(Parameter newParameter) {
 		// what happens when its a Parameter of the type persons
 		if(newParameter.parameterType.equals("persons")) {
+			personsTS = newParameter.timestamp;
 			//no persons in the room 
 			if(newParameter.parameterValue.equals("none")) {
 				if(state == 0 || state == 3) {
@@ -22,7 +27,11 @@ public class PersonVentilationTubeRule extends Rule {
 					state = 8;
 				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000)) || state == 10) {
 					state = 9;
-				} 
+				}
+				if(personsTS.getTime() > tubeTS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 9;
+					alarm.timestamp = newParameter.timestamp;
+				}
 			} 
 			//many persons in the room
 			else if(newParameter.parameterValue.equals("many")) {
@@ -35,10 +44,15 @@ public class PersonVentilationTubeRule extends Rule {
 				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000)) || state == 9) {
 					state = 10;
 				} 
+				if(personsTS.getTime() > tubeTS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 10;
+					alarm.timestamp = newParameter.timestamp;
+				}
 			}
 		} 
 		//what happens when the Parameter is spo2
 		else if(newParameter.parameterType.equals("tube")) {
+			tubeTS = newParameter.timestamp;			
 			//spo2 is normal
 			if(newParameter.parameterValue.equals("disconnected")) {
 				if(state == 0|| state == 4) {
@@ -54,6 +68,9 @@ public class PersonVentilationTubeRule extends Rule {
 				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000))) {
 					state = 10;
 				}
+				if(tubeTS.getTime() > personsTS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 10;
+				}
 			} 
 			//spo2 is low
 			else if(newParameter.parameterValue.equals("connected")) {
@@ -64,8 +81,14 @@ public class PersonVentilationTubeRule extends Rule {
 				} else if(state == 3 || state == 6 || state == 10){
 					state = 7;
 				}
+				if(tubeTS.getTime() > personsTS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 10;
+					alarm.timestamp = newParameter.timestamp;
+				}
 			}
-			
+			if (state == 10 && (newParameter.timestamp.getTime() > alarm.timestamp.getTime() + 20000)) {
+				state = 9;
+			}		
 		}
 		System.out.println("PVT-State: " + state);
 		evaluateStateMachine();

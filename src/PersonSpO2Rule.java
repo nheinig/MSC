@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 
 public class PersonSpO2Rule extends Rule {
 
@@ -5,6 +6,9 @@ public class PersonSpO2Rule extends Rule {
 
 	Parameter persons;
 	Parameter spo2;
+	
+	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
+	Timestamp spo2TS = new Timestamp(System.currentTimeMillis());
 
 	PersonSpO2Rule() {
 		super.ruleName = "PersonSpO2Rule";
@@ -15,6 +19,7 @@ public class PersonSpO2Rule extends Rule {
 	void updateState(Parameter newParameter) {
 		// what happens when its a Parameter of the type persons
 		if (newParameter.parameterType.equals("persons")) {
+			personsTS = newParameter.timestamp;
 			// no persons in the room
 			if (newParameter.parameterValue.equals("none")) {
 				if (state == 0 || state == 3) {
@@ -26,6 +31,10 @@ public class PersonSpO2Rule extends Rule {
 				} else if ((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000))
 						|| state == 10) {
 					state = 9;
+				}
+				if(personsTS.getTime() > spo2TS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 9;
+					alarm.timestamp = newParameter.timestamp;
 				}
 			}
 			// many persons in the room
@@ -39,12 +48,17 @@ public class PersonSpO2Rule extends Rule {
 				} else if ((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000))
 						|| state == 9) {
 					state = 10;
+				} 
+				if(personsTS.getTime() > spo2TS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 10;
+					alarm.timestamp = newParameter.timestamp;
 				}
 			}
 		}
 
 		// what happens when the Parameter is spo2
 		else if (newParameter.parameterType.equals("spo2")) {
+			spo2TS = newParameter.timestamp;
 			// spo2 is normal
 			if (newParameter.parameterValue.equals("low")) {
 				if (state == 0 || state == 4) {
@@ -58,6 +72,9 @@ public class PersonSpO2Rule extends Rule {
 				} else if ((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000))) {
 					state = 9;
 				}
+				if(spo2TS.getTime() > personsTS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 10;
+				}
 			}
 			// spo2 is low
 			else if (newParameter.parameterValue.equals("normal")) {
@@ -68,8 +85,14 @@ public class PersonSpO2Rule extends Rule {
 				} else if (state == 3 || state == 6 || state == 10) {
 					state = 7;
 				}
+				if(spo2TS.getTime() > personsTS.getTime() + 20000 && !(state == 9 || state == 10)) {
+					state = 10;
+					alarm.timestamp = newParameter.timestamp;
+				}
 			}
-
+			if (state == 10 && (newParameter.timestamp.getTime() > alarm.timestamp.getTime() + 20000)) {
+				state = 9;
+			}		
 		}
 		System.out.println("PSpO2-State: " + state);
 		evaluateStateMachine();
