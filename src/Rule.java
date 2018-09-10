@@ -9,7 +9,7 @@ public class Rule {
 	
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
 	
-	Parameter alarm;	
+	Parameter ruleResult;	
 	
 	int state = 0;
 
@@ -26,7 +26,7 @@ public class Rule {
 
 	//method that forwards the result(alarm of a rule)
 	Parameter forwardEvaluation() {
-		return alarm;
+		return ruleResult;
 	}
 	
 	// method that initializes the rule by registering it to the InferenceControll
@@ -40,20 +40,20 @@ public class Rule {
 		return null;
 	}
 	
-	// method that registers the rule at the InferenceControll OLD
-	void registerRuleAtInferenceControll() {
-		System.out.println("Rule is registred: " + ruleRegistered);
-		ruleRegistered = InferenceControll.registerRule(listOfParametersNeeded);
-		if (!ruleRegistered) {
-			System.out.println("A Rule with the same Name allready exists;");
-		} 
-		System.out.println("Rule is registred: " + ruleRegistered);
-	}
-
 	void test() {		
 	}
+	
+	//-----------------
+	//getter and setter
+	//-----------------
 	
 	ArrayList<String> getParametersNeeded(){
 		return listOfParametersNeeded;
 	}
+	
+	String getRuleResultType() {
+		return ruleResult.parameterType;
+	}
+	
+
 }

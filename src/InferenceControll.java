@@ -4,7 +4,7 @@ public class InferenceControll {
 
 	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>(Arrays.asList("persons", "tube", "spo2"));
 	static List<List<String>> listOfRules = new ArrayList<List<String>>();
-	static ArrayList<Parameter> listOfParameters = new ArrayList<Parameter>();
+	static ArrayList<Parameter> listOfNewParameters = new ArrayList<Parameter>();
 	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();
 
 	static ArrayList<Rule> ruleList = new ArrayList<Rule>();
@@ -13,9 +13,9 @@ public class InferenceControll {
 
 	// helper method that prints out the listOfParameters
 	static void printValueLists() {
-		for (int i = 0; i < listOfParameters.size(); i++) {
+		for (int i = 0; i < listOfNewParameters.size(); i++) {
 			Parameter param;
-			param = listOfParameters.get(i);
+			param = listOfNewParameters.get(i);
 			System.out.println(param.parameterType + " " + param.parameterValue + " " + param.timestamp);
 		}
 	}
@@ -23,7 +23,7 @@ public class InferenceControll {
 	// method that handles new incoming Parameters and writes them into the
 	// Arraylist<Parameter> listOfParameters
 	static void handleNewParameterValue(Parameter param) {
-		listOfParameters.add(param);
+		listOfNewParameters.add(param);
 	}
 
 	// method that handels new Alarms created by the rules
@@ -32,17 +32,6 @@ public class InferenceControll {
 		// todo add event
 	}
 
-	// method that registers a Rule to listOfRules OLD
-	static boolean registerRule(ArrayList<String> rule) {
-		if (!listOfRules.contains(rule)) {
-			listOfRules.add(rule);
-			System.out.println("List of Rules " + listOfRules);
-			return true;
-		} else {
-			return false;
-		}
-
-	}
 
 	// set the alarm type
 	static void setAlarm(String alarmtype) {
@@ -60,17 +49,14 @@ public class InferenceControll {
 
 		// register Rule for persons and spo2 value at IC
 		PersonSpO2Rule pspo2 = new PersonSpO2Rule();
-		pspo2.initializeRule();
 		ruleList.add(pspo2);
 
 		// register Rule for persons and tube value at IC
 		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
-		pvt.initializeRule();
 		ruleList.add(pvt);
 
 		// register MetaRule at IC
 		MetaRule meta = new MetaRule();
-		meta.initializeRule();
 		ruleList.add(meta);
 
 		ConfigurationUI cUI = new ConfigurationUI(listOfAvailableParameters);
@@ -83,13 +69,13 @@ public class InferenceControll {
 		printValueLists();
 
 		// forwarding of Parameters to the rules that need them
-		while (!listOfParameters.isEmpty()) {
+		while (!listOfNewParameters.isEmpty()) {
 			for (int i = 0; i < ruleList.size(); i++) {
-				if (ruleList.get(i).getParametersNeeded().contains(listOfParameters.get(0).parameterType)) {
-					ruleList.get(i).updateState(listOfParameters.get(0));
+				if (ruleList.get(i).getParametersNeeded().contains(listOfNewParameters.get(0).parameterType)) {
+					ruleList.get(i).updateState(listOfNewParameters.get(0));
 				}
 			}
-			listOfParameters.remove(0);
+			listOfNewParameters.remove(0);
 			
 			//forward Alarm to MetaRule
 			if(!listOfAlarms.isEmpty()) {

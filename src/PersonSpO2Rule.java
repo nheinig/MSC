@@ -2,16 +2,14 @@ import java.sql.Timestamp;
 
 public class PersonSpO2Rule extends Rule {
 
-	Parameter alarm = new Parameter("psAlarm", null, "none");
-
-	Parameter persons;
-	Parameter spo2;
-	
 	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
 	Timestamp spo2TS = new Timestamp(System.currentTimeMillis());
 
 	PersonSpO2Rule() {
-		super.ruleName = "PersonSpO2Rule";
+		ruleName = "PersonSpO2Rule";
+		super.ruleResult = new Parameter("psAlarm", null,"none");
+		initializeRule();
+		InferenceControll.addAvailableParameter(getOutputType());
 	}
 
 	// Method to update the state based on newParameter
@@ -28,13 +26,13 @@ public class PersonSpO2Rule extends Rule {
 					state = 5;
 				} else if (state == 4 || state == 7) {
 					state = 8;
-				} else if ((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000))
+				} else if ((state == 5 && (newParameter.timestamp.getTime() - ruleResult.timestamp.getTime() >= 2000))
 						|| state == 10) {
 					state = 9;
 				}
 				if(personsTS.getTime() > spo2TS.getTime() + 20000 && !(state == 9 || state == 10)) {
 					state = 9;
-					alarm.timestamp = newParameter.timestamp;
+					ruleResult.timestamp = newParameter.timestamp;
 				}
 			}
 			// many persons in the room
@@ -45,13 +43,13 @@ public class PersonSpO2Rule extends Rule {
 					state = 8;
 				} else if (state == 4 || state == 8) {
 					state = 7;
-				} else if ((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000))
+				} else if ((state == 6 && (newParameter.timestamp.getTime() - ruleResult.timestamp.getTime() >= 2000))
 						|| state == 9) {
 					state = 10;
 				} 
 				if(personsTS.getTime() > spo2TS.getTime() + 20000 && !(state == 9 || state == 10)) {
 					state = 10;
-					alarm.timestamp = newParameter.timestamp;
+					ruleResult.timestamp = newParameter.timestamp;
 				}
 			}
 		}
@@ -65,11 +63,11 @@ public class PersonSpO2Rule extends Rule {
 					state = 2;
 				} else if (state == 1 || state == 8) {
 					state = 5;
-					alarm.timestamp = newParameter.timestamp;
+					ruleResult.timestamp = newParameter.timestamp;
 				} else if (state == 3 || state == 7) {
 					state = 6;
-					alarm.timestamp = newParameter.timestamp;
-				} else if ((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 2000))) {
+					ruleResult.timestamp = newParameter.timestamp;
+				} else if ((state == 5 && (newParameter.timestamp.getTime() - ruleResult.timestamp.getTime() >= 2000))) {
 					state = 9;
 				}
 				if(spo2TS.getTime() > personsTS.getTime() + 20000 && !(state == 9 || state == 10)) {
@@ -87,10 +85,10 @@ public class PersonSpO2Rule extends Rule {
 				}
 				if(spo2TS.getTime() > personsTS.getTime() + 20000 && !(state == 9 || state == 10)) {
 					state = 10;
-					alarm.timestamp = newParameter.timestamp;
+					ruleResult.timestamp = newParameter.timestamp;
 				}
 			}
-			if (state == 10 && (newParameter.timestamp.getTime() > alarm.timestamp.getTime() + 20000)) {
+			if (state == 10 && (newParameter.timestamp.getTime() > ruleResult.timestamp.getTime() + 20000)) {
 				state = 9;
 			}		
 		}
@@ -102,42 +100,27 @@ public class PersonSpO2Rule extends Rule {
 	@Override
 	void evaluateStateMachine() {
 		if (state == 9) {
-			alarm.parameterValue = "hnr";
+			ruleResult.parameterValue = "hnr";
 		} else if (state == 10) {
-			alarm.parameterValue = "local";
+			ruleResult.parameterValue = "local";
 		} else {
-			alarm.parameterValue = "none";
+			ruleResult.parameterValue = "none";
 		}
-		System.out.println("PSpO2-Alarm: " + alarm.parameterValue);
-		InferenceControll.handleNewAlarm(alarm);
+		System.out.println("PSpO2-Alarm: " + ruleResult.parameterValue);
+		InferenceControll.handleNewAlarm(ruleResult);
 	}
 
-	// method that initializes the rule by registering it to the InferenceControll
-	// and adding the parameters needed to the list of parameters
 	@Override
 	void initializeRule() {
-		this.listOfParametersNeeded.add(ruleName);
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("spo2");
-		this.registerRuleAtInferenceControll();
-		InferenceControll.addAvailableParameter(getOutputType());
 	}
-
+	
 	@Override
 	String getOutputType() {
-		return alarm.parameterType;
+		return ruleResult.parameterType;
 	}
 	
 	// getter / setter
-
-	void setPersons(Parameter persons) {
-		this.persons = persons;
-		updateState(persons);
-	}
-
-	void setSpO2(Parameter spo2) {
-		this.spo2 = spo2;
-		updateState(spo2);
-	}
 
 }
