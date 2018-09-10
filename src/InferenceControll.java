@@ -2,7 +2,7 @@ import java.util.*;
 
 public class InferenceControll {
 
-	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>(Arrays.asList("persons", "tube", "spo2"));
+	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>();
 	static List<List<String>> listOfRules = new ArrayList<List<String>>();
 	static ArrayList<Parameter> listOfNewParameters = new ArrayList<Parameter>();
 	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();
@@ -21,12 +21,12 @@ public class InferenceControll {
 	}
 
 	// method that handles new incoming Parameters and writes them into the
-	// Arraylist<Parameter> listOfParameters
+	// ArrayList<Parameter> listOfParameters
 	static void handleNewParameterValue(Parameter param) {
 		listOfNewParameters.add(param);
 	}
 
-	// method that handels new Alarms created by the rules
+	// method that handles new Alarms created by the rules
 	static void handleNewAlarm(Parameter alarm) {
 		listOfAlarms.add(alarm);
 		// todo add event
@@ -47,6 +47,9 @@ public class InferenceControll {
 
 	public static void main(String[] args) {
 
+		//initialize the InputFuzzyfier
+		InputFuzzyfier infu = new InputFuzzyfier();
+		
 		// register Rule for persons and spo2 value at IC
 		PersonSpO2Rule pspo2 = new PersonSpO2Rule();
 		ruleList.add(pspo2);
