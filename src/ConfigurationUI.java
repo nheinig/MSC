@@ -9,12 +9,13 @@ import java.io.FileWriter;
 public class ConfigurationUI {
 
 	JFrame ui = new JFrame("Inference Engine");
-	
+
+	JPanel mainPanel = new JPanel();
+
 	static private ArrayList<String> parameterStrings = new ArrayList<String>();
-	
+
 	ArrayList<RuleEgg> listOfRuleEggs = new ArrayList<RuleEgg>();
 
-	
 	// Constructor
 	ConfigurationUI(ArrayList<String> listOfAvailableParameters) {
 		updateParameterStrings(listOfAvailableParameters);
@@ -29,36 +30,37 @@ public class ConfigurationUI {
 		}
 	}
 
-	// Method to create the Configuration UI
-	public void createConfigurationUI() {
-		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel mainPanel= new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+	public void addNewEgg() {
 
-	   
-	    JPanel contentPane1 = new JPanel(new BorderLayout());
+		JPanel contentPane1 = new JPanel(new BorderLayout());
 		RuleEgg egg1 = new RuleEgg();
 		addRuleEggToList(egg1);
 		contentPane1.add(egg1);
 		mainPanel.add(contentPane1);
-		
-		JPanel contentPane2 = new JPanel(new BorderLayout());
-		RuleEgg egg2 = new RuleEgg();
-		addRuleEggToList(egg2);
-		contentPane2.add(egg2);	   
-	    mainPanel.add(contentPane2);
-		
-		ui.add(mainPanel);	
-		
+	}
+
+	// Method to create the Configuration UI
+	public void createConfigurationUI() {
+		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+
+		addNewEgg();
+		addNewEgg();
+		addNewEgg();
+		addNewEgg();
+
+		ui.add(mainPanel);
+
 		ui.setSize(400, 400);
-		//ui.pack();
+		// ui.pack();
 		ui.setVisible(true);
 	}
 
 	void addRuleEggToList(RuleEgg re) {
-		if(!listOfRuleEggs.contains(re)) {
+		if (!listOfRuleEggs.contains(re)) {
 			listOfRuleEggs.add(re);
 		}
 	}
-	
+
 }
