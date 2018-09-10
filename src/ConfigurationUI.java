@@ -32,12 +32,23 @@ public class ConfigurationUI {
 	// Method to create the Configuration UI
 	public void createConfigurationUI() {
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		RuleEgg egg1 = new RuleEgg(0, 0);
+		JPanel mainPanel= new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+	   
+	    JPanel contentPane1 = new JPanel(new BorderLayout());
+		RuleEgg egg1 = new RuleEgg();
 		addRuleEggToList(egg1);
+		contentPane1.add(egg1);
+		mainPanel.add(contentPane1);
 		
+		JPanel contentPane2 = new JPanel(new BorderLayout());
+		RuleEgg egg2 = new RuleEgg();
+		addRuleEggToList(egg2);
+		contentPane2.add(egg2);	   
+	    mainPanel.add(contentPane2);
 		
-		ui.getContentPane().add(egg1);
+		ui.add(mainPanel);	
 		
 		ui.setSize(400, 400);
 		//ui.pack();
