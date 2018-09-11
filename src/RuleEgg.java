@@ -7,20 +7,28 @@ import javax.swing.*;
 public class RuleEgg extends JPanel {
 
 	Ellipse2D circle;
+	Rule eggRule;
+	RuleOverview ro;
 
-	public RuleEgg() {
+
+	public RuleEgg(Rule er) {
 		circle = new Ellipse2D.Double(0, 0, 100, 200);
+		eggRule = er;
+
+		ro = new RuleOverview(er);
 		
 		addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	if (circle.contains(e.getX(), e.getY())) {
-        			System.out.println("click");
-        		}
-            }
-        });
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (circle.contains(e.getX(), e.getY())) {
+					//System.out.println("click " + eggRule.ruleName);
+					ro.showOverview();
+				}
+			}
+		});
+
 	}
-	
+
 	@Override
 	protected void paintComponent(final Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

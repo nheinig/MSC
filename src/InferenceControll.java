@@ -3,7 +3,6 @@ import java.util.*;
 public class InferenceControll {
 
 	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>();
-	static List<List<String>> listOfRules = new ArrayList<List<String>>();
 	static ArrayList<Parameter> listOfNewParameters = new ArrayList<Parameter>();
 	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();
 
@@ -66,7 +65,7 @@ public class InferenceControll {
 		cUI.updateParameterStrings(listOfAvailableParameters);
 		cUI.createConfigurationUI();
 
-		// get dummy Parameters
+		// creates dummy Parameters
 		InputDummy id = new InputDummy();
 		id.fillList();
 		printValueLists();
@@ -86,6 +85,15 @@ public class InferenceControll {
 				listOfAlarms.remove(0);		
 			}
 		}
+	}
+	
+	
+	//--------------
+	//getter/ setter
+	//--------------
+	
+	static ArrayList<Rule> getRuleList(){
+		return ruleList;
 	}
 
 }
