@@ -113,6 +113,7 @@ public class PersonVentilationTubeRule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("tube");
+		this.listOfOutputs.add(ruleResult.parameterType);
 	}
 	
 	@Override

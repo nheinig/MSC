@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class InputFuzzyfier {
 
 	//list of all parameterTypes of the fuzzyfied Inputs
-	static ArrayList<String> listOfOutputTypes = new ArrayList<String>();
+	static ArrayList<String> listOfOutputs = new ArrayList<String>();
 	
 	//lower and upper bounds for all InputTypes
 	float personsLB = 0;
@@ -12,22 +12,22 @@ public class InputFuzzyfier {
 	float spo2LB = 90;
 	float spo2UB = 94;
 	
-	float tubeLB = 0;
-	float tubeUB = 2;
+	float tubeLB = 96;
+	float tubeUB = 97;
 	
 	
 	InputFuzzyfier(){
-		listOfOutputTypes.add("persons");
-		listOfOutputTypes.add("spo2");
-		listOfOutputTypes.add("tube");	
+		listOfOutputs.add("persons");
+		listOfOutputs.add("spo2");
+		listOfOutputs.add("tube");	
 		initializeFuzzyfier();
 	}
 	
 	
 	//Method that adds all entries from the listOfOutputTypes to the listOfAvailableParameters in the InferenceControll
 	void initializeFuzzyfier() {
-		for(int i = 0; i < listOfOutputTypes.size(); i++) {
-			InferenceControll.addAvailableParameter(listOfOutputTypes.get(i));
+		for(int i = 0; i < listOfOutputs.size(); i++) {
+			InferenceControll.addAvailableParameter(listOfOutputs.get(i));
 		}
 	}
 	

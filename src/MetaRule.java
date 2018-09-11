@@ -62,5 +62,6 @@ public class MetaRule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("pvAlarm");
 		this.listOfParametersNeeded.add("psAlarm");
+		this.listOfOutputs.add(ruleResult.parameterType);
 	}
 }

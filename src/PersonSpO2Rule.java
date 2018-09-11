@@ -114,6 +114,7 @@ public class PersonSpO2Rule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("spo2");
+		this.listOfOutputs.add(ruleResult.parameterType);
 	}
 	
 	@Override

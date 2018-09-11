@@ -65,10 +65,15 @@ public class RuleOverview {
 	
 	//fills the outputBox
 	void fillOutputBox() {
-		JLabel output = new JLabel(overviewRule.ruleResult.parameterType);
+		Box outputs = Box.createVerticalBox();
+		
+		for(int i = 0; i < overviewRule.listOfOutputs.size(); i++) {
+			JLabel output = new JLabel(overviewRule.listOfOutputs.get(i));
+			outputs.add(output);
+		}
 		
 		outputBox.add(outputLabel);
-		outputBox.add(output);		
+		outputBox.add(outputs);		
 	}
 	
 	

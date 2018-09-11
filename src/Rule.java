@@ -8,6 +8,7 @@ public class Rule {
 	boolean ruleRegistered = false;
 	
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
+	ArrayList<String> listOfOutputs = new ArrayList<String>();
 	
 	Parameter ruleResult;	
 	
