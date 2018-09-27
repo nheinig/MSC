@@ -9,10 +9,11 @@ public class RuleEgg extends JPanel {
 	Ellipse2D circle;
 	Rule eggRule;
 	RuleOverview ro;
+	boolean isMarked = false;
 
 
-	public RuleEgg(Rule er) {
-		circle = new Ellipse2D.Double(0, 0, 100, 200);
+	public RuleEgg(Rule er, int x, int y) {
+		circle = new Ellipse2D.Double(x, y, 200, 200);
 		eggRule = er;
 
 		ro = new RuleOverview(er);
@@ -23,6 +24,8 @@ public class RuleEgg extends JPanel {
 				if (circle.contains(e.getX(), e.getY())) {
 					//System.out.println("click " + eggRule.ruleName);
 					ro.showOverview();
+					isMarked = !isMarked;
+						repaint();
 				}
 			}
 		});
@@ -32,8 +35,14 @@ public class RuleEgg extends JPanel {
 	@Override
 	protected void paintComponent(final Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(Color.WHITE);
-		g2d.fill(circle);
+		if(!isMarked) {
+			g2d.setColor(Color.WHITE);
+			g2d.fill(circle);
+		} else {
+			g2d.setColor(Color.RED);
+			g2d.fill(circle);
+		}
+		
 		g2d.setColor(Color.BLACK);
 		g2d.draw(circle);
 	}

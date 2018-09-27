@@ -1,5 +1,6 @@
 import java.util.*;
 import javax.swing.*;
+import javax.swing.Box;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -8,9 +9,18 @@ import java.io.FileWriter;
 
 public class ConfigurationUI {
 
+	int eggX = 0;
+	int eggY = 0;
+	
 	JFrame ui = new JFrame("Inference Engine");
 
-	JPanel mainPanel = new JPanel();
+	JPanel eggPanel = new JPanel();
+	Box menuBox = Box.createVerticalBox();
+		
+	JSplitPane mainPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, eggPanel, menuBox);
+
+	static Box overviewBox = Box.createVerticalBox();
+	Box menuButtonBox = Box.createVerticalBox();	
 
 	static private ArrayList<String> parameterStrings = new ArrayList<String>();
 
@@ -18,12 +28,17 @@ public class ConfigurationUI {
 	
 	ArrayList<Rule> ruleList = new ArrayList<Rule>();
 
+	
+	
 	// Constructor
 	ConfigurationUI(ArrayList<String> listOfAvailableParameters) {
 		fetchRuleList();
 		updateParameterStrings(listOfAvailableParameters);
 	}
 
+	
+	
+	
 	// Method updates parameterStrings
 	void updateParameterStrings(ArrayList<String> al) {
 		for (int i = 0; i < al.size(); i++) {
@@ -33,49 +48,54 @@ public class ConfigurationUI {
 		}
 	}
 
+	
 	//fetches the ruleList from the InferenceControll and saves them as ruleList
 	void fetchRuleList() {
 		ruleList = InferenceControll.getRuleList();
 	}
 	
-	
-	//adds a new RuleEgg to the ConfigurationUI
-	public void addNewEgg(Rule rule) {
-
-		JPanel contentPane = new JPanel(new BorderLayout());
-		RuleEgg egg = new RuleEgg(rule);
+	//creates the Menu (fills the menuPanel)
+	public void createMenu() {
 		
+		JButton editButton = new JButton("Toggle Editmode");
+		menuButtonBox.add(editButton);
+		
+		menuBox.add(overviewBox);
+		menuBox.add(menuButtonBox);
+		
+	}
+	
+	
+	//creates a new RuleEgg and adds it to the eggPanel
+	public void addNewEgg(Rule rule) {
+		RuleEgg egg = new RuleEgg(rule, eggX, eggY);
+
 		egg.setLayout(new GridBagLayout());
 		GridBagConstraints cl;
 		cl = new GridBagConstraints();
 		cl.gridy = 0;
 		
-		JLabel label = new JLabel(rule.ruleName);
-		egg.add(label);
-
-		label.setHorizontalTextPosition(JLabel.CENTER);
-		label.setVerticalTextPosition(JLabel.TOP);
-		
-		
 		addRuleEggToList(egg);
-		contentPane.add(egg);
-		mainPanel.add(contentPane);
+		eggPanel.add(egg);
 	}
 
 	// Method to create the Configuration UI
 	public void createConfigurationUI() {
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+		ui.setSize(1200, 800);
+		eggPanel.setLayout(new BoxLayout(eggPanel, BoxLayout.X_AXIS));
 		
+		eggPanel.setSize(900, 800);
+		//adds all rules that exist to the eggPanel
 		for(int i= 0; i < ruleList.size(); i++) {
 			addNewEgg(ruleList.get(i));
 		}
 
+		createMenu();
+		
+		ui.add(mainPane);		
 
-		ui.add(mainPanel);
-
-		ui.setSize(600, 400);
 		// ui.pack();
 		ui.setVisible(true);
 	}

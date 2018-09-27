@@ -6,13 +6,11 @@ import javax.swing.JLabel;
 
 public class RuleOverview {
 	
-	JFrame overview = new JFrame("RuleOverview");
-	Box mainBox = Box.createVerticalBox();
+	boolean isShown = false;
 	
-	Box nameBox = Box.createHorizontalBox();
-	
-	Box inputBox = Box.createHorizontalBox();
-	
+	Box mainBox = Box.createVerticalBox();	
+	Box nameBox = Box.createHorizontalBox();	
+	Box inputBox = Box.createHorizontalBox();	
 	Box outputBox = Box.createHorizontalBox();
 	
 	Rule overviewRule;
@@ -35,8 +33,12 @@ public class RuleOverview {
 	
 	//method that sets visibility of the overview frame to true
 	void showOverview() {
-		if(!overview.isVisible()) {
-			overview.setVisible(true);
+		if(!isShown) {
+			isShown = true;
+			ConfigurationUI.overviewBox.add(mainBox);
+		} else {
+			isShown = false;
+			ConfigurationUI.overviewBox.remove(mainBox);
 		}
 	}
 	
@@ -84,9 +86,5 @@ public class RuleOverview {
 		mainBox.add(nameBox);
 		mainBox.add(inputBox);
 		mainBox.add(outputBox);
-		
-		overview.add(mainBox);
-		overview.setSize(400, 400);
-
 	}
 }
