@@ -75,6 +75,8 @@ public class ConfigurationUI {
 		cl = new GridBagConstraints();
 		cl.gridy = 0;
 		
+		JLabel eggLabel = new JLabel(rule.ruleName);
+		egg.add(eggLabel);
 		addRuleEggToList(egg);
 		eggPanel.add(egg);
 	}
