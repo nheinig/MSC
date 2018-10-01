@@ -64,6 +64,8 @@ public class ConfigurationUI {
 		mainPanel.add(configMenu);
 		ui.add(mainPanel);
 
+			EggMovement em = new EggMovement(rulePanel.getComponents());
+		
 		ui.setVisible(true);
 	}
 	
