@@ -1,9 +1,7 @@
 import java.awt.Color;
-import java.awt.Label;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class RuleOverview {
@@ -37,10 +35,10 @@ public class RuleOverview {
 	void showOverview() {
 		if(!isShown) {
 			isShown = true;
-			ConfigurationUI.overviewBox.add(mainBox);
+			ConfigurationMenu.overviewBox.add(mainBox);
 		} else {
 			isShown = false;
-			ConfigurationUI.overviewBox.remove(mainBox);
+			ConfigurationMenu.overviewBox.remove(mainBox);
 		}
 	}
 	
