@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -9,21 +11,19 @@ public class RulePanel extends JPanel {
 	
 	public RulePanel() {
 		setSize(900,800);
+		setLayout(new FlowLayout());
+		setBackground(Color.WHITE);
 	}
 	
 	//creates a new RuleEgg and adds it to the eggPanel
 	public void addNewEgg(Rule rule) {
-		RuleEgg egg = new RuleEgg(rule);
+		RuleEgg ruleEgg = new RuleEgg(rule);
 
-		egg.setLayout(new GridBagLayout());
-		GridBagConstraints cl;
-		cl = new GridBagConstraints();
-		cl.gridy = 0;
-		
-		JLabel eggLabel = new JLabel(rule.ruleName);
-		egg.add(eggLabel);
-		ConfigurationUI.addRuleEggToList(egg);
-		this.add(egg);
+		ruleEgg.setSize(200,200);
+		ruleEgg.setName(rule.ruleName);
+
+		ConfigurationUI.addRuleEggToList(ruleEgg);
+		this.add(ruleEgg);
 		ConfigurationUI.ui.setVisible(true);
 	}
 }

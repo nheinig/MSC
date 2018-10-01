@@ -24,6 +24,8 @@ public class ConfigurationUI {
 	ConfigurationUI(ArrayList<String> listOfAvailableParameters) {
 		fetchRuleList();
 		updateParameterStrings(listOfAvailableParameters);
+		ui.setSize(1200, 600);
+		ui.setLocationRelativeTo(ui);
 	}
 
 	
@@ -48,10 +50,7 @@ public class ConfigurationUI {
 	// Method to create the Configuration UI
 	public void createConfigurationUI() {
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		ui.setSize(1200, 800);
 		
-		rulePanel.setLayout(new BoxLayout(rulePanel, BoxLayout.X_AXIS));
 		
 		//adds all rules that exist to the eggPanel
 		for(int i= 0; i < ruleList.size(); i++) {
