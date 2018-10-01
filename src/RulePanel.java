@@ -1,5 +1,3 @@
-import java.awt.Canvas;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -7,12 +5,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class RulePanel extends JPanel {
-	private Dimension d;
-	int canvasWidth = 900;
-	int canvasHight = 800;
+
 	
 	public RulePanel() {
-		d = new Dimension(canvasWidth, canvasHight);
 		setSize(900,800);
 	}
 	
@@ -29,5 +24,6 @@ public class RulePanel extends JPanel {
 		egg.add(eggLabel);
 		ConfigurationUI.addRuleEggToList(egg);
 		this.add(egg);
+		ConfigurationUI.ui.setVisible(true);
 	}
 }

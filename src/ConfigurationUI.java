@@ -51,10 +51,13 @@ public class ConfigurationUI {
 
 		ui.setSize(1200, 800);
 		
+		rulePanel.setLayout(new BoxLayout(rulePanel, BoxLayout.X_AXIS));
+		
 		//adds all rules that exist to the eggPanel
 		for(int i= 0; i < ruleList.size(); i++) {
 			rulePanel.addNewEgg(ruleList.get(i));
 		}
+		
 		
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 		rulePanel.setBackground(Color.WHITE);
