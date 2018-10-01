@@ -1,5 +1,7 @@
+import java.awt.Color;
 import java.awt.Label;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -81,8 +83,7 @@ public class RuleOverview {
 	
 	//method that fills the overview frame
 	public void createRuleOverview() {
-
-		
+		mainBox.setBorder(BorderFactory.createLineBorder(Color.black));
 		mainBox.add(nameBox);
 		mainBox.add(inputBox);
 		mainBox.add(outputBox);
