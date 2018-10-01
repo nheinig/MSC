@@ -17,6 +17,7 @@ public class MetaRule extends Rule {
 	//Method to update the state based on new alarm from other rules
 	@Override
 	void updateState(Parameter newAlarm) {
+		prevState = state;
 		if(newAlarm.parameterType.equals("pvAlarm")) {
 			pvAlarm = newAlarm;
 		} else if(newAlarm.parameterType.equals("psAlarm")) {

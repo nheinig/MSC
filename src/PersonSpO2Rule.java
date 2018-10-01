@@ -15,6 +15,7 @@ public class PersonSpO2Rule extends Rule {
 	// Method to update the state based on newParameter
 	@Override
 	void updateState(Parameter newParameter) {
+		prevState = state;
 		// what happens when its a Parameter of the type persons
 		if (newParameter.parameterType.equals("persons")) {
 			personsTS = newParameter.timestamp;

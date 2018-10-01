@@ -12,11 +12,11 @@ public class RuleEgg extends JPanel {
 	boolean isMarked = false;
 
 
-	public RuleEgg(Rule er, int x, int y) {
-		circle = new Ellipse2D.Double(x, y, 200, 200);
-		eggRule = er;
+	public RuleEgg(Rule rule) {
+		circle = new Ellipse2D.Double(0, 0, 200, 200);
+		eggRule = rule;
 
-		ro = new RuleOverview(er);
+		ro = new RuleOverview(rule);
 		
 		addMouseListener(new MouseAdapter() {
 			@Override

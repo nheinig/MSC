@@ -9,9 +9,6 @@ import java.io.FileWriter;
 
 public class ConfigurationUI {
 
-	int eggX = 0;
-	int eggY = 0;
-	
 	JFrame ui = new JFrame("Inference Engine");
 
 	JPanel eggPanel = new JPanel();
@@ -68,7 +65,7 @@ public class ConfigurationUI {
 	
 	//creates a new RuleEgg and adds it to the eggPanel
 	public void addNewEgg(Rule rule) {
-		RuleEgg egg = new RuleEgg(rule, eggX, eggY);
+		RuleEgg egg = new RuleEgg(rule);
 
 		egg.setLayout(new GridBagLayout());
 		GridBagConstraints cl;
