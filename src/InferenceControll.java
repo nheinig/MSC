@@ -74,14 +74,14 @@ public class InferenceControll {
 		while (!listOfNewParameters.isEmpty()) {
 			for (int i = 0; i < ruleList.size(); i++) {
 				if (ruleList.get(i).getParametersNeeded().contains(listOfNewParameters.get(0).parameterType)) {
-					ruleList.get(i).updateState(listOfNewParameters.get(0));
+					ruleList.get(i).handleNewInput(listOfNewParameters.get(0));
 				}
 			}
 			listOfNewParameters.remove(0);
 			
 			//forward Alarm to MetaRule
 			if(!listOfAlarms.isEmpty()) {
-				meta.updateState(listOfAlarms.get(0));
+				meta.handleNewInput(listOfAlarms.get(0));
 				listOfAlarms.remove(0);		
 			}
 		}
