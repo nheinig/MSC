@@ -2,6 +2,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +36,10 @@ public class RuleCreator {
 	JTextField srcTF = new JTextField();
 	JTextField destTF = new JTextField();
 	JTextField condTF = new JTextField();
+
+	JButton addLineButton = new JButton("+");
+	JButton createButton = new JButton("Create Rule");
+	JButton cancelButton = new JButton("Cancel");
 	
 	
 	static JComboBox<String> inputCB1 = new JComboBox<String>();
@@ -63,6 +68,7 @@ public class RuleCreator {
 		ruleLabelBox.add(srcStateLabel);
 		ruleLabelBox.add(destStateLabel);
 		ruleLabelBox.add(condLabel);
+		ruleLabelBox.add(addLineButton);
 		
 		stateMachineBox.add(stateMachineLabel);		
 		stateMachineBox.add(rulesBox);
@@ -74,10 +80,14 @@ public class RuleCreator {
 		rulesBox.add(ruleLabelBox);
 		rulesBox.add(transBox);
 		
+		buttonBox.add(cancelButton);
+		buttonBox.add(createButton);
+		
 		mainBox.add(nameBox);
 		mainBox.add(inputBox);
 		mainBox.add(outputBox);
 		mainBox.add(stateMachineBox);
+		mainBox.add(buttonBox);
 		
 		rc.add(mainBox);
 	}
