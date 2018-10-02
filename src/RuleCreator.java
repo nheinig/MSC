@@ -16,14 +16,26 @@ public class RuleCreator {
 	Box outputBox = Box.createHorizontalBox();
 	Box stateMachineBox = Box.createHorizontalBox();
 	Box buttonBox = Box.createHorizontalBox();
+	Box rulesBox = Box.createVerticalBox();
+	Box ruleLabelBox = Box.createHorizontalBox();
+	Box transBox = Box.createHorizontalBox();
+	
 	
 	JLabel nameLabel = new JLabel("Rule Name: ");
 	JLabel inputLabel = new JLabel("Inputs: ");
 	JLabel outputLabel = new JLabel("Output: ");
-	JLabel stateMachineLabel = new JLabel("State Machine: ");
+	JLabel stateMachineLabel = new JLabel("State Machine:   ");
+	JLabel srcStateLabel = new JLabel("Source    ");
+	JLabel destStateLabel = new JLabel("Destination    ");
+	JLabel condLabel = new JLabel("Condition    ");
+	
 	
 	JTextField ruleNameTF = new JTextField();
 	JTextField outputTF = new JTextField();
+	JTextField srcTF = new JTextField();
+	JTextField destTF = new JTextField();
+	JTextField condTF = new JTextField();
+	
 	
 	static JComboBox<String> inputCB1 = new JComboBox<String>();
 	static JComboBox<String> inputCB2 = new JComboBox<String>();
@@ -48,7 +60,19 @@ public class RuleCreator {
 		outputBox.add(outputLabel);
 		outputBox.add(outputTF);
 		
-		stateMachineBox.add(stateMachineLabel);
+		ruleLabelBox.add(srcStateLabel);
+		ruleLabelBox.add(destStateLabel);
+		ruleLabelBox.add(condLabel);
+		
+		stateMachineBox.add(stateMachineLabel);		
+		stateMachineBox.add(rulesBox);
+		
+		transBox.add(srcTF);
+		transBox.add(destTF);
+		transBox.add(condTF);
+		 
+		rulesBox.add(ruleLabelBox);
+		rulesBox.add(transBox);
 		
 		mainBox.add(nameBox);
 		mainBox.add(inputBox);
