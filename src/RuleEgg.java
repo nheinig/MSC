@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
 
+import javax.management.remote.JMXConnector;
 import javax.swing.*;
 
 public class RuleEgg extends JPanel {

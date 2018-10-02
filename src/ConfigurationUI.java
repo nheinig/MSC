@@ -10,7 +10,7 @@ public class ConfigurationUI {
 
 	static ArrayList<RuleEgg> listOfRuleEggs = new ArrayList<RuleEgg>();
 	
-	ArrayList<Rule> ruleList = new ArrayList<Rule>();
+	static ArrayList<Rule> ruleList = new ArrayList<Rule>();
 
 	RulePanel rulePanel = new RulePanel();
 	
