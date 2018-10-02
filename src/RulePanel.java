@@ -40,6 +40,7 @@ public class RulePanel extends JPanel {
 		
 		newRule.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
+				ruleCreator.fillInputComboBox();
 				ruleCreator.show();
 			}
 		});

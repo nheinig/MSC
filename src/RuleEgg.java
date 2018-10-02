@@ -63,6 +63,7 @@ public class RuleEgg extends JPanel {
 
 	}
 
+	//(un-)marks an egg when clicked on
 	void markEgg() {
 		if(isMarked) {
 			this.setBackground(Color.GRAY);
@@ -71,6 +72,7 @@ public class RuleEgg extends JPanel {
 		}
 	}
 	
+	//method that updates the eggLabels when a new input was handled
 	static void updateLabels(Rule rule) {
 		eggRule = rule;
 		stateLabel.setText("State: " + Integer.toString(eggRule.state));
