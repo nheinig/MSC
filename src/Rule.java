@@ -28,13 +28,13 @@ public class Rule {
 					listOfLastInputs.add(input);
 					//System.out.println(listOfLastInputs);
 					updateState(input);
-					RuleEgg.updateLabels(this);
+					RulePanel.updateEggLabels(this);
 					return;
 				}
 			}
 			listOfLastInputs.add(input);
 			updateState(input);
-			RuleEgg.updateLabels(this);
+			RulePanel.updateEggLabels(this);
 		}
 	}
 	

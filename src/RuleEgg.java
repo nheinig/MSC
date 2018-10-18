@@ -85,7 +85,7 @@ public class RuleEgg extends JPanel {
 			input2Label.setText("Input2: " + eggRule.listOfLastInputs.get(1).parameterType + " = "
 					+ eggRule.listOfLastInputs.get(1).parameterValue);
 		}
-		System.out.println(eggRule.state);
+		System.out.println(eggRule.ruleName + eggRule.state);
 		ConfigurationUI.ui.setVisible(true);
 	}
 

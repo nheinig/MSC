@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -27,7 +29,9 @@ public class RulePanel extends JPanel {
 		popup.add(newRule);
 		
 		EggMovement rm = new EggMovement(getComponents());
-		
+				
+		//drawArrow();
+			
 		addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				if(e.isPopupTrigger()) {
@@ -35,7 +39,6 @@ public class RulePanel extends JPanel {
 				}
 			
 			}
-			
 		});
 		
 		newRule.addMouseListener(new MouseAdapter() {
@@ -52,7 +55,7 @@ public class RulePanel extends JPanel {
 		RuleEgg ruleEgg = new RuleEgg(rule);
 		
 		ruleEgg.setSize(200, 200);
-		ruleEgg.setName(rule.ruleName);
+		System.out.println(RuleEgg.eggRule.ruleName);
 
 		ConfigurationUI.addRuleEggToList(ruleEgg);
 		this.add(ruleEgg);
@@ -66,4 +69,17 @@ public class RulePanel extends JPanel {
 		}
 	
 	}
+	
+	
+	public static void updateEggLabels(Rule rule) {
+		for(int i = 1; i < ConfigurationUI.listOfRuleEggs.size(); i++) {
+			ConfigurationUI.listOfRuleEggs.get(i);
+			if(rule.ruleName.equals(RuleEgg.eggRule.ruleName)) {
+				ConfigurationUI.listOfRuleEggs.get(i);
+				RuleEgg.updateLabels(rule);
+				return;
+			}
+		}
+	}
+
 }
