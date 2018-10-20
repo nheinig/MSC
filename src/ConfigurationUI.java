@@ -7,8 +7,6 @@ public class ConfigurationUI {
 	static JFrame ui = new JFrame("Inference Engine");
 	
 	static private ArrayList<String> parameterStrings = new ArrayList<String>();
-
-	static ArrayList<RuleEgg> listOfRuleEggs = new ArrayList<RuleEgg>();
 	
 	static ArrayList<Rule> ruleList = new ArrayList<Rule>();
 
@@ -69,13 +67,6 @@ public class ConfigurationUI {
 		ui.setVisible(true);
 	}
 	
-	
-	//Adds a RuleEggs to a List
-	static void addRuleEggToList(RuleEgg re) {
-		if (!listOfRuleEggs.contains(re)) {
-			listOfRuleEggs.add(re);
-		}
-	}
 	
 	static ArrayList<String> getParameterStrings(){
 		return parameterStrings;

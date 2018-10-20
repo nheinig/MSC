@@ -15,6 +15,8 @@ import javax.swing.JPopupMenu;
 
 public class RulePanel extends JPanel {
 
+	static ArrayList<RuleEgg> listOfRuleEggs = new ArrayList<RuleEgg>();
+	
 	Path2D connector;
 	JPopupMenu popup = new JPopupMenu();
 	JMenuItem newRule = new JMenuItem("Create new Rule");
@@ -57,7 +59,7 @@ public class RulePanel extends JPanel {
 		ruleEgg.setSize(200, 200);
 		System.out.println(RuleEgg.eggRule.ruleName);
 
-		ConfigurationUI.addRuleEggToList(ruleEgg);
+		addRuleEggToList(ruleEgg);
 		this.add(ruleEgg);
 		
 		ConfigurationUI.ui.setVisible(true);
@@ -72,14 +74,20 @@ public class RulePanel extends JPanel {
 	
 	
 	public static void updateEggLabels(Rule rule) {
-		for(int i = 1; i < ConfigurationUI.listOfRuleEggs.size(); i++) {
-			ConfigurationUI.listOfRuleEggs.get(i);
-			if(rule.ruleName.equals(RuleEgg.eggRule.ruleName)) {
-				ConfigurationUI.listOfRuleEggs.get(i);
-				RuleEgg.updateLabels(rule);
+		for(int i = 1; i < listOfRuleEggs.size(); i++) {
+			if(rule.ruleName.equals(listOfRuleEggs.get(i).eggRule.ruleName)) {
+				listOfRuleEggs.get(i).updateLabels(rule);
 				return;
 			}
 		}
 	}
 
+	
+	//Adds a RuleEggs to a List
+	static void addRuleEggToList(RuleEgg re) {
+		if (!listOfRuleEggs.contains(re)) {
+			listOfRuleEggs.add(re);
+		}
+	}
+	
 }
