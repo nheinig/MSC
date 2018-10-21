@@ -59,7 +59,9 @@ public class RulePanel{
 	static void addNewEgg(RuleEgg re) {
 		eggPanel.add(re);
 		listOfEggs.add(re);
-		
+		for(int i = 0; i < listOfEggs.size(); i++) {
+			System.out.println(listOfEggs.get(i).getName() + "   HERE    ");
+		}
 		ConfigurationUI.ui.setVisible(true);
 	}
 	
@@ -72,7 +74,7 @@ public class RulePanel{
 	
 	static void forwardEggLabelUpdate(String name, int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		for(int i = 0; i < listOfEggs.size(); i++) {
-			String ern = listOfEggs.get(i).eggRuleName;
+			String ern = listOfEggs.get(i).eggName;
 			if(ern.equals(name)) {
 				RuleEgg.updateLabels(s, ps, p1, p2, result);				
 			}

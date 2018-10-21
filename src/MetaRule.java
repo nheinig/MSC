@@ -9,7 +9,7 @@ public class MetaRule extends Rule {
 	int state = 0;
 	
 	MetaRule() {
-		ruleName = "MetaRule";
+		setRuleName("MetaRule");
 		super.ruleResult = new Parameter("GlobalAlarm", null,"none");
 		initializeRule();
 		RuleEgg ruleEgg = new RuleEgg(this);
@@ -71,11 +71,11 @@ public class MetaRule extends Rule {
 	@Override
 	void updateEggLabels() {
 		if(listOfLastInputs.size() > 1) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
 		} else if(listOfLastInputs.size() == 1) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), null, ruleResult);
 		} else if(listOfLastInputs.size() == 0) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, null, null, ruleResult);
 		}
 	}
 }

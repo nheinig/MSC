@@ -6,7 +6,7 @@ public class PersonSpO2Rule extends Rule {
 	Timestamp spo2TS = new Timestamp(System.currentTimeMillis());
 
 	PersonSpO2Rule() {
-		ruleName = "PersonSpO2Rule";
+		setRuleName("PersonSpO2Rule");
 		super.ruleResult = new Parameter("psAlarm", null,"none");
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
@@ -128,11 +128,11 @@ public class PersonSpO2Rule extends Rule {
 	@Override
 	void updateEggLabels() {
 		if(listOfLastInputs.size() > 1) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
 		} else if(listOfLastInputs.size() == 1) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), null, ruleResult);
 		} else if(listOfLastInputs.size() == 0) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, null, null, ruleResult);
 		}
 	}
 	// getter / setter

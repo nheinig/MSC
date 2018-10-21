@@ -44,7 +44,7 @@ public class RuleOverview {
 	
 	//fills the nameBox with the Labels ruleNameLabel and nameLabel
 	void fillNameBox() {
-		JLabel ruleNameLabel = new JLabel(overviewRule.ruleName);
+		JLabel ruleNameLabel = new JLabel(overviewRule.getRuleName());
 		
 		nameBox.add(nameLabel);
 		nameBox.add(ruleNameLabel);

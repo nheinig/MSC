@@ -1,13 +1,12 @@
 import java.sql.Timestamp;
 
 public class PersonVentilationTubeRule extends Rule {
-	
-	
+		
 	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
 	Timestamp tubeTS = new Timestamp(System.currentTimeMillis());
 	
 	PersonVentilationTubeRule() {
-		ruleName = "PersonVentilationTubeRule";
+		setRuleName("PersonVentilationTubeRule");
 		ruleResult = new Parameter("pvAlarm", null,"none");
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
@@ -129,11 +128,11 @@ public class PersonVentilationTubeRule extends Rule {
 	@Override
 	void updateEggLabels() {
 		if(listOfLastInputs.size() > 1) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
 		} else if(listOfLastInputs.size() == 1) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), null, ruleResult);
 		} else if(listOfLastInputs.size() == 0) {
-			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, null, null, ruleResult);
 		}
 	}
 }

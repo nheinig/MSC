@@ -8,10 +8,10 @@ import javax.swing.*;
 public class RuleEgg extends JPanel {
 
 	Ellipse2D circle;
-	static String eggRuleName;
 	RuleOverview ro;
 	boolean isMarked = false;
-
+	static String eggName;
+	
 	Box labelBox = Box.createVerticalBox();
 	JLabel nameLabel;
 	static JLabel stateLabel;
@@ -32,16 +32,17 @@ public class RuleEgg extends JPanel {
 
 	public RuleEgg(Rule rule) {
 
+		setName(rule.getRuleName());
+		eggName = getName();
 		// circle = new Ellipse2D.Double(0, 0, 200, 200);
-		eggRuleName = rule.ruleName;
-
+	
 		ro = new RuleOverview(rule);
 
 		setSize(200, 200);
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		nameLabel = new JLabel(eggRuleName);
+		nameLabel = new JLabel(getName());
 		stateLabel = new JLabel("State: ");
 		prevStateLabel = new JLabel("Previous State: ");
 		input1Label = new JLabel("Input1: ");
@@ -114,7 +115,7 @@ public class RuleEgg extends JPanel {
 			input2ValueLabel.setText(p2.parameterType + " = " + p2.parameterValue);
 		}
 		
-		System.out.println(eggRuleName + "    " + s);
+		System.out.println(eggName + "    " + s);
 		ConfigurationUI.ui.setVisible(true);
 	}
 

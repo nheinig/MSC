@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Rule {
 
-	String ruleName;
+	private String ruleName;
 	
 	boolean ruleRegistered = false;
 	
@@ -77,6 +77,14 @@ public class Rule {
 
 	//Method that updates the Labels of a RuleEgg
 	void updateEggLabels() {
+	}
+
+	public String getRuleName() {
+		return ruleName;
+	}
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
 	}
 	
 }
