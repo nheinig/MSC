@@ -13,6 +13,8 @@ public class StateMachineEditorMenu extends JPanel {
 	JButton addStateButton = new JButton("ADD-STATE-MODE");
 	JButton addTransitionButton = new JButton("ADD-TRANSITION-MODE");
 	JButton deleteButton = new JButton("DELETE-MODE");
+	JButton saveButton = new JButton("SAVE");
+	JButton closeButton = new JButton("CLOSE");
 	
 	Box menuBox = Box.createHorizontalBox();
 	
@@ -23,15 +25,11 @@ public class StateMachineEditorMenu extends JPanel {
 	
 	StateMachineEditorMenu(){
 		setSize(600,100);
-		menuBox.add(dragButton);
-		menuBox.add(addStateButton);
-		menuBox.add(addTransitionButton);
-		menuBox.add(deleteButton);
-		add(menuBox);
+		
 		createMenu();
 	}
 	
-	
+	//method that  creates the StateMachineEditorMenu
 	void createMenu() {
 
 		dragButton.setBackground(Color.GREEN);
@@ -88,7 +86,26 @@ public class StateMachineEditorMenu extends JPanel {
 				addTransitionButton.setBackground(null);
 			}
 		});
+		saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//todo
+			}
+		});
+		closeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StateMachineEditor.hide();
+			}
+		});
 		
+		menuBox.add(dragButton);
+		menuBox.add(addStateButton);
+		menuBox.add(addTransitionButton);
+		menuBox.add(deleteButton);
+		menuBox.add(saveButton);
+		menuBox.add(closeButton);
+		add(menuBox);
 	}
 	
 }

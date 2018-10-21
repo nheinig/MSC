@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +30,11 @@ public class ConfigurationMenu extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ConfigurationUI.editMode = !ConfigurationUI.editMode;
+				if(ConfigurationUI.editMode) {
+					editButton.setBackground(Color.green);
+				} else {
+					editButton.setBackground(null);
+				}
 			}
 		});
 		
