@@ -27,7 +27,6 @@ public class Arrow {
 		g2.setColor(color);
 		g2.setStroke(new BasicStroke(thickness));
 		g2.drawLine(x, y, endX, endY);
-		;
 		drawArrowHead(g2);
 		g2.dispose();
 	}

@@ -1,13 +1,22 @@
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class StateMachinePanel {
 	
-	JPanel smPanel = new JPanel();
+	static JPanel smPanel = new JPanel();
 	int stateCounter = 0;
+	
+	static boolean isSource = true;
+	static StateMachineState source;
+	static StateMachineState destination;
 	
 	StateMachinePanel(){
 		smPanel.setSize(600,700);
@@ -21,7 +30,8 @@ public class StateMachinePanel {
 				if(StateMachineEditorMenu.addStateMode) {
 					addNewState(stateCounter);
 					StateMachineEditor.show();
-				}		
+				} 
+				
 			}
 		});
 	}
@@ -36,8 +46,13 @@ public class StateMachinePanel {
 	
 	
 	//method that adds a new Transition to the smPanel
-	void addNewTransition(int source, int destination, String guard, String action) {
-		
+	static void addNewTransition(StateMachineState s, StateMachineState d) {
+		int sX = (int) s.getLocation().getX();
+		int sY = (int) s.getLocation().getY();
+		int dX = (int) d.getLocation().getX();
+		int dY = (int) d.getLocation().getY();
+		Arrow a = new Arrow(sX, sY, dX, dY);
+		a.draw(smPanel.getGraphics());
 	}
 	
 	//method that deletes a state from the smPanel
