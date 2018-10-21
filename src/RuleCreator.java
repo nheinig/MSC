@@ -1,4 +1,8 @@
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -40,16 +44,24 @@ public class RuleCreator {
 	JButton addLineButton = new JButton("+");
 	JButton createButton = new JButton("Create Rule");
 	JButton cancelButton = new JButton("Cancel");
-	
+	JButton stateMachineButton = new JButton("Show StateMachine Editor");	
 	
 	static JComboBox<String> inputCB1 = new JComboBox<String>();
 	static JComboBox<String> inputCB2 = new JComboBox<String>();
+	
+	StateMachineEditor sme = new StateMachineEditor();
 	
 	
 	RuleCreator(){
 		rc.setSize(400, 400);
 		rc.setLayout(new FlowLayout());
 		createRuleCreator();
+		stateMachineButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sme.show();
+			}
+		});
 	}
 	
 	//method that fills the rc-frame
@@ -71,7 +83,7 @@ public class RuleCreator {
 		ruleLabelBox.add(addLineButton);
 		
 		stateMachineBox.add(stateMachineLabel);		
-		stateMachineBox.add(rulesBox);
+		stateMachineBox.add(stateMachineButton);
 		
 		transBox.add(srcTF);
 		transBox.add(destTF);
