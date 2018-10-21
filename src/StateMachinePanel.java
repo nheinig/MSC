@@ -14,8 +14,7 @@ public class StateMachinePanel {
 		smPanel.setLayout(null);
 		
 		smPanel.setBackground(Color.WHITE);
-		
-		
+
 		
 		smPanel.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
@@ -25,8 +24,6 @@ public class StateMachinePanel {
 				}		
 			}
 		});
-
-		StateMachineMovement stateMovement = new StateMachineMovement(smPanel.getComponents());
 	}
 	
 	//method that adds a new State to the smPanel

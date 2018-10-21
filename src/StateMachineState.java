@@ -16,6 +16,8 @@ public class StateMachineState extends JPanel{
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
+		
+		
 		stateValue = sv;
 		stateLabel.setText(Integer.toString(sv));
 		
