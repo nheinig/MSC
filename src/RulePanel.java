@@ -33,8 +33,6 @@ public class RulePanel{
 		popup.add(newRule);
 		
 		EggMovement rm = new EggMovement(eggPanel.getComponents());
-				
-		//drawArrow();
 		
 		//adds a mouseListener thats opens a popup menu when right clicked on RulePanel
 		eggPanel.addMouseListener(new MouseAdapter() {
@@ -72,6 +70,8 @@ public class RulePanel{
 		}
 	}	
 	
+	
+	//Method that forwards rule Parameters to rule Egg
 	static void forwardEggLabelUpdate(String name, int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		for(int i = 0; i < listOfEggs.size(); i++) {
 			String ern = listOfEggs.get(i).eggName;

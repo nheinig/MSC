@@ -24,8 +24,7 @@ public class StateMachineEditorMenu extends JPanel {
 	static boolean deleteMode = false;
 	
 	StateMachineEditorMenu(){
-		setSize(600,100);
-		
+		setSize(600,100);	
 		createMenu();
 	}
 	
@@ -34,6 +33,7 @@ public class StateMachineEditorMenu extends JPanel {
 
 		dragButton.setBackground(Color.GREEN);
 		
+		//Actionlistener that toggles dragMode and marks the dragButton on dragButton click
 		dragButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -47,6 +47,7 @@ public class StateMachineEditorMenu extends JPanel {
 				deleteButton.setBackground(null);
 			}
 		});
+		//Actionlistener that toggles addStateMode and marks the addStateButton on addStateButton click
 		addStateButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -60,6 +61,7 @@ public class StateMachineEditorMenu extends JPanel {
 				deleteButton.setBackground(null);
 			}
 		});
+		//Actionlistener that toggles addTransitionMode and marks the addTransitionButton on addTransitionButton click
 		addTransitionButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -73,6 +75,7 @@ public class StateMachineEditorMenu extends JPanel {
 				deleteButton.setBackground(null);
 			}
 		});
+		//Actionlistener that toggles deleteMode and marks the deleteButton on deleteButton click
 		deleteButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,12 +89,14 @@ public class StateMachineEditorMenu extends JPanel {
 				addTransitionButton.setBackground(null);
 			}
 		});
+		//ActionListener for saveButton
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//todo
 			}
 		});
+		//Actionlistener that closes the StateMachineEditor on closeButton click
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

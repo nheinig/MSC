@@ -23,18 +23,23 @@ public class StateMachineState extends JPanel{
 		
 		add(stateLabel);
 		
-		
+		//mouseListener for stateMachineState
+		//
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
 					if (StateMachineEditorMenu.addTransitionMode) {
+						//action if it is the source of a transition
 						if(StateMachinePanel.isSource) {
 							StateMachinePanel.source = getStateMachineState();
-						} else {
+						} else 
+						//action if it is the destination of a transition
+						{
 							StateMachinePanel.destination = getStateMachineState();
 							StateMachinePanel.addNewTransition(StateMachinePanel.source, StateMachinePanel.destination);
 						}
+						//swap between source and destination
 						StateMachinePanel.isSource = !StateMachinePanel.isSource;
 						}
 					}
@@ -42,6 +47,7 @@ public class StateMachineState extends JPanel{
 		});
 	}
 
+	//getter for the StateMachineState
 	StateMachineState getStateMachineState() {
 		return this;
 	}

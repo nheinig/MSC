@@ -79,6 +79,11 @@ public class Rule {
 	void updateEggLabels() {
 	}
 
+	//--------------
+	//getter/ setter
+	//--------------
+		
+	
 	public String getRuleName() {
 		return ruleName;
 	}

@@ -56,6 +56,7 @@ public class RuleCreator {
 		rc.setSize(400, 400);
 		rc.setLayout(new FlowLayout());
 		createRuleCreator();
+		//ActionListener that shows StateMachineEditor on stateMachineButton click
 		stateMachineButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

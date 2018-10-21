@@ -9,6 +9,7 @@ public class InputDummy {
 		fillList();
 	}
 	
+	//craetes dummyData and fills listOfPArameterValues with dummyData
 	void fillList() {
 		Timestamp ts0 =  new Timestamp(System.currentTimeMillis());
 		Parameter parameterValue00 = new Parameter("persons", ts0, "none");
@@ -118,7 +119,7 @@ public class InputDummy {
 		forwardParameter();
 	}
 	
-	
+	//forwards listOfParameterValues with dummyData to InferenceControll
 	static void forwardParameter() {
 		while(!listOfParameterValues.isEmpty()) {
 			InferenceControll.handleNewParameterValue(listOfParameterValues.get(0));

@@ -44,7 +44,7 @@ public class ConfigurationUI {
 		ruleList = InferenceControll.getRuleList();
 	}	
 	
-
+	//forwards a RuleEgg to the RulePanel where it is added
 	static void forwardRuleEgg(RuleEgg re) {
 		RulePanel.addNewEgg(re);
 	}
@@ -64,6 +64,10 @@ public class ConfigurationUI {
 	}
 	
 	
+	//--------------
+	//getter/ setter
+	//--------------
+		
 	static ArrayList<String> getParameterStrings(){
 		return parameterStrings;
 	}
