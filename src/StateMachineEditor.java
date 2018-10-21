@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -15,13 +16,11 @@ public class StateMachineEditor {
 	StateMachineEditorMenu menuPanel = new StateMachineEditorMenu();
 	
 	StateMachinePanel stateMachinePanel = new StateMachinePanel();
-
-	JButton addStateButton = new JButton("ADD STATE");	
 	
 	JPanel mainPanel = new JPanel();
 	
 	StateMachineEditor(){
-		smEditor.setSize(800,500);
+		smEditor.setSize(600,800);
 		createSMEditor();
 	}
 
@@ -35,6 +34,7 @@ public class StateMachineEditor {
 		
 		smEditor.add(mainPanel);
 		
+		EggMovement stateMovement = new EggMovement(stateMachinePanel.smPanel.getComponents());
 	}
 	
 	 static void show() {

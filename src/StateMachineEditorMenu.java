@@ -1,16 +1,18 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class StateMachineEditorMenu extends JPanel {
 	
-	JButton dragButton = new JButton("DRAG");
-	JButton addStateButton = new JButton("ADD STATE");
-	JButton addTransitionButton = new JButton("ADD TRANSITION");
-	JButton deleteButton = new JButton("DELETE");
+	JButton dragButton = new JButton("DRAG-MODE");
+	JButton addStateButton = new JButton("ADD-STATE-MODE");
+	JButton addTransitionButton = new JButton("ADD-TRANSITION-MODE");
+	JButton deleteButton = new JButton("DELETE-MODE");
 	
 	Box menuBox = Box.createHorizontalBox();
 	
@@ -20,17 +22,20 @@ public class StateMachineEditorMenu extends JPanel {
 	boolean deleteMode = false;
 	
 	StateMachineEditorMenu(){
+		setSize(600,100);
 		menuBox.add(dragButton);
 		menuBox.add(addStateButton);
 		menuBox.add(addTransitionButton);
 		menuBox.add(deleteButton);
 		add(menuBox);
-		
+		createMenu();
 	}
 	
 	
 	void createMenu() {
 
+		dragButton.setBackground(Color.GREEN);
+		
 		dragButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -38,6 +43,10 @@ public class StateMachineEditorMenu extends JPanel {
 				addStateMode = false;
 				addTransitionMode = false;
 				deleteMode = false;
+				dragButton.setBackground(Color.GREEN);
+				addStateButton.setBackground(null);
+				addTransitionButton.setBackground(null);
+				deleteButton.setBackground(null);
 			}
 		});
 		addStateButton.addActionListener(new ActionListener() {
@@ -47,6 +56,10 @@ public class StateMachineEditorMenu extends JPanel {
 				dragMode = false;
 				addTransitionMode = false;
 				deleteMode = false;
+				addStateButton.setBackground(Color.GREEN);
+				dragButton.setBackground(null);
+				addTransitionButton.setBackground(null);
+				deleteButton.setBackground(null);
 			}
 		});
 		addTransitionButton.addActionListener(new ActionListener() {
@@ -56,6 +69,10 @@ public class StateMachineEditorMenu extends JPanel {
 				dragMode = false;
 				addStateMode = false;
 				deleteMode = false;
+				addTransitionButton.setBackground(Color.GREEN);
+				dragButton.setBackground(null);
+				addStateButton.setBackground(null);
+				deleteButton.setBackground(null);
 			}
 		});
 		deleteButton.addActionListener(new ActionListener() {
@@ -65,6 +82,10 @@ public class StateMachineEditorMenu extends JPanel {
 				dragMode = false;
 				addStateMode = false;
 				addTransitionMode = false;
+				deleteButton.setBackground(Color.GREEN);
+				dragButton.setBackground(null);
+				addStateButton.setBackground(null);
+				addTransitionButton.setBackground(null);
 			}
 		});
 		
