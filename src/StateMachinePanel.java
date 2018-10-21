@@ -14,6 +14,8 @@ public class StateMachinePanel {
 		
 		smPanel.setBackground(Color.WHITE);
 		addNewState();
+
+		StateMachineMovement stateMovement = new StateMachineMovement(smPanel.getComponents());
 	}
 	
 	

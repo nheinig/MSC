@@ -16,7 +16,7 @@ public class StateMachineEditorMenu extends JPanel {
 	
 	Box menuBox = Box.createHorizontalBox();
 	
-	boolean dragMode = true;
+	static boolean dragMode = true;
 	boolean addStateMode = false;
 	boolean addTransitionMode = false;
 	boolean deleteMode = false;

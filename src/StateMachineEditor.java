@@ -34,7 +34,6 @@ public class StateMachineEditor {
 		
 		smEditor.add(mainPanel);
 		
-		EggMovement stateMovement = new EggMovement(stateMachinePanel.smPanel.getComponents());
 	}
 	
 	 static void show() {
