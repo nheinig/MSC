@@ -45,24 +45,22 @@ public class ConfigurationUI {
 	}	
 	
 
+	static void forwardRuleEgg(RuleEgg re) {
+		RulePanel.addNewEgg(re);
+	}
+	
 	// Method to create the Configuration UI
 	public void createConfigurationUI() {
 		ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		//adds all rules that exist to the eggPanel
-		for(int i= 0; i < ruleList.size(); i++) {
-			rulePanel.addNewEgg(ruleList.get(i));
-		}
-		
-		
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
-		rulePanel.setBackground(Color.WHITE);
-		mainPanel.add(rulePanel);
+		rulePanel.eggPanel.setBackground(Color.WHITE);
+		mainPanel.add(rulePanel.eggPanel);
 		mainPanel.add(configMenu);
 		ui.add(mainPanel);
 
-		EggMovement em = new EggMovement(rulePanel.getComponents());
+		EggMovement em = new EggMovement(rulePanel.eggPanel.getComponents());
 		
 		ui.setVisible(true);
 	}

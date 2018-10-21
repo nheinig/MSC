@@ -12,6 +12,8 @@ public class MetaRule extends Rule {
 		ruleName = "MetaRule";
 		super.ruleResult = new Parameter("GlobalAlarm", null,"none");
 		initializeRule();
+		RuleEgg ruleEgg = new RuleEgg(this);
+		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
 
 	//Method to update the state based on new alarm from other rules
@@ -64,5 +66,16 @@ public class MetaRule extends Rule {
 		this.listOfParametersNeeded.add("pvAlarm");
 		this.listOfParametersNeeded.add("psAlarm");
 		this.listOfOutputs.add(ruleResult.parameterType);
+	}
+	
+	@Override
+	void updateEggLabels() {
+		if(listOfLastInputs.size() > 1) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+		} else if(listOfLastInputs.size() == 1) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
+		} else if(listOfLastInputs.size() == 0) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
+		}
 	}
 }

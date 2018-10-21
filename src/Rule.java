@@ -9,32 +9,29 @@ public class Rule {
 	
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
 	ArrayList<String> listOfOutputs = new ArrayList<String>();	
-	ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
+	static ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
 	
 	Parameter ruleResult;	
 	
-	int prevState = 0;
-	int state = 0;
-
-	Rule() {
-	}
+	 int prevState = 0;
+	 int state = 0;
+	
 
 	//Method that handles new Inputs for each rule by saving them in the listOfLastInputs and forwarding them to the updateState method
 	void handleNewInput(Parameter input) {
 		if(listOfParametersNeeded.contains(input.parameterType)) {
 			for(int i = 0; i < listOfLastInputs.size(); i++) {
 				if(listOfLastInputs.get(i).parameterType.equals(input.parameterType)){
-					listOfLastInputs.remove(i);
-					listOfLastInputs.add(input);
+					listOfLastInputs.set(i, input);
 					//System.out.println(listOfLastInputs);
 					updateState(input);
-					RulePanel.updateEggLabels(this);
+					updateEggLabels();
 					return;
 				}
 			}
 			listOfLastInputs.add(input);
 			updateState(input);
-			RulePanel.updateEggLabels(this);
+			updateEggLabels();
 		}
 	}
 	
@@ -78,4 +75,8 @@ public class Rule {
 	}
 	
 
+	//Method that updates the Labels of a RuleEgg
+	void updateEggLabels() {
+	}
+	
 }

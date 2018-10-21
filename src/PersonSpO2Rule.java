@@ -10,6 +10,8 @@ public class PersonSpO2Rule extends Rule {
 		super.ruleResult = new Parameter("psAlarm", null,"none");
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
+		RuleEgg ruleEgg = new RuleEgg(this);
+		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
 
 	// Method to update the state based on newParameter
@@ -107,7 +109,7 @@ public class PersonSpO2Rule extends Rule {
 		} else {
 			ruleResult.parameterValue = "none";
 		}
-		System.out.println("PSpO2-Alarm: " + ruleResult.parameterValue);
+		System.out.println("PSpO2-Alarm: " + ruleResult.parameterType + ruleResult.parameterValue);
 		InferenceControll.handleNewAlarm(ruleResult);
 	}
 
@@ -123,6 +125,16 @@ public class PersonSpO2Rule extends Rule {
 		return ruleResult.parameterType;
 	}
 	
+	@Override
+	void updateEggLabels() {
+		if(listOfLastInputs.size() > 1) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+		} else if(listOfLastInputs.size() == 1) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
+		} else if(listOfLastInputs.size() == 0) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
+		}
+	}
 	// getter / setter
 
 }

@@ -2,14 +2,17 @@ import java.sql.Timestamp;
 
 public class PersonVentilationTubeRule extends Rule {
 	
+	
 	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
 	Timestamp tubeTS = new Timestamp(System.currentTimeMillis());
 	
 	PersonVentilationTubeRule() {
 		ruleName = "PersonVentilationTubeRule";
-		super.ruleResult = new Parameter("pvAlarm", null,"none");
+		ruleResult = new Parameter("pvAlarm", null,"none");
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
+		RuleEgg ruleEgg = new RuleEgg(this);
+		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
 	
 	//Method to update the state based on newParameter
@@ -94,6 +97,7 @@ public class PersonVentilationTubeRule extends Rule {
 		}
 		System.out.println("PVT-State: " + state);
 		evaluateStateMachine();
+		updateEggLabels();
 	}
 	
 	//method to evaluate the state machine
@@ -120,5 +124,16 @@ public class PersonVentilationTubeRule extends Rule {
 	@Override
 	String getOutputType() {
 		return ruleResult.parameterType;
+	}
+	
+	@Override
+	void updateEggLabels() {
+		if(listOfLastInputs.size() > 1) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+		} else if(listOfLastInputs.size() == 1) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
+		} else if(listOfLastInputs.size() == 0) {
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
+		}
 	}
 }
