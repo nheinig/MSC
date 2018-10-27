@@ -128,11 +128,11 @@ public class PersonSpO2Rule extends Rule {
 	@Override
 	void updateEggLabels() {
 		if(listOfLastInputs.size() > 1) {
-			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), listOfLastInputs.get(1), ruleResult);
 		} else if(listOfLastInputs.size() == 1) {
-			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, listOfLastInputs.get(0), null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);
 		} else if(listOfLastInputs.size() == 0) {
-			RulePanel.forwardEggLabelUpdate(getRuleName(), state, prevState, null, null, ruleResult);
+			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);
 		}
 	}
 	// getter / setter

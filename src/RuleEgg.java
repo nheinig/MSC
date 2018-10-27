@@ -32,8 +32,7 @@ public class RuleEgg extends JPanel {
 
 	public RuleEgg(Rule rule) {
 
-		setName(rule.getRuleName());
-		eggName = getName();
+		this.eggName = rule.getRuleName();
 		// circle = new Ellipse2D.Double(0, 0, 200, 200);
 	
 		ro = new RuleOverview(rule);
@@ -42,7 +41,7 @@ public class RuleEgg extends JPanel {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		nameLabel = new JLabel(getName());
+		nameLabel = new JLabel(eggName);
 		stateLabel = new JLabel("State: ");
 		prevStateLabel = new JLabel("Previous State: ");
 		input1Label = new JLabel("Input1: ");
@@ -115,7 +114,7 @@ public class RuleEgg extends JPanel {
 			input2ValueLabel.setText(p2.parameterType + " = " + p2.parameterValue);
 		}
 		
-		System.out.println(eggName + "    " + s);
+		System.out.println(eggName+ "    " + s);
 		ConfigurationUI.ui.setVisible(true);
 	}
 

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Rule {
 
-	private String ruleName;
+	String ruleName;
 	
 	boolean ruleRegistered = false;
 	
@@ -85,7 +85,7 @@ public class Rule {
 		
 	
 	public String getRuleName() {
-		return ruleName;
+		return this.ruleName;
 	}
 
 	public void setRuleName(String ruleName) {
