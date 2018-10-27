@@ -9,7 +9,7 @@ public class Rule {
 	
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
 	ArrayList<String> listOfOutputs = new ArrayList<String>();	
-	static ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
+	ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
 	
 	Parameter ruleResult;	
 	

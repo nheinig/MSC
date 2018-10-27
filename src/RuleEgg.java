@@ -10,7 +10,7 @@ public class RuleEgg extends JPanel {
 	Ellipse2D circle;
 	RuleOverview ro;
 	boolean isMarked = false;
-	static String eggName;
+	String eggName;
 	
 	Box labelBox = Box.createVerticalBox();
 	JLabel nameLabel;
@@ -19,10 +19,10 @@ public class RuleEgg extends JPanel {
 	static JLabel input1Label;
 	static JLabel input2Label;
 
-	static JLabel stateValueLabel;
-	static JLabel prevStateValueLabel;
-	static JLabel input1ValueLabel;
-	static JLabel input2ValueLabel;
+	JLabel stateValueLabel;
+	JLabel prevStateValueLabel;
+	JLabel input1ValueLabel;
+	JLabel input2ValueLabel;
 	
 	Box nameBox = Box.createHorizontalBox();
 	Box stateBox = Box.createHorizontalBox();
@@ -32,7 +32,7 @@ public class RuleEgg extends JPanel {
 
 	public RuleEgg(Rule rule) {
 
-		this.eggName = rule.getRuleName();
+		eggName = rule.getRuleName();
 		// circle = new Ellipse2D.Double(0, 0, 200, 200);
 	
 		ro = new RuleOverview(rule);
@@ -104,7 +104,7 @@ public class RuleEgg extends JPanel {
 	}
 	
 	//method that updates the eggLabels when a new input was handled
-	static void updateLabels(int s, int ps, Parameter p1, Parameter p2, Parameter result) {
+	void updateLabels(int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		stateValueLabel.setText(Integer.toString(s));
 		prevStateValueLabel.setText(Integer.toString(ps));
 		if(p1 != null) {
@@ -114,8 +114,9 @@ public class RuleEgg extends JPanel {
 			input2ValueLabel.setText(p2.parameterType + " = " + p2.parameterValue);
 		}
 		
-		System.out.println(eggName+ "    " + s);
+		//System.out.println(RuleEgg.eggName+ "    " + s);
 		ConfigurationUI.ui.setVisible(true);
 	}
+	
 
 }

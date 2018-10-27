@@ -58,7 +58,7 @@ public class RulePanel{
 		eggPanel.add(re);
 		listOfEggs.add(re);
 		for(int i = 0; i < listOfEggs.size(); i++) {
-			System.out.println(listOfEggs.get(i).getName() + "   HERE    ");
+			System.out.println(listOfEggs.get(i).eggName + "   HERE    ");
 		}
 		ConfigurationUI.ui.setVisible(true);
 	}
@@ -74,14 +74,11 @@ public class RulePanel{
 	//Method that forwards rule Parameters to rule Egg
 	static void forwardEggLabelUpdate(String name, int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		for(int i = 0; i < listOfEggs.size(); i++) {
-			listOfEggs.get(i);
-			String ern = RuleEgg.eggName;			
+			String ern = listOfEggs.get(i).eggName;
 			System.out.println(ern + "  " + name);
 			if(ern.equals(name)) {
-				System.out.println("true");
-				RuleEgg.updateLabels(s, ps, p1, p2, result);				
-			} else {
-				System.out.println("false");
+				listOfEggs.get(i).updateLabels(s, ps, p1, p2, result);	
+				return;
 			}
 		}
 	}

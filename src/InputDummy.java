@@ -45,11 +45,11 @@ public class InputDummy {
 		Parameter parameterValue9 = new Parameter("spo2", ts0, "low");
 		Parameter parameterValue03 = new Parameter("tube", ts0, "disconnected");
 		
-		calendar.add(Calendar.SECOND, 2);
+		calendar.add(Calendar.SECOND, 3);
 		ts0 = new Timestamp(calendar.getTime().getTime());
 		Parameter parameterValue08 = new Parameter("persons", ts0, "none");		
-		Parameter parameterValue09 = new Parameter("spo2", ts0, "normal");
-		Parameter parameterValue04 = new Parameter("tube", ts0, "connected");
+		Parameter parameterValue09 = new Parameter("spo2", ts0, "low");
+		Parameter parameterValue04 = new Parameter("tube", ts0, "disconnected");
 		
 		listOfParameterValues.add(parameterValue00);
 		listOfParameterValues.add(parameterValue01);
