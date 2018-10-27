@@ -11,92 +11,45 @@ public class InputDummy {
 	
 	//craetes dummyData and fills listOfPArameterValues with dummyData
 	void fillList() {
-		Timestamp ts0 =  new Timestamp(System.currentTimeMillis());
+		Timestamp ts0 =  new Timestamp(new Date().getTime());
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(ts0.getTime());			
+		
 		Parameter parameterValue00 = new Parameter("persons", ts0, "none");
 		Parameter parameterValue01 = new Parameter("tube", ts0, "connected");
-
-		try        
-		{
-		    Thread.sleep(2000);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
 		
-		Timestamp date0 =  new Timestamp(System.currentTimeMillis());
-		Parameter parameterValue0 = new Parameter("persons", date0, "many");
-		Parameter parameterValue1 = new Parameter("spo2", date0, "normal");
-
-
-		try        
-		{
-		    Thread.sleep(2000);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
+		calendar.add(Calendar.SECOND, 2);
+		ts0 = new Timestamp(calendar.getTime().getTime());
+		Parameter parameterValue0 = new Parameter("persons", ts0, "many");
+		Parameter parameterValue1 = new Parameter("spo2", ts0, "normal");
 		
+		calendar.add(Calendar.SECOND, 2);
+		ts0 = new Timestamp(calendar.getTime().getTime());
+		Parameter parameterValue02 = new Parameter("tube", ts0, "disconnected");
+		Parameter parameterValue2 = new Parameter("persons", ts0, "many");
+		Parameter parameterValue3 = new Parameter("spo2", ts0, "normal");
 		
-		Timestamp date1 =  new Timestamp(System.currentTimeMillis());
-		Parameter parameterValue02 = new Parameter("tube", date1, "disconnected");
-		Parameter parameterValue2 = new Parameter("persons", date1, "many");
-		Parameter parameterValue3 = new Parameter("spo2", date1, "normal");
+		calendar.add(Calendar.SECOND, 2);
+		ts0 = new Timestamp(calendar.getTime().getTime());
+		Parameter parameterValue4 = new Parameter("persons", ts0, "many");
+		Parameter parameterValue5 = new Parameter("spo2", ts0, "low");
 		
-		try        
-		{
-		    Thread.sleep(3000);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
+		calendar.add(Calendar.SECOND, 2);
+		ts0 = new Timestamp(calendar.getTime().getTime());
+		Parameter parameterValue6 = new Parameter("persons", ts0, "none");
+		Parameter parameterValue7 = new Parameter("spo2", ts0, "low");
 		
-		Timestamp date2 =  new Timestamp(System.currentTimeMillis());
-		Parameter parameterValue4 = new Parameter("persons", date2, "many");
-		Parameter parameterValue5 = new Parameter("spo2", date2, "low");
+		calendar.add(Calendar.SECOND, 2);
+		ts0 = new Timestamp(calendar.getTime().getTime());
+		Parameter parameterValue8 = new Parameter("persons", ts0, "many");		
+		Parameter parameterValue9 = new Parameter("spo2", ts0, "low");
+		Parameter parameterValue03 = new Parameter("tube", ts0, "disconnected");
 		
-		try        
-		{
-		    Thread.sleep(2000);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
-		
-		Timestamp date3 =  new Timestamp(System.currentTimeMillis());
-		Parameter parameterValue6 = new Parameter("persons", date3, "none");
-		Parameter parameterValue7 = new Parameter("spo2", date3, "low");
-		
-		try        
-		{
-		    Thread.sleep(2000);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
-		
-		Timestamp date4 =  new Timestamp(System.currentTimeMillis());
-		Parameter parameterValue8 = new Parameter("persons", date4, "many");		
-		Parameter parameterValue9 = new Parameter("spo2", date4, "low");
-		Parameter parameterValue03 = new Parameter("tube", date4, "disconnected");
-		
-		try        
-		{
-		    Thread.sleep(2000);
-		} 
-		catch(InterruptedException ex) 
-		{
-		    Thread.currentThread().interrupt();
-		}
-		
-		Timestamp date5 =  new Timestamp(System.currentTimeMillis());
-		Parameter parameterValue08 = new Parameter("persons", date5, "none");		
-		Parameter parameterValue09 = new Parameter("spo2", date5, "normal");
-		Parameter parameterValue04 = new Parameter("tube", date5, "connected");
+		calendar.add(Calendar.SECOND, 2);
+		ts0 = new Timestamp(calendar.getTime().getTime());
+		Parameter parameterValue08 = new Parameter("persons", ts0, "none");		
+		Parameter parameterValue09 = new Parameter("spo2", ts0, "normal");
+		Parameter parameterValue04 = new Parameter("tube", ts0, "connected");
 		
 		listOfParameterValues.add(parameterValue00);
 		listOfParameterValues.add(parameterValue01);

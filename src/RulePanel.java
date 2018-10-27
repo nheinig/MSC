@@ -74,7 +74,8 @@ public class RulePanel{
 	//Method that forwards rule Parameters to rule Egg
 	static void forwardEggLabelUpdate(String name, int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		for(int i = 0; i < listOfEggs.size(); i++) {
-			String ern = listOfEggs.get(i).eggName;			
+			listOfEggs.get(i);
+			String ern = RuleEgg.eggName;			
 			System.out.println(ern + "  " + name);
 			if(ern.equals(name)) {
 				System.out.println("true");

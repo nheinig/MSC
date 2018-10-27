@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class StateMachinePanel {
@@ -11,6 +13,8 @@ public class StateMachinePanel {
 	static boolean isSource = true;
 	static StateMachineState source;
 	static StateMachineState destination;
+	static ArrayList<Arrow> arrowList = new ArrayList<>();	
+	static ArrayList<ArrayList<StateMachineState>> transitionList = new ArrayList<ArrayList<StateMachineState>>();
 	
 	StateMachinePanel(){
 		smPanel.setSize(600,700);
@@ -46,7 +50,20 @@ public class StateMachinePanel {
 		int dX = (int) d.getLocation().getX();
 		int dY = (int) d.getLocation().getY();
 		Arrow a = new Arrow(sX, sY, dX, dY);
+		ArrayList<StateMachineState> tempList = new ArrayList<StateMachineState>();
+		tempList.add(s);
+		tempList.add(d);
+		transitionList.add(tempList);
 		a.draw(smPanel.getGraphics());
+	}
+	
+	
+	static void repaintTransitions() {
+		smPanel.getGraphics().clearRect(0, 0, smPanel.getWidth(), smPanel.getHeight());
+		for (int i = 0; i < transitionList.size(); i++) {
+			Arrow a = new Arrow((int)transitionList.get(i).get(0).getLocation().getX(), (int)transitionList.get(i).get(0).getLocation().getY(), (int)transitionList.get(i).get(1).getLocation().getX(), (int)transitionList.get(i).get(1).getLocation().getY());
+			a.draw(smPanel.getGraphics());
+		}
 	}
 	
 	//method that deletes a state from the smPanel

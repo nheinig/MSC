@@ -10,7 +10,7 @@ public class MetaRule extends Rule {
 	
 	MetaRule() {
 		setRuleName("MetaRule");
-		super.ruleResult = new Parameter("GlobalAlarm", null,"none");
+		ruleResult = new Parameter("GlobalAlarm", null,"none");
 		initializeRule();
 		RuleEgg ruleEgg = new RuleEgg(this);
 		ConfigurationUI.forwardRuleEgg(ruleEgg);
