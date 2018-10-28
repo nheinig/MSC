@@ -113,7 +113,6 @@ public class RuleCreator {
 	//method that fills the input combo boxes
 	void fillInputComboBox() {
 		for(int i = 0; i < ConfigurationUI.getParameterStrings().size(); i++) {
-			System.out.println("HERE!!!");	
 			if(((DefaultComboBoxModel)inputCB1.getModel()).getIndexOf(ConfigurationUI.getParameterStrings().get(i)) == -1) {
 				inputCB1.addItem(ConfigurationUI.getParameterStrings().get(i));
 			}

@@ -60,7 +60,7 @@ public class RulePanel{
 		re.setLocation(listOfEggs.size()*250, 0);
 		listOfEggs.add(re);
 		for(int i = 0; i < listOfEggs.size(); i++) {
-			System.out.println(listOfEggs.get(i).eggName + "   HERE    ");
+			System.out.println(listOfEggs.get(i).eggName);
 		}
 		ConfigurationUI.ui.setVisible(true);
 	}
@@ -77,7 +77,6 @@ public class RulePanel{
 	static void forwardEggLabelUpdate(String name, int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		for(int i = 0; i < listOfEggs.size(); i++) {
 			String ern = listOfEggs.get(i).eggName;
-			System.out.println(ern + "  " + name);
 			if(ern.equals(name)) {
 				listOfEggs.get(i).updateLabels(s, ps, p1, p2, result);	
 				return;

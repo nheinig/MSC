@@ -12,7 +12,7 @@ public class Arrow {
 	int endY;
 	Color color = Color.black;;
 	int thickness = 1;
-
+	
 	public Arrow(int x, int y, int x2, int y2) {
 		super();
 		this.x = x;

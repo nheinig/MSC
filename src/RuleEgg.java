@@ -32,7 +32,6 @@ public class RuleEgg extends JPanel {
 	public RuleEgg(Rule rule) {
 
 		eggName = rule.getRuleName();
-		// circle = new Ellipse2D.Double(0, 0, 200, 200);
 	
 		ro = new RuleOverview(rule);
 
@@ -79,7 +78,6 @@ public class RuleEgg extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
 					if (!ConfigurationUI.editMode) {
-						// System.out.println("click " + eggRule.ruleName);
 						ro.showOverview();
 						if(!ConfigurationUI.editMode) {
 							isMarked = !isMarked;
@@ -112,8 +110,6 @@ public class RuleEgg extends JPanel {
 		if(p2 != null) {
 			input2ValueLabel.setText(p2.parameterType + " = " + p2.parameterValue);
 		}
-		
-		//System.out.println(RuleEgg.eggName+ "    " + s);
 		ConfigurationUI.ui.setVisible(true);
 	}
 	

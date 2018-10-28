@@ -45,33 +45,46 @@ public class StateMachinePanel {
 	}
 	
 	
-	//method that adds a new Transition to the smPanel
-	static void addNewTransition(StateMachineState s, StateMachineState d) {
+	//method that adds a ArrayList with source and destination of a new Transition to the transitionList and calls drawTransition
+	static void addNewTransition(StateMachineState s, StateMachineState d) {		
+		ArrayList<StateMachineState> tempList = new ArrayList<StateMachineState>();
+		tempList.add(s);
+		tempList.add(d);
+		transitionList.add(tempList);
+		drawTransition(s, d);
+	}
+	
+	//method that draws a transition (arrow) from a source s to a destination d
+	static void drawTransition(StateMachineState s, StateMachineState d) {
 		int sX = (int) s.getLocation().getX();
 		int sY = (int) s.getLocation().getY();
 		int dX = (int) d.getLocation().getX();
 		int dY = (int) d.getLocation().getY();
 		Arrow a = new Arrow(sX, sY, dX, dY);
-		ArrayList<StateMachineState> tempList = new ArrayList<StateMachineState>();
-		tempList.add(s);
-		tempList.add(d);
-		transitionList.add(tempList);
 		a.draw(smPanel.getGraphics());
 	}
 	
-	
+	//method that repaints the Transitions by executing drawTransition for all source destination pairs in the transitionList
 	static void repaintTransitions() {
-		smPanel.getGraphics().clearRect(0, 0, smPanel.getWidth(), smPanel.getHeight());
+		System.out.println(transitionList.size());
 		for (int i = 0; i < transitionList.size(); i++) {
-			Arrow a = new Arrow((int)transitionList.get(i).get(0).getLocation().getX(), (int)transitionList.get(i).get(0).getLocation().getY(), (int)transitionList.get(i).get(1).getLocation().getX(), (int)transitionList.get(i).get(1).getLocation().getY());
-			a.draw(smPanel.getGraphics());
+			StateMachineState s = transitionList.get(i).get(0);
+			StateMachineState d = transitionList.get(i).get(1);
+			drawTransition(s,d);
 		}
 	}
 	
 	//method that deletes a state from the smPanel
 	static void deleteState(StateMachineState state) {
 		smPanel.remove(state);
+		for(int i = 0; i < transitionList.size(); i++) {
+			if(transitionList.get(i).contains(state)) {
+				//transitionList.remove(i);
+				//i--;
+			}		
+		}
 		smPanel.repaint();
+		repaintTransitions();
 	}
 	
 	//method that deletes a Transition from the smPanel
