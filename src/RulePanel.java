@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -26,7 +27,7 @@ public class RulePanel{
 	RuleCreator ruleCreator = new RuleCreator();
 	
 	public RulePanel() {
-		eggPanel.setSize(900, 800);
+		eggPanel.setPreferredSize(new Dimension(900,600));
 		eggPanel.setLayout(null);
 		eggPanel.setBackground(Color.WHITE);
 		
@@ -56,6 +57,7 @@ public class RulePanel{
 	// creates a new RuleEgg and adds it to the eggPanel
 	static void addNewEgg(RuleEgg re) {
 		eggPanel.add(re);
+		re.setLocation(listOfEggs.size()*250, 0);
 		listOfEggs.add(re);
 		for(int i = 0; i < listOfEggs.size(); i++) {
 			System.out.println(listOfEggs.get(i).eggName + "   HERE    ");

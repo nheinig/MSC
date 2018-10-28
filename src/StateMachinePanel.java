@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class StateMachinePanel {
 	static ArrayList<ArrayList<StateMachineState>> transitionList = new ArrayList<ArrayList<StateMachineState>>();
 	
 	StateMachinePanel(){
-		smPanel.setSize(600,700);
+		smPanel.setPreferredSize(new Dimension (600,600));
 		smPanel.setLayout(null);
 		
 		smPanel.setBackground(Color.WHITE);

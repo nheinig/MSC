@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class RuleEgg extends JPanel {
 
-	Ellipse2D circle;
 	RuleOverview ro;
 	boolean isMarked = false;
 	String eggName;

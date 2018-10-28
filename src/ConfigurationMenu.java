@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +19,7 @@ public class ConfigurationMenu extends JPanel {
 
     public ConfigurationMenu()
     {
-    	setSize(300,800);
+    	setPreferredSize(new Dimension(300,600));
         createMenu();
         add(menuBox);
     }

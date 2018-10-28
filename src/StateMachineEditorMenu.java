@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +25,7 @@ public class StateMachineEditorMenu extends JPanel {
 	static boolean deleteMode = false;
 	
 	StateMachineEditorMenu(){
-		setSize(600,100);	
+		setPreferredSize(new Dimension (600,100));	
 		createMenu();
 	}
 	
