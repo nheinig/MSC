@@ -28,7 +28,7 @@ public class RuleCreator {
 	
 	JLabel nameLabel = new JLabel("Rule Name: ");
 	JLabel inputLabel = new JLabel("Inputs: ");
-	JLabel outputLabel = new JLabel("Output: ");
+	JLabel outputLabel = new JLabel("Output Name: ");
 	JLabel stateMachineLabel = new JLabel("State Machine:   ");
 	JLabel srcStateLabel = new JLabel("Source    ");
 	JLabel destStateLabel = new JLabel("Destination    ");

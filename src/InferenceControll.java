@@ -2,6 +2,7 @@ import java.util.*;
 
 public class InferenceControll {
 
+	static ArrayList<ArrayList<String>> listOfParameterValues = new ArrayList<ArrayList<String>>();
 	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>();
 	static ArrayList<Parameter> listOfNewParameters = new ArrayList<Parameter>();
 	static ArrayList<Parameter> listOfAlarms = new ArrayList<Parameter>();

@@ -44,6 +44,7 @@ public class StateMachineState extends JPanel {
 						StateMachinePanel.isSource = !StateMachinePanel.isSource;
 					} else if (StateMachineEditorMenu.deleteMode) {
 						StateMachinePanel.deleteState(getStateMachineState());
+						StateMachinePanel.repaintTransitions();
 					}
 				}
 			}

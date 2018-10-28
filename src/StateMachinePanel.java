@@ -66,7 +66,7 @@ public class StateMachinePanel {
 	
 	//method that repaints the Transitions by executing drawTransition for all source destination pairs in the transitionList
 	static void repaintTransitions() {
-		System.out.println(transitionList.size());
+		//smPanel.repaint();
 		for (int i = 0; i < transitionList.size(); i++) {
 			StateMachineState s = transitionList.get(i).get(0);
 			StateMachineState d = transitionList.get(i).get(1);
@@ -79,8 +79,8 @@ public class StateMachinePanel {
 		smPanel.remove(state);
 		for(int i = 0; i < transitionList.size(); i++) {
 			if(transitionList.get(i).contains(state)) {
-				//transitionList.remove(i);
-				//i--;
+				transitionList.remove(i);
+				i--;
 			}		
 		}
 		smPanel.repaint();
