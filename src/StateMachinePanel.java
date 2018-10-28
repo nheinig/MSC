@@ -27,7 +27,7 @@ public class StateMachinePanel {
 		smPanel.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				if(StateMachineEditorMenu.addStateMode) {
-					addNewState(stateCounter);
+					addNewState(stateCounter, e);
 					StateMachineEditor.show();
 				} 
 				
@@ -36,10 +36,11 @@ public class StateMachinePanel {
 	}
 	
 	//method that adds a new State to the smPanel
-	void addNewState(int stateLabel) {
-		StateMachineState testState = new StateMachineState(stateLabel);
-		smPanel.add(testState);
-		StateMachineMovement sm = new StateMachineMovement(testState);
+	void addNewState(int stateLabel, MouseEvent e) {
+		StateMachineState state = new StateMachineState(stateLabel);
+		smPanel.add(state);
+		state.setLocation(e.getX(), e.getY());
+		StateMachineMovement sm = new StateMachineMovement(state);
 		stateCounter ++;
 	}
 	
