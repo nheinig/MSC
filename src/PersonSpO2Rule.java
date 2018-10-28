@@ -1,4 +1,5 @@
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class PersonSpO2Rule extends Rule {
 
@@ -117,7 +118,12 @@ public class PersonSpO2Rule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("spo2");
-		this.listOfOutputs.add(ruleResult.parameterType);
+		ArrayList<String> outputList = new ArrayList<String>();
+		outputList.add(ruleResult.parameterType);
+		outputList.add("none");
+		outputList.add("local");
+		outputList.add("hnr");
+		listOfOutputs.add(outputList);
 	}
 	
 	@Override

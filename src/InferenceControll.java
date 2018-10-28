@@ -44,6 +44,14 @@ public class InferenceControll {
 			listOfAvailableParameters.add(parameter);
 		}
 	}
+	
+	// adds available Parameters (from data stream and rules) to an ArrayList
+		static void addAvailableParameterValues(ArrayList<String> pvList) {
+			if (!listOfParameterValues.contains(pvList)) {
+				listOfParameterValues.add(pvList);
+			}
+		}
+	
 
 	public static void main(String[] args) {
 

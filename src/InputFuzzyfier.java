@@ -3,7 +3,8 @@ import java.util.ArrayList;
 public class InputFuzzyfier {
 
 	//list of all parameterTypes of the fuzzyfied Inputs
-	static ArrayList<ArrayList<String>> listOfOutputs = new ArrayList<ArrayList<String>>();
+	static ArrayList<String> listOfOutputs = new ArrayList<String>();
+	static ArrayList<ArrayList<String>> listOfOutputValues = new ArrayList<ArrayList<String>>();
 	
 	//lower and upper bounds for all InputTypes
 	float personsLB = 0;
@@ -35,9 +36,14 @@ public class InputFuzzyfier {
 		personsValues.add("unknown");
 		personsValues.add("connected");
 		
-		listOfOutputs.add(personsValues);
-		listOfOutputs.add(spo2Values);
-		listOfOutputs.add(tubeValues);	
+		listOfOutputs.add("persons");
+		listOfOutputs.add("spo2");
+		listOfOutputs.add("tube");	
+		
+
+		listOfOutputValues.add(personsValues);
+		listOfOutputValues.add(spo2Values);
+		listOfOutputValues.add(tubeValues);	
 		initializeFuzzyfier();
 	}
 	
@@ -45,8 +51,8 @@ public class InputFuzzyfier {
 	//Method that adds all entries from the listOfOutputTypes to the listOfAvailableParameters in the InferenceControll
 	void initializeFuzzyfier() {
 		for(int i = 0; i < listOfOutputs.size(); i++) {
-			InferenceControll.addAvailableParameter(listOfOutputs.get(i).get(0));
-			InferenceControll.listOfParameterValues.add(listOfOutputs.get(i));
+			InferenceControll.addAvailableParameter(listOfOutputs.get(i));
+			InferenceControll.addAvailableParameterValues(listOfOutputValues.get(i));
 		}
 	}
 	

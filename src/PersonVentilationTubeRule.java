@@ -1,4 +1,5 @@
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class PersonVentilationTubeRule extends Rule {
 
@@ -120,7 +121,12 @@ public class PersonVentilationTubeRule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("tube");
-		this.listOfOutputs.add(ruleResult.parameterType);
+		ArrayList<String> outputList = new ArrayList<String>();
+		outputList.add(ruleResult.parameterType);
+		outputList.add("none");
+		outputList.add("local");
+		outputList.add("hnr");
+		listOfOutputs.add(outputList);
 	}
 
 	@Override

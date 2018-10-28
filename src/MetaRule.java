@@ -1,4 +1,5 @@
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class MetaRule extends Rule {
 
@@ -64,7 +65,12 @@ public class MetaRule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("pvAlarm");
 		this.listOfParametersNeeded.add("psAlarm");
-		this.listOfOutputs.add(ruleResult.parameterType);
+		ArrayList<String> outputList = new ArrayList<String>();
+		outputList.add(ruleResult.parameterType);
+		outputList.add("none");
+		outputList.add("local");
+		outputList.add("hnr");
+		listOfOutputs.add(outputList);
 	}
 
 	@Override
