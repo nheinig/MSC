@@ -48,7 +48,7 @@ public class StateMachineEditorMenu extends JPanel {
 				deleteButton.setBackground(null);
 			}
 		});
-		//Actionlistener that toggles addStateMode and marks the addStateButton on addStateButton click
+		//ActionListener that toggles addStateMode and marks the addStateButton on addStateButton click
 		addStateButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -62,7 +62,7 @@ public class StateMachineEditorMenu extends JPanel {
 				deleteButton.setBackground(null);
 			}
 		});
-		//Actionlistener that toggles addTransitionMode and marks the addTransitionButton on addTransitionButton click
+		//ActionListener that toggles addTransitionMode and marks the addTransitionButton on addTransitionButton click
 		addTransitionButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class StateMachineEditorMenu extends JPanel {
 				deleteButton.setBackground(null);
 			}
 		});
-		//Actionlistener that toggles deleteMode and marks the deleteButton on deleteButton click
+		//ActionListener that toggles deleteMode and marks the deleteButton on deleteButton click
 		deleteButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -97,7 +97,7 @@ public class StateMachineEditorMenu extends JPanel {
 				//todo
 			}
 		});
-		//Actionlistener that closes the StateMachineEditor on closeButton click
+		//ActionListener that closes the StateMachineEditor on closeButton click
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -69,8 +69,9 @@ public class StateMachinePanel {
 	}
 	
 	//method that deletes a state from the smPanel
-	void deleteState() {
-		
+	static void deleteState(StateMachineState state) {
+		smPanel.remove(state);
+		smPanel.repaint();
 	}
 	
 	//method that deletes a Transition from the smPanel
