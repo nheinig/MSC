@@ -24,11 +24,16 @@ public class RuleCreator {
 	Box rulesBox = Box.createVerticalBox();
 	Box ruleLabelBox = Box.createHorizontalBox();
 	Box transBox = Box.createHorizontalBox();
+	Box outputLabelBox = Box.createVerticalBox();
+	Box outputTextFieldBox = Box.createVerticalBox();
 	
 	
 	JLabel nameLabel = new JLabel("Rule Name: ");
 	JLabel inputLabel = new JLabel("Inputs: ");
 	JLabel outputLabel = new JLabel("Output Name: ");
+	JLabel outputLabelRed = new JLabel("Red Output: ");
+	JLabel outputLabelYellow = new JLabel("Yellow Output : ");
+	JLabel outputLabelGreen = new JLabel("Green Output: ");
 	JLabel stateMachineLabel = new JLabel("State Machine:   ");
 	JLabel srcStateLabel = new JLabel("Source    ");
 	JLabel destStateLabel = new JLabel("Destination    ");
@@ -37,6 +42,9 @@ public class RuleCreator {
 	
 	JTextField ruleNameTF = new JTextField();
 	JTextField outputTF = new JTextField();
+	JTextField redOutputTF = new JTextField();
+	JTextField yellowOutputTF = new JTextField();
+	JTextField greenOutputTF = new JTextField();
 	JTextField srcTF = new JTextField();
 	JTextField destTF = new JTextField();
 	JTextField condTF = new JTextField();
@@ -51,6 +59,7 @@ public class RuleCreator {
 	
 	StateMachineEditor sme = new StateMachineEditor();
 	
+	boolean alreadyOpendSME = false;
 	
 	RuleCreator(){
 		rc.setSize(400, 400);
@@ -61,6 +70,10 @@ public class RuleCreator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sme.show();
+				if(!alreadyOpendSME) {
+					StateMachinePanel.createStandardSM();
+					alreadyOpendSME = true;
+				}
 			}
 		});
 	}
@@ -75,8 +88,20 @@ public class RuleCreator {
 		inputBox.add(inputCB1);
 		inputBox.add(inputCB2);
 		
-		outputBox.add(outputLabel);
-		outputBox.add(outputTF);
+		
+		outputLabelBox.add(outputLabel);
+		outputLabelBox.add(outputLabelRed);
+		outputLabelBox.add(outputLabelYellow);
+		outputLabelBox.add(outputLabelGreen);
+		
+		outputTextFieldBox.add(outputTF);
+		outputTextFieldBox.add(redOutputTF);
+		outputTextFieldBox.add(yellowOutputTF);
+		outputTextFieldBox.add(greenOutputTF);
+		
+		outputBox.add(outputLabelBox);
+		outputBox.add(outputTextFieldBox);
+		
 		
 		ruleLabelBox.add(srcStateLabel);
 		ruleLabelBox.add(destStateLabel);

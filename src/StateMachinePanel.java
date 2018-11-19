@@ -27,7 +27,7 @@ public class StateMachinePanel {
 		smPanel.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				if(StateMachineEditorMenu.addStateMode) {
-					addNewState(stateCounter, e);
+					addNewState(Integer.toString(stateCounter), e);
 					StateMachineEditor.show();
 				} 
 				
@@ -36,7 +36,7 @@ public class StateMachinePanel {
 	}
 	
 	//method that adds a new State to the smPanel
-	void addNewState(int stateLabel, MouseEvent e) {
+	void addNewState(String stateLabel, MouseEvent e) {
 		StateMachineState state = new StateMachineState(stateLabel);
 		smPanel.add(state);
 		state.setLocation(e.getX(), e.getY());
@@ -44,6 +44,13 @@ public class StateMachinePanel {
 		stateCounter ++;
 	}
 	
+	
+	static void addNewState(String stateLabel, int x, int y) {
+		StateMachineState state = new StateMachineState(stateLabel);
+		smPanel.add(state);
+		state.setLocation(x, y);
+		StateMachineMovement sm = new StateMachineMovement(state);		
+	}
 	
 	//method that adds a ArrayList with source and destination of a new Transition to the transitionList and calls drawTransition
 	static void addNewTransition(StateMachineState s, StateMachineState d) {		
@@ -89,6 +96,13 @@ public class StateMachinePanel {
 	
 	//method that deletes a Transition from the smPanel
 	void deleteTransition() {
+		
+	}
+	
+	//creates a Standard StateMachine
+	static void createStandardSM() {
+		addNewState("init", smPanel.getWidth()/2, smPanel.getHeight()/2);
+		
 		
 	}
 }

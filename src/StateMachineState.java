@@ -9,18 +9,15 @@ import javax.swing.JPanel;
 
 public class StateMachineState extends JPanel {
 
-	int stateValue;
-
 	JLabel stateLabel = new JLabel();
 
-	StateMachineState(int sv) {
+	StateMachineState(String label) {
 		setSize(25, 25);
 
-		setBackground(Color.WHITE);
+		setBackground(Color.GREEN);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-		stateValue = sv;
-		stateLabel.setText(Integer.toString(sv));
+		stateLabel.setText(label);
 
 		add(stateLabel);
 
@@ -45,12 +42,24 @@ public class StateMachineState extends JPanel {
 					} else if (StateMachineEditorMenu.deleteMode) {
 						StateMachinePanel.deleteState(getStateMachineState());
 						StateMachinePanel.repaintTransitions();
+					} else if (StateMachineEditorMenu.addStateMode) {
+						changeOutputColor();										
 					}
 				}
 			}
 		});
 	}
 
+	void changeOutputColor() {
+		if(getBackground() == Color.GREEN) {
+			setBackground(Color.YELLOW);
+		} else if (getBackground() == Color.YELLOW) {
+			setBackground(Color.RED);
+		} else if (getBackground() == Color.RED) {
+			setBackground(Color.GREEN);
+		}
+	}
+	
 	// getter for the StateMachineState
 	StateMachineState getStateMachineState() {
 		return this;
