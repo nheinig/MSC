@@ -57,7 +57,7 @@ public class RulePanel{
 	// creates a new RuleEgg and adds it to the eggPanel
 	static void addNewEgg(RuleEgg re) {
 		eggPanel.add(re);
-		re.setLocation(listOfEggs.size()*250, 0);
+		re.setLocation((listOfEggs.size() + 1)*250, 0);
 		listOfEggs.add(re);
 		for(int i = 0; i < listOfEggs.size(); i++) {
 			System.out.println(listOfEggs.get(i).eggName);
@@ -84,4 +84,9 @@ public class RulePanel{
 		}
 	}
 	
+	//creates the Egg for the Fuzzyfier
+	static void createFuzzyfierEgg(FuzzyfierEgg fe) {
+		eggPanel.add(fe);
+		ConfigurationUI.ui.setVisible(true);
+	}
 }

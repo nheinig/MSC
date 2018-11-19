@@ -78,6 +78,11 @@ public class RuleCreator {
 		});
 	}
 	
+	void createStandardStateMachine() {
+		
+	}
+	
+	
 	//method that fills the rc-frame
 	void createRuleCreator() {
 		

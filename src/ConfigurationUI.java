@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class ConfigurationUI {
 
-	static JFrame ui = new JFrame("Inference Engine");
+	static JFrame ui = new JFrame("Configuration UI");
 	
 	static private ArrayList<String> parameterStrings = new ArrayList<String>();
 	
@@ -25,7 +25,6 @@ public class ConfigurationUI {
 		ui.setSize(1200, 600);
 		ui.setLocationRelativeTo(ui);
 	}
-
 	
 	
 	
@@ -47,6 +46,10 @@ public class ConfigurationUI {
 	//forwards a RuleEgg to the RulePanel where it is added
 	static void forwardRuleEgg(RuleEgg re) {
 		RulePanel.addNewEgg(re);
+	}
+	
+	static void forwardFuzzyfier(FuzzyfierEgg fe) {
+		RulePanel.createFuzzyfierEgg(fe);
 	}
 	
 	// Method to create the Configuration UI

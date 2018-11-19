@@ -6,6 +6,8 @@ public class InputFuzzyfier {
 	static ArrayList<String> listOfOutputs = new ArrayList<String>();
 	static ArrayList<ArrayList<String>> listOfOutputValues = new ArrayList<ArrayList<String>>();
 	
+	FuzzyfierEgg fe;
+	
 	//lower and upper bounds for all InputTypes
 	float personsLB = 0;
 	float personsUB = 2;
@@ -45,6 +47,9 @@ public class InputFuzzyfier {
 		listOfOutputValues.add(spo2Values);
 		listOfOutputValues.add(tubeValues);	
 		initializeFuzzyfier();
+		
+		fe = new FuzzyfierEgg(this);
+		ConfigurationUI.forwardFuzzyfier(fe);
 	}
 	
 	
