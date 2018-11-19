@@ -15,8 +15,7 @@ public class StateMachinePanel {
 	static StateMachineState source;
 	static StateMachineState destination;
 	static ArrayList<Arrow> arrowList = new ArrayList<>();	
-	static ArrayList<ArrayList<StateMachineState>> transitionList = new ArrayList<ArrayList<StateMachineState>>();
-	
+	static ArrayList<StateMachineTransition> listOfTransitions = new ArrayList<StateMachineTransition>();
 	StateMachinePanel(){
 		smPanel.setPreferredSize(new Dimension (600,600));
 		smPanel.setLayout(null);
@@ -53,11 +52,8 @@ public class StateMachinePanel {
 	}
 	
 	//method that adds a ArrayList with source and destination of a new Transition to the transitionList and calls drawTransition
-	static void addNewTransition(StateMachineState s, StateMachineState d) {		
-		ArrayList<StateMachineState> tempList = new ArrayList<StateMachineState>();
-		tempList.add(s);
-		tempList.add(d);
-		transitionList.add(tempList);
+	static void addNewTransition(StateMachineState s, StateMachineState d) {	
+		StateMachineTransition transition = new StateMachineTransition(s,d);
 		drawTransition(s, d);
 	}
 	
@@ -74,9 +70,9 @@ public class StateMachinePanel {
 	//method that repaints the Transitions by executing drawTransition for all source destination pairs in the transitionList
 	static void repaintTransitions() {
 		//smPanel.repaint();
-		for (int i = 0; i < transitionList.size(); i++) {
-			StateMachineState s = transitionList.get(i).get(0);
-			StateMachineState d = transitionList.get(i).get(1);
+		for (int i = 0; i < listOfTransitions.size(); i++) {
+			StateMachineState s = listOfTransitions.get(i).source;
+			StateMachineState d = listOfTransitions.get(i).destination;
 			drawTransition(s,d);
 		}
 	}
@@ -84,9 +80,9 @@ public class StateMachinePanel {
 	//method that deletes a state from the smPanel
 	static void deleteState(StateMachineState state) {
 		smPanel.remove(state);
-		for(int i = 0; i < transitionList.size(); i++) {
-			if(transitionList.get(i).contains(state)) {
-				transitionList.remove(i);
+		for(int i = 0; i < listOfTransitions.size(); i++) {
+			if(listOfTransitions.get(i).contains(state)) {
+				listOfTransitions.remove(i);
 				i--;
 			}		
 		}
