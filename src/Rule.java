@@ -13,6 +13,9 @@ public class Rule {
 	
 	Parameter ruleResult;	
 	
+	Parameter input1;
+	Parameter input2;
+	
 	 int prevState = 0;
 	 int state = 0;
 	

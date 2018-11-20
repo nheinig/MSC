@@ -71,7 +71,7 @@ public class RuleCreator {
 			public void actionPerformed(ActionEvent e) {
 				sme.show();
 				if(!alreadyOpendSME) {
-					StateMachinePanel.createStandardSM();
+					StateMachinePanel.createStandardSM((String)inputCB1.getSelectedItem(), (String)inputCB2.getSelectedItem());
 					alreadyOpendSME = true;
 				}
 			}
