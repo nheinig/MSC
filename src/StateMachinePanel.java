@@ -19,7 +19,7 @@ public class StateMachinePanel {
 	static ArrayList<StateMachineState> listOfStates = new ArrayList<StateMachineState>();
 
 	StateMachinePanel() {
-		smPanel.setPreferredSize(new Dimension(600, 600));
+		smPanel.setPreferredSize(new Dimension(1200, 600));
 		smPanel.setLayout(null);
 
 		smPanel.setBackground(Color.WHITE);
@@ -152,15 +152,15 @@ public class StateMachinePanel {
 		String s8 = parameterType1 + " == " + p1v3 + " && " + parameterType2 + " == " + p2v2;
 		String s9 = parameterType1 + " == " + p1v3 + " && " + parameterType2 + " == " + p2v3;
 
-		addNewState(s1, smPanel.getWidth() / 2 - 150, smPanel.getHeight() / 2);
-		addNewState(s2, smPanel.getWidth() / 2 - 84, smPanel.getHeight() / 2 - 67);
-		addNewState(s3, smPanel.getWidth() / 2 - 18, smPanel.getHeight() / 2 - 133);
-		addNewState(s4, smPanel.getWidth() / 2 + 40, smPanel.getHeight() / 2 - 100);
-		addNewState(s5, smPanel.getWidth() / 2 + 106, smPanel.getHeight() / 2 - 33);
-		addNewState(s6, smPanel.getWidth() / 2 + 142, smPanel.getHeight() / 2 + 34);
-		addNewState(s7, smPanel.getWidth() / 2 + 75, smPanel.getHeight() / 2 + 102);
-		addNewState(s8, smPanel.getWidth() / 2 + 7, smPanel.getHeight() / 2 + 132);
-		addNewState(s9, smPanel.getWidth() / 2 - 60, smPanel.getHeight() / 2 + 66);
+		addNewState(s1, smPanel.getWidth() / 2 - 337, smPanel.getHeight() / 2);
+		addNewState(s2, smPanel.getWidth() / 2 - 187, smPanel.getHeight() / 2 - 100);
+		addNewState(s3, smPanel.getWidth() / 2 - 37, smPanel.getHeight() / 2 - 200);
+		addNewState(s4, smPanel.getWidth() / 2 + 113, smPanel.getHeight() / 2 - 125);
+		addNewState(s5, smPanel.getWidth() / 2 + 263, smPanel.getHeight() / 2 - 25);
+		addNewState(s6, smPanel.getWidth() / 2 + 262, smPanel.getHeight() / 2 + 75);
+		addNewState(s7, smPanel.getWidth() / 2 + 102, smPanel.getHeight() / 2 + 175);
+		addNewState(s8, smPanel.getWidth() / 2 - 48, smPanel.getHeight() / 2 + 175);
+		addNewState(s9, smPanel.getWidth() / 2 - 188, smPanel.getHeight() / 2 + 75);
 	}
 	
 	static void createStandardSMTransitions() {

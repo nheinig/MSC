@@ -20,7 +20,7 @@ public class StateMachineEditor {
 	JPanel mainPanel = new JPanel();
 
 	StateMachineEditor() {
-		smEditor.setSize(700, 600);
+		smEditor.setSize(1200, 600);
 		createSMEditor();
 	}
 

@@ -12,7 +12,7 @@ public class StateMachineState extends JPanel {
 	JLabel stateLabel = new JLabel();
 
 	StateMachineState(String label) {
-		setSize(50, 50);
+		setSize(250, 30);
 
 		setBackground(Color.GREEN);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
