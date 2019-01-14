@@ -26,18 +26,17 @@ public class RuleCreator {
 	Box transBox = Box.createHorizontalBox();
 	Box outputLabelBox = Box.createVerticalBox();
 	Box outputTextFieldBox = Box.createVerticalBox();
+	Box delayBox = Box.createHorizontalBox();
 	
 	
 	JLabel nameLabel = new JLabel("Rule Name: ");
 	JLabel inputLabel = new JLabel("Inputs: ");
-	JLabel outputLabel = new JLabel("Output Name: ");
-	JLabel outputLabelRed = new JLabel("Red Output: ");
-	JLabel outputLabelYellow = new JLabel("Yellow Output : ");
-	JLabel outputLabelGreen = new JLabel("Green Output: ");
-	JLabel stateMachineLabel = new JLabel("State Machine:   ");
-	JLabel srcStateLabel = new JLabel("Source    ");
-	JLabel destStateLabel = new JLabel("Destination    ");
-	JLabel condLabel = new JLabel("Condition    ");
+	JLabel outputLabel = new JLabel("Output Name:             ");
+	JLabel outputLabelRed = new JLabel("Red Output:          ");
+	JLabel outputLabelYellow = new JLabel("Yellow Output:          ");
+	JLabel outputLabelGreen = new JLabel("Green Output:          ");
+	JLabel stateMachineLabel = new JLabel("State Machine:           ");
+	JLabel delayLabel = new JLabel("Alarm Delay (in ms): ");
 	
 	
 	JTextField ruleNameTF = new JTextField();
@@ -45,11 +44,8 @@ public class RuleCreator {
 	JTextField redOutputTF = new JTextField();
 	JTextField yellowOutputTF = new JTextField();
 	JTextField greenOutputTF = new JTextField();
-	JTextField srcTF = new JTextField();
-	JTextField destTF = new JTextField();
-	JTextField condTF = new JTextField();
-
-	JButton addLineButton = new JButton("+");
+	JTextField delayTF = new JTextField();
+	
 	JButton createButton = new JButton("Create Rule");
 	JButton cancelButton = new JButton("Cancel");
 	JButton stateMachineButton = new JButton("Show StateMachine Editor");	
@@ -104,21 +100,15 @@ public class RuleCreator {
 		outputTextFieldBox.add(yellowOutputTF);
 		outputTextFieldBox.add(greenOutputTF);
 		
+		delayBox.add(delayLabel);
+		delayBox.add(delayTF);
+		
 		outputBox.add(outputLabelBox);
 		outputBox.add(outputTextFieldBox);
-		
-		
-		ruleLabelBox.add(srcStateLabel);
-		ruleLabelBox.add(destStateLabel);
-		ruleLabelBox.add(condLabel);
-		ruleLabelBox.add(addLineButton);
 		
 		stateMachineBox.add(stateMachineLabel);		
 		stateMachineBox.add(stateMachineButton);
 		
-		transBox.add(srcTF);
-		transBox.add(destTF);
-		transBox.add(condTF);
 		 
 		rulesBox.add(ruleLabelBox);
 		rulesBox.add(transBox);
@@ -129,6 +119,7 @@ public class RuleCreator {
 		mainBox.add(nameBox);
 		mainBox.add(inputBox);
 		mainBox.add(outputBox);
+		mainBox.add(delayBox);
 		mainBox.add(stateMachineBox);
 		mainBox.add(buttonBox);
 		
