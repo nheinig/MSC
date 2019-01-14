@@ -52,6 +52,7 @@ public class InferenceControll {
 			}
 		}
 	
+		
 
 	public static void main(String[] args) {
 
@@ -103,6 +104,17 @@ public class InferenceControll {
 	
 	static ArrayList<Rule> getRuleList(){
 		return ruleList;
+	}
+	
+	//Method that returns a parameterValue from the listOfParameterValues based on the ParameterType pt and the Index i		
+	static String getParameterValue(String pt, int i) {
+		String pv = "";
+		for (int j = 0; j < InferenceControll.listOfParameterValues.size(); j++) {
+			if (InferenceControll.listOfParameterValues.get(j).contains(pt)) {
+				pv = InferenceControll.listOfParameterValues.get(j).get(i);
+			}
+		}
+		return pv;
 	}
 
 }

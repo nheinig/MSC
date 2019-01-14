@@ -10,6 +10,7 @@ public class Rule {
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
 	ArrayList<String> listOfOutputs = new ArrayList<String>();	
 	ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
+	ArrayList<ArrayList<String>> stateOutputList = new ArrayList<ArrayList<String>>();
 	
 	Parameter ruleResult;	
 	
@@ -36,6 +37,14 @@ public class Rule {
 			updateState(input);
 			updateEggLabels();
 		}
+	}
+	
+	void fillStateOutputList() {
+		
+	}
+	
+	void showStateMachine() {
+		
 	}
 	
 	// method that evaluates the state machine and sets the alarm based on the state

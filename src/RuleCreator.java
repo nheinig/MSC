@@ -213,85 +213,155 @@ public class RuleCreator {
 
 		// generate the source code, using the source filename as the classname
 		String classname = sourceFile.getName().split("\\.")[0];
-		String sourceCode = "import java.sql.Timestamp;\r\n\r\n" + "import java.util.ArrayList; \r\n" + "\r\n"
-				+ "public class " + classname + " extends Rule {\r\n" + "	\r\n"
-				+ "	Parameter alarm = new Parameter(\" " + inputCB1.getSelectedItem().toString()
-				+ inputCB2.getSelectedItem().toString() + "alarm \", null, \"none\");\r\n" + "	\r\n" + "	Timestamp "
-				+ inputCB1.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "	Timestamp " + inputCB2.getSelectedItem().toString()
-				+ "TS = new Timestamp(System.currentTimeMillis());\r\n" + "	\r\n" + "	" + classname + "() {\r\n"
-				+ "		super.ruleName = \"" + classname + "\";\r\n" + "	}\r\n" + "	\r\n"
-				+ "	//Method to update the state based on newParameter\r\n" + "	@Override\r\n"
-				+ "	void updateState(Parameter newParameter) {\r\n"
-				+ "		// what happens when the Parameter is of the type " + inputCB1.getSelectedItem().toString()
-				+ "\r\n" + "		if(newParameter.parameterType.equals(\"" + inputCB1.getSelectedItem().toString()
-				+ "\")) {\r\n" + "			" + inputCB1.getSelectedItem().toString()
-				+ "TS = newParameter.timestamp;\r\n"
-				+ "			if(newParameter.parameterValue.equals(\"none\")) {\r\n"
-				+ "				if(state == 0 || state == 3) {\r\n" + "					state = 1;\r\n"
-				+ "				} else if(state == 2|| state == 6) {\r\n" + "					state = 5;\r\n"
-				+ "				} else if(state == 4|| state == 7) {\r\n" + "					state = 8;\r\n"
-				+ "				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000)) || state == 10) {\r\n"
-				+ "					state = 9;\r\n" + "				}\r\n" + "				if("
-				+ inputCB1.getSelectedItem().toString() + "TS.getTime() > " + inputCB2.getSelectedItem().toString()
-				+ "TS.getTime() + 20000 && !(state == 9 || state == 10)) {\r\n" + "					state = 9;\r\n"
-				+ "					alarm.timestamp = newParameter.timestamp;\r\n" + "				}\r\n"
-				+ "			} \r\n" + "			else if(newParameter.parameterValue.equals(\"many\")) {\r\n"
-				+ "				if(state == 0 || state == 1){\r\n" + "					state = 3;\r\n"
-				+ "				} else if(state == 2 || state == 5){\r\n" + "					state = 8;\r\n"
-				+ "				} else if(state == 4 || state == 8){\r\n" + "					state = 7;\r\n"
-				+ "				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000)) || state == 9) {\r\n"
-				+ "					state = 10;\r\n" + "				} \r\n" + "				if("
-				+ inputCB1.getSelectedItem().toString() + "TS.getTime() > " + inputCB2.getSelectedItem().toString()
-				+ "TS.getTime() + 20000 && !(state == 9 || state == 10)) {\r\n" + "					state = 10;\r\n"
-				+ "					alarm.timestamp = newParameter.timestamp;\r\n" + "				}\r\n"
-				+ "			}\r\n" + "		} \r\n" + "		//what happens when the Parameter is of the type "
-				+ inputCB2.getSelectedItem().toString() + "\r\n"
-				+ "		else if(newParameter.parameterType.equals(\"" + inputCB2.getSelectedItem().toString()
-				+ "\")) {\r\n" + "			 " + inputCB2.getSelectedItem().toString()
-				+ "TS = newParameter.timestamp;			\r\n"
-				+ "			if(newParameter.parameterValue.equals(\"disconnected\")) {\r\n"
-				+ "				if(state == 0|| state == 4) {\r\n" + "					state = 2;\r\n"
-				+ "				} else if(state == 1|| state == 8){\r\n" + "					state = 5;\r\n"
-				+ "					alarm.timestamp = newParameter.timestamp;\r\n"
-				+ "				} else if(state == 3|| state == 7){\r\n" + "					state = 6;\r\n"
-				+ "					alarm.timestamp = newParameter.timestamp;\r\n"
-				+ "				} else if((state == 5 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000))) {\r\n"
-				+ "					state = 9;\r\n"
-				+ "				} else if((state == 6 && (newParameter.timestamp.getTime() - alarm.timestamp.getTime() >= 3000))) {\r\n"
-				+ "					state = 10;\r\n" + "				}\r\n" + "				if("
-				+ inputCB2.getSelectedItem().toString() + "TS.getTime() > " + inputCB1.getSelectedItem().toString()
-				+ "TS.getTime() + 20000 && !(state == 9 || state == 10)) {\r\n" + "					state = 10;\r\n"
-				+ "				}\r\n" + "			} \r\n"
-				+ "			else if(newParameter.parameterValue.equals(\"connected\")) {\r\n"
-				+ "				if(state == 0 || state == 2) {\r\n" + "					state = 4;\r\n"
-				+ "				} else if(state == 1 || state == 5 || state == 9){\r\n"
-				+ "					state = 8;\r\n"
-				+ "				} else if(state == 3 || state == 6 || state == 10){\r\n"
-				+ "					state = 7;\r\n" + "				}\r\n" + "				if("
-				+ inputCB2.getSelectedItem().toString() + "TS.getTime() > " + inputCB1.getSelectedItem().toString()
-				+ "TS.getTime() + 20000 && !(state == 9 || state == 10)) {\r\n" + "					state = 10;\r\n"
-				+ "					alarm.timestamp = newParameter.timestamp;\r\n" + "				}\r\n"
-				+ "			}\r\n"
-				+ "			if (state == 10 && (newParameter.timestamp.getTime() > alarm.timestamp.getTime() + 20000)) {\r\n"
-				+ "				state = 9;\r\n" + "			}		\r\n" + "		}\r\n"
-				+ "		System.out.println(\"" + classname + "-State: \" + state);\r\n"
-				+ "		evaluateStateMachine();\r\n" + "	}\r\n" + "	\r\n"
-				+ "	//method to evaluate the state machine\r\n" + "	@Override\r\n"
-				+ "	void evaluateStateMachine() {\r\n" + "		if(state == 9) {\r\n"
-				+ "			alarm.parameterValue = \"hnr\";\r\n" + "		} else if(state == 10) {\r\n"
-				+ "			alarm.parameterValue = \"local\";\r\n" + "		} else {\r\n"
-				+ "			alarm.parameterValue = \"none\";\r\n" + "		}\r\n"
-				+ "		System.out.println(\"PVT-Alarm: \" + alarm.parameterValue);\r\n"
-				+ "		InferenceControll.handleNewAlarm(alarm);\r\n" + "	}		\r\n" + "	\r\n"
-				+ "	@Override\r\n" + "	void initializeRule() {\r\n"
-				+ "		this.listOfParametersNeeded.add(ruleName);\r\n" + "		this.listOfParametersNeeded.add(\""
-				+ inputCB1.getSelectedItem().toString() + "\");\r\n" + "		this.listOfParametersNeeded.add(\""
-				+ inputCB2.getSelectedItem().toString() + "\");\r\n"
-				+ "		this.registerRuleAtInferenceControll();\r\n"
-				+ "		InferenceControll.addAvailableParameter(getOutputType());\r\n" + "	}\r\n" + "	\r\n"
-				+ "	@Override\r\n" + "	String getOutputType() {\r\n" + "		return alarm.parameterType;\r\n"
-				+ "	}\r\n" + "}\r\n" + "";
+		String sourceCode = "import java.sql.Timestamp;\r\n" + 
+				"import java.util.ArrayList;\r\n" + 
+				"\r\n" + 
+				"public class " + classname + " extends Rule {\r\n" + 
+				"\r\n" + 
+				"	Timestamp " + inputCB1.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n" + 
+				"	Timestamp " + inputCB2.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n" + 
+				"	Timestamp stateTS = new Timestamp(System.currentTimeMillis());\r\n" + 
+				"\r\n" + 
+				classname + "() {\r\n" + 
+				"		setRuleName(\""+ classname + "\");\r\n" + 
+				"		ruleResult = new Parameter(\"" + outputTF.getText() + "\", null, null, null);\r\n" + 
+				"		initializeRule();\r\n" + 
+				"		InferenceControll.addAvailableParameter(getOutputType());\r\n" + 
+				"		InferenceControll.addAvailableParameterValues(listOfOutputs);\r\n" + 
+				"		RuleEgg ruleEgg = new RuleEgg(this);\r\n" + 
+				"		ConfigurationUI.forwardRuleEgg(ruleEgg);\r\n" + 
+				"	}\r\n" + 
+				"\r\n" + 
+				
+				
+				"	// Method to update the state based on newParameter\r\n" + 
+				"	@Override\r\n" + 
+				"	void updateState(Parameter newParameter) {\r\n" + 
+				"		prevState = state;\r\n" + 
+				"		// what happens when the Parameter is of the type " +  inputCB1.getSelectedItem().toString() + "\r\n" + 
+				"		if (newParameter.parameterType.equals(\"" + inputCB1.getSelectedItem().toString() + "\")) {\r\n" + 
+				"       " + inputCB1.getSelectedItem().toString() +"TS = newParameter.timestamp;\r\n" + 
+				
+				"           // "+ inputCB1.getSelectedItem().toString() + " is " + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 1) +  "\r\n"+
+				"			if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 1) + "\")) {\r\n" + 
+						
+				"			}\r\n" + 
+				
+				
+								
+				"			// " + inputCB1.getSelectedItem().toString() + " is " + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) +  "\r\n" +
+				"			else if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n" + 	
+				
+				"			}\r\n" + 
+				
+				
+				
+				"           // " + inputCB1.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\r\n" +
+				"           else if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n" + 
+				
+				"           }\r\n" +
+				
+				
+				
+				
+
+				"		// what happens when the Parameter is of the type " +  inputCB2.getSelectedItem().toString() + "\r\n" + 
+				"		else if (newParameter.parameterType.equals(\"" + inputCB2.getSelectedItem().toString() + "\")) {\r\n" + 
+				"			" + inputCB2.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n" + 
+				"			// "  + inputCB2.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\r\n" + 
+				"			if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n" + 
+				
+				"			}\r\n" + 
+				
+				
+				
+				
+				"			// "  + inputCB2.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\r\n" + 
+				"			else if (newParameter.parameterValue.equals(\"" +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n" + 
+							
+				"			}\r\n" + 
+				
+				
+				
+				
+				"			// "  + inputCB2.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\r\n" + 
+				"			else if (newParameter.parameterValue.equals(\"" +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n" + 
+			
+				"			}\r\n" + 
+				
+				
+				
+				
+				"		}\r\n" + 
+				"		evaluateStateMachine();\r\n" + 
+				"	}\r\n" + 
+				"\r\n" + 
+				"	\r\n" + 
+				"	\r\n" + 
+				
+				
+				"	@Override\r\n" + 
+				"	void fillStateOutputList() {\r\n" + 
+				"		\r\n" + 
+				"	}\r\n" + 
+				"	\r\n" + 
+				
+				
+				"	@Override\r\n" + 
+				"	void showStateMachine() {\r\n" + 
+				"		\r\n" + 
+				"	}\r\n" + 
+				"	\r\n" + 
+				
+				
+				"	// method to evaluate the state machine\r\n" + 
+				"	@Override\r\n" + 
+				"	void evaluateStateMachine() {\r\n" + 
+				"		if (state == 9) {\r\n" + 
+				"			ruleResult.parameterValue = \"hnr\";\r\n" + 
+				"		} else if (state == 10) {\r\n" + 
+				"			ruleResult.parameterValue = \"local\";\r\n" + 
+				"		} else {\r\n" + 
+				"			ruleResult.parameterValue = \"none\";\r\n" + 
+				"		}\r\n" + 
+				"		System.out.println(\"PVT-Alarm: \" + ruleResult.parameterValue);\r\n" + 
+				"		InferenceControll.handleNewAlarm(ruleResult);\r\n" + 
+				"	}\r\n" + 
+				"\r\n" + 
+				
+				
+				"	@Override\r\n" + 
+				"	void initializeRule() {\r\n" + 
+				"		this.listOfParametersNeeded.add(\"persons\");\r\n" + 
+				"		this.listOfParametersNeeded.add(\"tube\");\r\n" + 
+				"		listOfOutputs.add(ruleResult.parameterType);\r\n" + 
+				"		listOfOutputs.add(\"" + greenOutputTF.getText().toString() + "\");\r\n" + 
+				"		listOfOutputs.add(\"" + yellowOutputTF.getText().toString() + "\");\r\n" + 
+				"		listOfOutputs.add(\"" + redOutputTF.getText().toString() + "\");\r\n" + 
+				"	}\r\n" + 
+				"\r\n" + 
+				
+				
+				"	@Override\r\n" + 
+				"	String getOutputType() {\r\n" + 
+				"		return ruleResult.parameterType;\r\n" + 
+				"	}\r\n" + 
+				"\r\n" + 
+				
+				
+				"	@Override\r\n" + 
+				"	void updateEggLabels() {\r\n" + 
+				"		if (listOfLastInputs.size() > 1) {\r\n" + 
+				"			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0),\r\n" + 
+				"					listOfLastInputs.get(1), ruleResult);\r\n" + 
+				"		} else if (listOfLastInputs.size() == 1) {\r\n" + 
+				"			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);\r\n" + 
+				"		} else if (listOfLastInputs.size() == 0) {\r\n" + 
+				"			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);\r\n" + 
+				"		}\r\n" + 
+				"	}\r\n" + 
+				"}\r\n" + 
+				"";
 
 		// write the source code into the source file
 		FileWriter writer = new FileWriter(sourceFile);

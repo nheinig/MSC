@@ -104,6 +104,18 @@ public class PersonVentilationTubeRule extends Rule {
 		evaluateStateMachine();
 	}
 
+	
+	
+	@Override
+	void fillStateOutputList() {
+		
+	}
+	
+	@Override
+	void showStateMachine() {
+		
+	}
+	
 	// method to evaluate the state machine
 	@Override
 	void evaluateStateMachine() {
