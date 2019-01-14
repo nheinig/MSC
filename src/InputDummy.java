@@ -15,41 +15,41 @@ public class InputDummy {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(ts0.getTime());			
 		
-		Parameter parameterValue00 = new Parameter("persons", ts0, "none");
-		Parameter parameterValue01 = new Parameter("tube", ts0, "connected");
+		Parameter parameterValue00 = new Parameter("persons", ts0, "none", null);
+		Parameter parameterValue01 = new Parameter("tube", ts0, "connected", null);
 		
 		calendar.add(Calendar.SECOND, 2);
 		ts0 = new Timestamp(calendar.getTime().getTime());
-		Parameter parameterValue0 = new Parameter("persons", ts0, "many");
-		Parameter parameterValue1 = new Parameter("spo2", ts0, "normal");
+		Parameter parameterValue0 = new Parameter("persons", ts0, "many", null);
+		Parameter parameterValue1 = new Parameter("spo2", ts0, "normal", null);
 		
 		calendar.add(Calendar.SECOND, 2);
 		ts0 = new Timestamp(calendar.getTime().getTime());
-		Parameter parameterValue02 = new Parameter("tube", ts0, "disconnected");
-		Parameter parameterValue2 = new Parameter("persons", ts0, "many");
-		Parameter parameterValue3 = new Parameter("spo2", ts0, "normal");
+		Parameter parameterValue02 = new Parameter("tube", ts0, "disconnected", null);
+		Parameter parameterValue2 = new Parameter("persons", ts0, "many", null);
+		Parameter parameterValue3 = new Parameter("spo2", ts0, "normal", null);
 		
 		calendar.add(Calendar.SECOND, 2);
 		ts0 = new Timestamp(calendar.getTime().getTime());
-		Parameter parameterValue4 = new Parameter("persons", ts0, "many");
-		Parameter parameterValue5 = new Parameter("spo2", ts0, "low");
+		Parameter parameterValue4 = new Parameter("persons", ts0, "many", null);
+		Parameter parameterValue5 = new Parameter("spo2", ts0, "low", null);
 		
 		calendar.add(Calendar.SECOND, 2);
 		ts0 = new Timestamp(calendar.getTime().getTime());
-		Parameter parameterValue6 = new Parameter("persons", ts0, "none");
-		Parameter parameterValue7 = new Parameter("spo2", ts0, "low");
+		Parameter parameterValue6 = new Parameter("persons", ts0, "none", null);
+		Parameter parameterValue7 = new Parameter("spo2", ts0, "low", null);
 		
 		calendar.add(Calendar.SECOND, 2);
 		ts0 = new Timestamp(calendar.getTime().getTime());
-		Parameter parameterValue8 = new Parameter("persons", ts0, "many");		
-		Parameter parameterValue9 = new Parameter("spo2", ts0, "low");
-		Parameter parameterValue03 = new Parameter("tube", ts0, "disconnected");
+		Parameter parameterValue8 = new Parameter("persons", ts0, "many", null);		
+		Parameter parameterValue9 = new Parameter("spo2", ts0, "low", null);
+		Parameter parameterValue03 = new Parameter("tube", ts0, "disconnected", null);
 		
 		calendar.add(Calendar.SECOND, 3);
 		ts0 = new Timestamp(calendar.getTime().getTime());
-		Parameter parameterValue08 = new Parameter("persons", ts0, "none");		
-		Parameter parameterValue09 = new Parameter("spo2", ts0, "low");
-		Parameter parameterValue04 = new Parameter("tube", ts0, "disconnected");
+		Parameter parameterValue08 = new Parameter("persons", ts0, "none", null);		
+		Parameter parameterValue09 = new Parameter("spo2", ts0, "low", null);
+		Parameter parameterValue04 = new Parameter("tube", ts0, "disconnected", null);
 		
 		listOfParameterValues.add(parameterValue00);
 		listOfParameterValues.add(parameterValue01);

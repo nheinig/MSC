@@ -8,7 +8,7 @@ public class PersonVentilationTubeRule extends Rule {
 
 	PersonVentilationTubeRule() {
 		setRuleName("PersonVentilationTubeRule");
-		ruleResult = new Parameter("pvAlarm", null, "none");
+		ruleResult = new Parameter("pvAlarm", null, "none", null);
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
 		RuleEgg ruleEgg = new RuleEgg(this);

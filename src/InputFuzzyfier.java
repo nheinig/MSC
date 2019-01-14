@@ -84,7 +84,7 @@ public class InputFuzzyfier {
 
 	//Method that fuzzyfies Inputs with the inputType "persons"
 	Parameter handlePersonsInput(Input in) {
-		Parameter newPersonsParameter = new Parameter("persons", in.timestamp, null);
+		Parameter newPersonsParameter = new Parameter("persons", in.timestamp, null, null);
 		if(in.inputValue <= personsLB) {
 			newPersonsParameter.parameterValue = "none";
 		} else if(in.inputValue > personsLB && in.inputValue < personsUB) {
@@ -97,7 +97,7 @@ public class InputFuzzyfier {
 
 	//Method that fuzzyfies Inputs with the inputType "spo2"
 	Parameter handleSpO2Input(Input in) {
-		Parameter newSpO2Parameter = new Parameter("spo2", in.timestamp, null);
+		Parameter newSpO2Parameter = new Parameter("spo2", in.timestamp, null, null);
 		if(in.inputValue <= spo2LB) {
 			newSpO2Parameter.parameterValue = "critical";
 		} else if(in.inputValue > spo2LB && in.inputValue < spo2UB) {
@@ -110,7 +110,7 @@ public class InputFuzzyfier {
 	
 	//Method that fuzzyfies Inputs with the inputType "tube"
 	Parameter handleTubeInput(Input in) {
-		Parameter newtubeParameter = new Parameter("tube", in.timestamp, null);
+		Parameter newtubeParameter = new Parameter("tube", in.timestamp, null, null);
 		if(in.inputValue <= tubeLB) {
 			newtubeParameter.parameterValue = "disconnected";
 		} else if(in.inputValue > tubeLB && in.inputValue < tubeUB) {

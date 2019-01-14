@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public class MetaRule extends Rule {
 
-	Parameter pvAlarm = new Parameter("pvAlarm", null, "none");
-	Parameter psAlarm = new Parameter("psAlarm", null, "none");;
+	Parameter pvAlarm = new Parameter("pvAlarm", null, "none", null);
+	Parameter psAlarm = new Parameter("psAlarm", null, "none", null);;
 
 	int state = 0;
 
 	MetaRule() {
 		setRuleName("MetaRule");
-		ruleResult = new Parameter("GlobalAlarm", null, "none");
+		ruleResult = new Parameter("GlobalAlarm", null, "none", null);
 		initializeRule();
 		RuleEgg ruleEgg = new RuleEgg(this);
 		ConfigurationUI.forwardRuleEgg(ruleEgg);

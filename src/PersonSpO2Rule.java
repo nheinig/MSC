@@ -8,7 +8,7 @@ public class PersonSpO2Rule extends Rule {
 
 	PersonSpO2Rule() {
 		setRuleName("PersonSpO2Rule");
-		super.ruleResult = new Parameter("psAlarm", null,"none");
+		super.ruleResult = new Parameter("psAlarm", null,"none", null);
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
 		RuleEgg ruleEgg = new RuleEgg(this);

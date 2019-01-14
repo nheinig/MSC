@@ -20,7 +20,7 @@ public class StateMachineEditorMenu extends JPanel {
 	static boolean changeOutputMode = false;
 	
 	StateMachineEditorMenu(){
-		setPreferredSize(new Dimension (1200,100));	
+		setPreferredSize(new Dimension (1200,50));	
 		createMenu();
 	}
 	

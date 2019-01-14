@@ -19,7 +19,7 @@ public class StateMachinePanel {
 	static ArrayList<StateMachineState> listOfStates = new ArrayList<StateMachineState>();
 
 	StateMachinePanel() {
-		smPanel.setPreferredSize(new Dimension(1200, 600));
+		smPanel.setPreferredSize(new Dimension(1200, 550));
 		smPanel.setLayout(null);
 
 		smPanel.setBackground(Color.WHITE);
@@ -44,14 +44,16 @@ public class StateMachinePanel {
 
 	//method that creates the States for the StandardSM based on the parameterTypes
 	static void createStandardSMStates(String parameterType1, String parameterType2) {
-		addNewState("init", smPanel.getWidth() / 2, smPanel.getHeight() / 2);
+		addNewState("init", 20, smPanel.getHeight() / 2);
 
 		String p1v1 = "";
 		String p1v2 = "";
 		String p1v3 = "";
+		String p1Missing = parameterType1 + "Missing";
 		String p2v1 = "";
 		String p2v2 = "";
 		String p2v3 = "";
+		String p2Missing = parameterType2 + "Missing";
 
 		// search for the first parameterType in the
 		// InferenceControll.listOfParameterValues to get the possible values for
@@ -88,15 +90,17 @@ public class StateMachinePanel {
 		String s8 = parameterType1 + " == " + p1v3 + " && " + parameterType2 + " == " + p2v2;
 		String s9 = parameterType1 + " == " + p1v3 + " && " + parameterType2 + " == " + p2v3;
 
-		addNewState(s1, smPanel.getWidth() / 2 - 337, smPanel.getHeight() / 2);
-		addNewState(s2, smPanel.getWidth() / 2 - 187, smPanel.getHeight() / 2 - 100);
-		addNewState(s3, smPanel.getWidth() / 2 - 37, smPanel.getHeight() / 2 - 200);
-		addNewState(s4, smPanel.getWidth() / 2 + 113, smPanel.getHeight() / 2 - 125);
-		addNewState(s5, smPanel.getWidth() / 2 + 263, smPanel.getHeight() / 2 - 25);
-		addNewState(s6, smPanel.getWidth() / 2 + 262, smPanel.getHeight() / 2 + 75);
-		addNewState(s7, smPanel.getWidth() / 2 + 102, smPanel.getHeight() / 2 + 175);
-		addNewState(s8, smPanel.getWidth() / 2 - 48, smPanel.getHeight() / 2 + 175);
-		addNewState(s9, smPanel.getWidth() / 2 - 188, smPanel.getHeight() / 2 + 75);
+		addNewState(s1, smPanel.getWidth() / 4 + 20 , 20);
+		addNewState(s2, smPanel.getWidth() / 4 + 20, smPanel.getHeight() / 2);
+		addNewState(s3, smPanel.getWidth() / 4 + 20 , smPanel.getHeight() - 50);
+		addNewState(s4, smPanel.getWidth() / 2 + 20, 20);
+		addNewState(s5, smPanel.getWidth() / 2 + 20, smPanel.getHeight() / 2);
+		addNewState(s6, smPanel.getWidth() / 2 + 20, smPanel.getHeight() - 50);
+		addNewState(s7, (smPanel.getWidth() / 4) * 3 + 20, 20);
+		addNewState(s8, smPanel.getWidth() / 4 * 3 + 20, smPanel.getHeight() / 2);
+		addNewState(s9, smPanel.getWidth() / 4 * 3 + 20, smPanel.getHeight() - 50);
+		addNewState(p1Missing, 20, 20);
+		addNewState(p2Missing, 20, smPanel.getHeight() - 50);
 	}
 	
 }
