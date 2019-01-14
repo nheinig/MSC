@@ -11,6 +11,7 @@ public class PersonSpO2Rule extends Rule {
 		super.ruleResult = new Parameter("psAlarm", null,"none", null);
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
+		InferenceControll.addAvailableParameterValues(listOfOutputs);
 		RuleEgg ruleEgg = new RuleEgg(this);
 		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
@@ -118,12 +119,10 @@ public class PersonSpO2Rule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("persons");
 		this.listOfParametersNeeded.add("spo2");
-		ArrayList<String> outputList = new ArrayList<String>();
-		outputList.add(ruleResult.parameterType);
-		outputList.add("none");
-		outputList.add("local");
-		outputList.add("hnr");
-		listOfOutputs.add(outputList);
+		listOfOutputs.add(ruleResult.parameterType);
+		listOfOutputs.add("none");
+		listOfOutputs.add("local");
+		listOfOutputs.add("hnr");
 	}
 	
 	@Override

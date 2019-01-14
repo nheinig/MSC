@@ -70,7 +70,7 @@ public class RuleOverview {
 		Box outputs = Box.createVerticalBox();
 		
 		for(int i = 0; i < overviewRule.listOfOutputs.size(); i++) {
-			JLabel output = new JLabel(overviewRule.listOfOutputs.get(i).get(0));
+			JLabel output = new JLabel(overviewRule.listOfOutputs.get(0));
 			outputs.add(output);
 		}
 		

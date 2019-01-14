@@ -12,6 +12,8 @@ public class MetaRule extends Rule {
 		setRuleName("MetaRule");
 		ruleResult = new Parameter("GlobalAlarm", null, "none", null);
 		initializeRule();
+		InferenceControll.addAvailableParameter(getOutputType());
+		InferenceControll.addAvailableParameterValues(listOfOutputs);
 		RuleEgg ruleEgg = new RuleEgg(this);
 		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
@@ -65,12 +67,10 @@ public class MetaRule extends Rule {
 	void initializeRule() {
 		this.listOfParametersNeeded.add("pvAlarm");
 		this.listOfParametersNeeded.add("psAlarm");
-		ArrayList<String> outputList = new ArrayList<String>();
-		outputList.add(ruleResult.parameterType);
-		outputList.add("none");
-		outputList.add("local");
-		outputList.add("hnr");
-		listOfOutputs.add(outputList);
+		listOfOutputs.add(ruleResult.parameterType);
+		listOfOutputs.add("none");
+		listOfOutputs.add("local");
+		listOfOutputs.add("hnr");
 	}
 
 	@Override
