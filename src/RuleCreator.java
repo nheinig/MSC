@@ -5,6 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -179,10 +181,12 @@ public class RuleCreator {
 		} catch (NumberFormatException e) {
 			delayIsInt = false;
 		}
-		if (!ruleNameTF.getText().isEmpty() && !outputTF.getText().isEmpty() && !greenOutputTF.getText().isEmpty() && !yellowOutputTF.getText().isEmpty()
-				&& !redOutputTF.getText().isEmpty() && !delayTF.getText().isEmpty() && delayIsInt && !inputCB1.getSelectedItem().toString().equals(inputCB2.getSelectedItem().toString())
-				&& alreadyOpendSME ) {
-			
+		if (!ruleNameTF.getText().isEmpty() && !outputTF.getText().isEmpty() && !greenOutputTF.getText().isEmpty()
+				&& !yellowOutputTF.getText().isEmpty() && !redOutputTF.getText().isEmpty()
+				&& !delayTF.getText().isEmpty() && delayIsInt
+				&& !inputCB1.getSelectedItem().toString().equals(inputCB2.getSelectedItem().toString())
+				&& alreadyOpendSME) {
+
 			return true;
 		} else {
 			System.out.println("Missing Or Wrong Rule Input!");
@@ -213,155 +217,764 @@ public class RuleCreator {
 
 		// generate the source code, using the source filename as the classname
 		String classname = sourceFile.getName().split("\\.")[0];
-		String sourceCode = "import java.sql.Timestamp;\r\n" + 
-				"import java.util.ArrayList;\r\n" + 
-				"\r\n" + 
-				"public class " + classname + " extends Rule {\r\n" + 
-				"\r\n" + 
-				"	Timestamp " + inputCB1.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n" + 
-				"	Timestamp " + inputCB2.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n" + 
-				"	Timestamp stateTS = new Timestamp(System.currentTimeMillis());\r\n" + 
-				"\r\n" + 
-				classname + "() {\r\n" + 
-				"		setRuleName(\""+ classname + "\");\r\n" + 
-				"		ruleResult = new Parameter(\"" + outputTF.getText() + "\", null, null, null);\r\n" + 
-				"		initializeRule();\r\n" + 
-				"		InferenceControll.addAvailableParameter(getOutputType());\r\n" + 
-				"		InferenceControll.addAvailableParameterValues(listOfOutputs);\r\n" + 
-				"		RuleEgg ruleEgg = new RuleEgg(this);\r\n" + 
-				"		ConfigurationUI.forwardRuleEgg(ruleEgg);\r\n" + 
-				"	}\r\n" + 
-				"\r\n" + 
-				
-				
-				"	// Method to update the state based on newParameter\r\n" + 
-				"	@Override\r\n" + 
-				"	void updateState(Parameter newParameter) {\r\n" + 
-				"		prevState = state;\r\n" + 
-				"		// what happens when the Parameter is of the type " +  inputCB1.getSelectedItem().toString() + "\r\n" + 
-				"		if (newParameter.parameterType.equals(\"" + inputCB1.getSelectedItem().toString() + "\")) {\r\n" + 
-				"       " + inputCB1.getSelectedItem().toString() +"TS = newParameter.timestamp;\r\n" + 
-				
-				"           // "+ inputCB1.getSelectedItem().toString() + " is " + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 1) +  "\r\n"+
-				"			if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 1) + "\")) {\r\n" + 
-						
-				"			}\r\n" + 
-				
-				
-								
-				"			// " + inputCB1.getSelectedItem().toString() + " is " + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) +  "\r\n" +
-				"			else if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n" + 	
-				
-				"			}\r\n" + 
-				
-				
-				
-				"           // " + inputCB1.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\r\n" +
-				"           else if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n" + 
-				
-				"           }\r\n" +
-				
-				
-				
-				
+		String sourceCode = "import java.sql.Timestamp;\r\n" + "import java.util.ArrayList;\r\n" + "\r\n"
+				+ "public class " + classname + " extends Rule {\r\n" + "\r\n" + "	Timestamp "
+				+ inputCB1.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "	Timestamp " + inputCB2.getSelectedItem().toString()
+				+ "TS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "	Timestamp stateTS = new Timestamp(System.currentTimeMillis());\r\n" + "\r\n" + classname
+				+ "() {\r\n" + "		setRuleName(\"" + classname + "\");\r\n"
+				+ "		ruleResult = new Parameter(\"" + outputTF.getText() + "\", null, null, null);\r\n"
+				+ "		initializeRule();\r\n" + "		InferenceControll.addAvailableParameter(getOutputType());\r\n"
+				+ "		InferenceControll.addAvailableParameterValues(listOfOutputs);\r\n"
+				+ "		RuleEgg ruleEgg = new RuleEgg(this);\r\n"
+				+ "		ConfigurationUI.forwardRuleEgg(ruleEgg);\r\n" + "	}\r\n" + "\r\n" +
 
-				"		// what happens when the Parameter is of the type " +  inputCB2.getSelectedItem().toString() + "\r\n" + 
-				"		else if (newParameter.parameterType.equals(\"" + inputCB2.getSelectedItem().toString() + "\")) {\r\n" + 
-				"			" + inputCB2.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n" + 
-				"			// "  + inputCB2.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\r\n" + 
-				"			if (newParameter.parameterValue.equals(\"" + InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n" + 
+				"	// Method to update the state based on newParameter\r\n" + "	@Override\r\n"
+				+ "	void updateState(Parameter newParameter) {\r\n" + "		prevState = state;\r\n"
+
+				+ "		// what happens when the Parameter is of the type " + inputCB1.getSelectedItem().toString()
+				+ "\r\n" + "		if (newParameter.parameterType.equals(\"" + inputCB1.getSelectedItem().toString()
+				+ "\")) {\r\n" + "       " + inputCB1.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n"
+				+
+
+				"           // " + inputCB1.getSelectedItem().toString() + " is "
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 1) + "\r\n"
+				+ "			if (newParameter.parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 1) + "\")) {\r\n" +
+
+				"if (state == 0 || state == 1 || state == 2 || state == 3) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 1;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 4) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 5) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 6) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 7) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 8) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 9) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 10) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 11) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 12) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 13) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 14) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 15) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 16) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n"
+				+ "						if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "							state = 7;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 8;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 9;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "							state = 7;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 8;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 9;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						}\r\n" + "					} else if (state == 17) {\r\n"
+				+ "						state = 17;\r\n" + "					}\r\n" + "				}" +
+
+				"			}\r\n" +
+
+				"			// " + inputCB1.getSelectedItem().toString() + " is "
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\r\n"
+				+ "			else if (newParameter.parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "if (state == 0 || state == 1 || state == 2 || state == 3) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 2;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 4) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 5) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 6) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 7) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 8) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 9) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 10) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 11) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 12) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 13) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 14) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 15) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 16) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n"
+				+ "						if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "							state = 10;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 11;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 12;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "							state = 10;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 11;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 12;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} \r\n" + "					} else if (state == 17) {\r\n"
+				+ "						state = 17;\r\n" + "					}\r\n" + "				}"
+				+ "			}\r\n" +
+
+				"           // " + inputCB1.getSelectedItem().toString() + " is "
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\r\n"
+				+ "           else if (newParameter.parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "if (state == 0 || state == 1 || state == 2 || state == 3) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 3;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 4) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 5) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 6) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 7) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 8) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 9) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 5;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 10) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 11) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 12) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 13) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 14) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 15) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "					} else {\r\n" + "						state = 17;\r\n"
+				+ "					}\r\n" + "				} else if (state == 16) {\r\n" + "					if ("
+				+ inputCB1.getSelectedItem().toString() + "TS.getTime() - " + inputCB2.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n"
+				+ "						if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "							state = 13;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 14;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 15;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "							state = 13;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 14;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 15;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						}\r\n" + "					} else if (state == 17) {\r\n"
+				+ "						state = 17;\r\n" + "					}\r\n" + "				}"
+				+ "           }\r\n" +
+
+				"		// what happens when the Parameter is of the type " + inputCB2.getSelectedItem().toString()
+				+ "\r\n" + "		else if (newParameter.parameterType.equals(\""
+				+ inputCB2.getSelectedItem().toString() + "\")) {\r\n" + "			"
+				+ inputCB2.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n" + "			// "
+				+ inputCB2.getSelectedItem().toString() + " is "
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\r\n"
+				+ "			if (newParameter.parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 1) + "\")) {\r\n"
+				+ "if (state == 0 || state == 4 || state == 5 || state == 6) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 4;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 1) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 2) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 3) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 7) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 8) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 9) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 7;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 10) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 11) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 12) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 10;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 13) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 14) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 15) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 13;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 17) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n"
+				+ "						if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\"n"
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 7;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 10;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 13;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\"n"
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 7;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 10;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 13;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						}\r\n" + "					} else if (state == 16) {\r\n"
+				+ "						state = 16;\r\n" + "					}\r\n" + "				} "
+				+ "			}\r\n" +
+
+				"			// " + inputCB2.getSelectedItem().toString() + " is "
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\r\n"
+				+ "			else if (newParameter.parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "if (state == 0 || state == 4 || state == 5 || state == 6) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 5;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 1) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 2) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 3) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 7) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 8) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 9) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 8;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 10) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 11) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 12) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 11;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 13) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 14) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 15) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 14;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 17) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n"
+				+ "						if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\"n"
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 8;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 11;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 14;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\"n"
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 8;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 11;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 14;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						}\r\n" + "					} else if (state == 16) {\r\n"
+				+ "						state = 16;\r\n" + "					}\r\n" + "				}"
+				+ "			}\r\n" +
+
+				"			// " + inputCB2.getSelectedItem().toString() + " is "
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\r\n"
+				+ "			else if (newParameter.parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "if (state == 0 || state == 4 || state == 5 || state == 6) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 6;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 1) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 2) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 3) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 7) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 8) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 9) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 9;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 10) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 11) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 12) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 12;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 13) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 14) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "						stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 15) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n" + "						state = 15;\r\n"
+				+ "					} else {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				} else if (state == 17) {\r\n" + "					if ("
+				+ inputCB2.getSelectedItem().toString() + "TS.getTime() - " + inputCB1.getSelectedItem().toString()
+				+ "TS.getTime() < " + delayTF.getText() + ") {\r\n"
+				+ "						if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\"n"
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 9;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 12;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(0).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(0).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 15;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\"n"
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 9;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
+				+ "							state = 12;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						} else if (listOfLastInputs.get(1).parameterType.equals(\""
+				+ inputCB1.getSelectedItem().toString() + "\")\r\n"
+				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
+				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
+				+ "							state = 15;\r\n"
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
+				+ "						}\r\n" + "					} else if (state == 16) {\r\n"
+				+ "						state = 16;\r\n" + "					}\r\n" + "				}\r\n"
+				+ "			}" + "			}\r\n" +
+
+				"		}\r\n" + "		evaluateStateMachine();\r\n" + "	}\r\n" + "\r\n" + "	\r\n" + "	\r\n" +
+
+				"	@Override\r\n" + "	void fillStateOutputList() {\r\n"
+				+ "ArrayList<String> tempStateList0 = new ArrayList<String>();" + "\r\n" + "tempStateList0.add(\""
+				+ StateMachinePanel.listOfStates.get(0).stateLabel.getText() + "\");" + "\r\n" + "tempStateList0.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");" + "\r\n"
+				+ "ArrayList<String> tempStateList1 = new ArrayList<String>();" + "\r\n" + "tempStateList1.add(\""
+				+ StateMachinePanel.listOfStates.get(1).stateLabel.getText() + "\");\r\n" + "\r\n"
+				+ "tempStateList1.add(\"" + StateMachinePanel.listOfStates.get(1).getBackground() + "\");"
+				+ "ArrayList<String> tempStateList2 = new ArrayList<String>();" + "\r\n" + "tempStateList2.add(\""
+				+ StateMachinePanel.listOfStates.get(2).stateLabel.getText() + "\");" + "\r\n" + "tempStateList2.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList3 = new ArrayList<String>();" + "\r\n" + "tempStateList3.add(\""
+				+ StateMachinePanel.listOfStates.get(3).stateLabel.getText() + "\");" + "\r\n" + "tempStateList3.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");" + "\r\n"
+				+ "ArrayList<String> tempStateList4 = new ArrayList<String>();" + "\r\n" + "tempStateList4.add(\""
+				+ StateMachinePanel.listOfStates.get(4).stateLabel.getText() + "\");" + "\r\n" + "tempStateList4.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList5 = new ArrayList<String>();" + "\r\n" + "tempStateList5.add(\""
+				+ StateMachinePanel.listOfStates.get(5).stateLabel.getText() + "\");" + "\r\n" + "tempStateList5.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList6 = new ArrayList<String>();" + "\r\n" + "tempStateList6.add(\""
+				+ StateMachinePanel.listOfStates.get(6).stateLabel.getText() + "\");" + "\r\n" + "tempStateList6.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList7 = new ArrayList<String>();" + "\r\n" + "tempStateList7.add(\""
+				+ StateMachinePanel.listOfStates.get(7).stateLabel.getText() + "\");" + "\r\n" + "tempStateList7.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList8 = new ArrayList<String>();" + "\r\n" + "tempStateList8.add(\""
+				+ StateMachinePanel.listOfStates.get(8).stateLabel.getText() + "\");" + "\r\n" + "tempStateList8.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList9 = new ArrayList<String>();" + "\r\n" + "tempStateList9.add(\""
+				+ StateMachinePanel.listOfStates.get(9).stateLabel.getText() + "\");" + "\r\n" + "tempStateList9.add(\""
+				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList10 = new ArrayList<String>();" + "\r\n" + "tempStateList10.add(\""
+				+ StateMachinePanel.listOfStates.get(10).stateLabel.getText() + "\");" + "\r\n"
+				+ "tempStateList10.add(\"" + StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "ArrayList<String> tempStateList11 = new ArrayList<String>();" + "\r\n" + "tempStateList11.add(\""
+				+ StateMachinePanel.listOfStates.get(11).stateLabel.getText() + "\");" + "\r\n"
+				+ "tempStateList11.add(\"" + StateMachinePanel.listOfStates.get(0).getBackground() + "\");" + "\r\n"
+				+ "\r\n" + "		\r\n" + "		stateOutputList.add(tempStateList0);\r\n"
+				+ "		stateOutputList.add(tempStateList1);\r\n" + "		stateOutputList.add(tempStateList2);\r\n"
+				+ "		stateOutputList.add(tempStateList3);\r\n" + "		stateOutputList.add(tempStateList4);\r\n"
+				+ "		stateOutputList.add(tempStateList5);\r\n" + "		stateOutputList.add(tempStateList6);\r\n"
+				+ "		stateOutputList.add(tempStateList7);\r\n" + "		stateOutputList.add(tempStateList8);\r\n"
+				+ "		stateOutputList.add(tempStateList9);\r\n" + "		stateOutputList.add(tempStateList10);\r\n"
+				+ "		stateOutputList.add(tempStateList11);	}\r\n" + "	\r\n" +
 				
-				"			}\r\n" + 
+				
+				"	@Override\r\n" + "	void showStateMachine() {\r\n" + "		\r\n" + "	}\r\n" + "	\r\n" +
+
+				
+				
+				"	// method to evaluate the state machine\r\n" + "	@Override\r\n"
+				+ "	void evaluateStateMachine() {\r\n" + "		if (state > 6){ \r\n" 
+				+ " " 
+				
+				+ "		}\r\n" 
+
+				+ "		System.out.println(\"PVT-Alarm: \" + ruleResult.parameterValue);\r\n"
+				+ "		InferenceControll.handleNewAlarm(ruleResult);\r\n" + "	}\r\n" + "\r\n" +
+
 				
 				
 				
 				
-				"			// "  + inputCB2.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\r\n" + 
-				"			else if (newParameter.parameterValue.equals(\"" +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n" + 
-							
-				"			}\r\n" + 
-				
-				
-				
-				
-				"			// "  + inputCB2.getSelectedItem().toString() + " is " +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\r\n" + 
-				"			else if (newParameter.parameterValue.equals(\"" +  InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n" + 
-			
-				"			}\r\n" + 
-				
-				
-				
-				
-				"		}\r\n" + 
-				"		evaluateStateMachine();\r\n" + 
-				"	}\r\n" + 
-				"\r\n" + 
-				"	\r\n" + 
-				"	\r\n" + 
-				
-				
-				"	@Override\r\n" + 
-				"	void fillStateOutputList() {\r\n" + 
-				"		\r\n" + 
-				"	}\r\n" + 
-				"	\r\n" + 
-				
-				
-				"	@Override\r\n" + 
-				"	void showStateMachine() {\r\n" + 
-				"		\r\n" + 
-				"	}\r\n" + 
-				"	\r\n" + 
-				
-				
-				"	// method to evaluate the state machine\r\n" + 
-				"	@Override\r\n" + 
-				"	void evaluateStateMachine() {\r\n" + 
-				"		if (state == 9) {\r\n" + 
-				"			ruleResult.parameterValue = \"hnr\";\r\n" + 
-				"		} else if (state == 10) {\r\n" + 
-				"			ruleResult.parameterValue = \"local\";\r\n" + 
-				"		} else {\r\n" + 
-				"			ruleResult.parameterValue = \"none\";\r\n" + 
-				"		}\r\n" + 
-				"		System.out.println(\"PVT-Alarm: \" + ruleResult.parameterValue);\r\n" + 
-				"		InferenceControll.handleNewAlarm(ruleResult);\r\n" + 
-				"	}\r\n" + 
-				"\r\n" + 
-				
-				
-				"	@Override\r\n" + 
-				"	void initializeRule() {\r\n" + 
-				"		this.listOfParametersNeeded.add(\"persons\");\r\n" + 
-				"		this.listOfParametersNeeded.add(\"tube\");\r\n" + 
-				"		listOfOutputs.add(ruleResult.parameterType);\r\n" + 
-				"		listOfOutputs.add(\"" + greenOutputTF.getText().toString() + "\");\r\n" + 
-				"		listOfOutputs.add(\"" + yellowOutputTF.getText().toString() + "\");\r\n" + 
-				"		listOfOutputs.add(\"" + redOutputTF.getText().toString() + "\");\r\n" + 
-				"	}\r\n" + 
-				"\r\n" + 
-				
-				
-				"	@Override\r\n" + 
-				"	String getOutputType() {\r\n" + 
-				"		return ruleResult.parameterType;\r\n" + 
-				"	}\r\n" + 
-				"\r\n" + 
-				
-				
-				"	@Override\r\n" + 
-				"	void updateEggLabels() {\r\n" + 
-				"		if (listOfLastInputs.size() > 1) {\r\n" + 
-				"			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0),\r\n" + 
-				"					listOfLastInputs.get(1), ruleResult);\r\n" + 
-				"		} else if (listOfLastInputs.size() == 1) {\r\n" + 
-				"			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);\r\n" + 
-				"		} else if (listOfLastInputs.size() == 0) {\r\n" + 
-				"			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);\r\n" + 
-				"		}\r\n" + 
-				"	}\r\n" + 
-				"}\r\n" + 
-				"";
+				"	@Override\r\n" + "	void initializeRule() {\r\n" + "		this.listOfParametersNeeded.add(\""
+				+ inputCB1.getSelectedItem().toString() + "\");\r\n" + "		this.listOfParametersNeeded.add(\""
+				+ inputCB2.getSelectedItem().toString() + "\");\r\n"
+				+ "		listOfOutputs.add(ruleResult.parameterType);\r\n" + "		listOfOutputs.add(\""
+				+ greenOutputTF.getText().toString() + "\");\r\n" + "		listOfOutputs.add(\""
+				+ yellowOutputTF.getText().toString() + "\");\r\n" + "		listOfOutputs.add(\""
+				+ redOutputTF.getText().toString() + "\");\r\n" + "	}\r\n" + "\r\n" +
+
+				"	@Override\r\n" + "	String getOutputType() {\r\n" + "		return ruleResult.parameterType;\r\n"
+				+ "	}\r\n" + "\r\n" +
+
+				"	@Override\r\n" + "	void updateEggLabels() {\r\n" + "		if (listOfLastInputs.size() > 1) {\r\n"
+				+ "			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0),\r\n"
+				+ "					listOfLastInputs.get(1), ruleResult);\r\n"
+				+ "		} else if (listOfLastInputs.size() == 1) {\r\n"
+				+ "			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, listOfLastInputs.get(0), null, ruleResult);\r\n"
+				+ "		} else if (listOfLastInputs.size() == 0) {\r\n"
+				+ "			RulePanel.forwardEggLabelUpdate(ruleName, state, prevState, null, null, ruleResult);\r\n"
+				+ "		}\r\n" + "	}\r\n" + "}\r\n" + "";
 
 		// write the source code into the source file
 		FileWriter writer = new FileWriter(sourceFile);

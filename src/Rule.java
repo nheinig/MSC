@@ -1,4 +1,5 @@
 
+import java.sql.Timestamp;
 import java.util.*;
 
 public class Rule {
@@ -12,10 +13,9 @@ public class Rule {
 	ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
 	ArrayList<ArrayList<String>> stateOutputList = new ArrayList<ArrayList<String>>();
 	
-	Parameter ruleResult;	
+	Timestamp stateTS = new Timestamp(System.currentTimeMillis());
 	
-	Parameter input1;
-	Parameter input2;
+	Parameter ruleResult;	
 	
 	 int prevState = 0;
 	 int state = 0;
@@ -39,8 +39,8 @@ public class Rule {
 		}
 	}
 	
+	//fills the stateOutputList with the information from the SMPanel when the rule is created
 	void fillStateOutputList() {
-		
 	}
 	
 	void showStateMachine() {
