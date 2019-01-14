@@ -27,25 +27,25 @@ public class InputFuzzyfier {
 		personsValues.add("many");		
 
 		ArrayList<String> spo2Values = new ArrayList<String>();
-		personsValues.add("spo2");
-		personsValues.add("critical");
-		personsValues.add("low");
-		personsValues.add("normal");		
+		spo2Values.add("spo2");
+		spo2Values.add("critical");
+		spo2Values.add("low");
+		spo2Values.add("normal");		
 
 		ArrayList<String> tubeValues = new ArrayList<String>();
-		personsValues.add("tube");
-		personsValues.add("disconnected");
-		personsValues.add("unknown");
-		personsValues.add("connected");
+		tubeValues.add("tube");
+		tubeValues.add("disconnected");
+		tubeValues.add("unknown");
+		tubeValues.add("connected");
 		
 		listOfOutputs.add("persons");
 		listOfOutputs.add("spo2");
-		listOfOutputs.add("tube");	
+		listOfOutputs.add("tube");
 		
 
-		listOfOutputValues.add(personsValues);
-		listOfOutputValues.add(spo2Values);
-		listOfOutputValues.add(tubeValues);	
+		listOfOutputValues.add(listOfOutputValues.size(), personsValues);
+		listOfOutputValues.add(listOfOutputValues.size(), spo2Values);
+		listOfOutputValues.add(listOfOutputValues.size(), tubeValues);	
 		initializeFuzzyfier();
 		
 		fe = new FuzzyfierEgg(this);
@@ -58,6 +58,7 @@ public class InputFuzzyfier {
 		for(int i = 0; i < listOfOutputs.size(); i++) {
 			InferenceControll.addAvailableParameter(listOfOutputs.get(i));
 			InferenceControll.addAvailableParameterValues(listOfOutputValues.get(i));
+			System.out.println("HERERERERER   " + listOfOutputValues.get(i));
 		}
 	}
 	

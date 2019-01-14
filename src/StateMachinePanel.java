@@ -61,6 +61,7 @@ public class StateMachinePanel {
 				p1v1 = InferenceControll.listOfParameterValues.get(i).get(1);
 				p1v2 = InferenceControll.listOfParameterValues.get(i).get(2);
 				p1v3 = InferenceControll.listOfParameterValues.get(i).get(3);
+				System.out.println(parameterType1 + " " + p1v1 + " " + p1v2 + " " + p1v3);
 				break;
 			}
 		}
@@ -72,6 +73,7 @@ public class StateMachinePanel {
 				p2v1 = InferenceControll.listOfParameterValues.get(i).get(1);
 				p2v2 = InferenceControll.listOfParameterValues.get(i).get(2);
 				p2v3 = InferenceControll.listOfParameterValues.get(i).get(3);
+				System.out.println(parameterType2 + " " + p2v1 + " " + p2v2 + " " + p2v3);
 				break;
 			}
 		}
