@@ -91,7 +91,8 @@ public class InputFuzzyfier {
 			newPersonsParameter.parameterValue = "one";
 		} else if(in.inputValue > personsUB) {
 			newPersonsParameter.parameterValue = "many";
-		}			
+		}	
+		newPersonsParameter.parameterState = "persons = " + newPersonsParameter.parameterValue;
 		return newPersonsParameter;				
 	}
 
@@ -104,21 +105,23 @@ public class InputFuzzyfier {
 			newSpO2Parameter.parameterValue = "low";
 		} else if(in.inputValue > spo2UB) {
 			newSpO2Parameter.parameterValue = "normal";
-		}			
+		}		
+		newSpO2Parameter.parameterState = "persons = " + newSpO2Parameter.parameterValue;	
 		return newSpO2Parameter;		
 	}
 	
 	//Method that fuzzyfies Inputs with the inputType "tube"
 	Parameter handleTubeInput(Input in) {
-		Parameter newtubeParameter = new Parameter("tube", in.timestamp, null, null);
+		Parameter newTubeParameter = new Parameter("tube", in.timestamp, null, null);
 		if(in.inputValue <= tubeLB) {
-			newtubeParameter.parameterValue = "disconnected";
+			newTubeParameter.parameterValue = "disconnected";
 		} else if(in.inputValue > tubeLB && in.inputValue < tubeUB) {
-			newtubeParameter.parameterValue = "unknown";
+			newTubeParameter.parameterValue = "unknown";
 		} else if(in.inputValue > tubeUB) {
-			newtubeParameter.parameterValue = "connected";
-		}			
-		return newtubeParameter;		
+			newTubeParameter.parameterValue = "connected";
+		}		
+		newTubeParameter.parameterState = "tube = " + newTubeParameter.parameterValue;	
+		return newTubeParameter;		
 	}
 	
 	
