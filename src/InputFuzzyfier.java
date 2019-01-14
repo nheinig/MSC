@@ -9,14 +9,14 @@ public class InputFuzzyfier {
 	FuzzyfierEgg fe;
 	
 	//lower and upper bounds for all InputTypes
-	float personsLB = 0;
-	float personsUB = 2;
+	static double personsLB = 0;
+	static double personsUB = 2;
 	
-	float spo2LB = 90;
-	float spo2UB = 94;
+	static double spo2LB = 90;
+	static double spo2UB = 94;
 	
-	float tubeLB = 96;
-	float tubeUB = 97;
+	static double tubeLB = 96;
+	static double tubeUB = 97;
 	
 	
 	InputFuzzyfier(){
@@ -130,28 +130,52 @@ public class InputFuzzyfier {
 	//getter/ setter
 	//---------------
 
-	void setPersonsLB(float newlb) {
+	static void setPersonsLB(double newlb) {
 		personsLB = newlb;
 	}
 	
-	void setPersonsUB(float newub) {
+	static void setPersonsUB(double newub) {
 		personsUB = newub;
 	}
 	
-	void setSpO2LB(float newlb) {
+	static void setSpO2LB(double newlb) {
 		spo2LB = newlb;
 	}
 	
-	void setSpO2UB(float newub) {
+	static void setSpO2UB(double newub) {
 		spo2UB = newub;
 	}
 	
-	void setTubeLB(float newlb) {
+	static void setTubeLB(double newlb) {
 		tubeLB = newlb;
 	}
 	
-	void setTubeUB(float newub) {
+	static void setTubeUB(double newub) {
 		tubeUB = newub;
+	}
+	
+	static double getPersonsLB() {
+		return personsLB;
+	}
+	
+	static double getPersonsUB() {
+		return personsUB;
+	}
+	
+	static double getSpO2LB() {
+		return spo2LB;
+	}
+	
+	static double getSpO2UB() {
+		return spo2UB;
+	}
+	
+	static double getTubeLB() {
+		return tubeLB;
+	}
+	
+	static double getTubeUB() {
+		return tubeUB;
 	}
 	
 }

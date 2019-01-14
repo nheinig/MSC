@@ -35,7 +35,7 @@ public class RulePanel{
 		
 		EggMovement rm = new EggMovement(eggPanel.getComponents());
 		
-		//adds a mouseListener thats opens a popup menu when right clicked on RulePanel
+		//adds a mouseListener thats opens a pop up menu when right clicked on RulePanel
 		eggPanel.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				if(e.isPopupTrigger()) {
