@@ -18,7 +18,6 @@ public class StateMachineMovement implements MouseListener, MouseMotionListener 
 	public void mouseDragged(MouseEvent e) {
 		if(StateMachineEditorMenu.dragMode) {
 			e.getComponent().setLocation((e.getX()+e.getComponent().getX())-x, (e.getY()+e.getComponent().getY())-y);
-			StateMachinePanel.repaintTransitions();
 		}
 	}
 

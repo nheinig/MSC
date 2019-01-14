@@ -65,7 +65,7 @@ public class RulePanel{
 		ConfigurationUI.ui.setVisible(true);
 	}
 	
-	//Method to show the popup menu
+	//Method to show the pop up menu
 	public void doPop(MouseEvent e) {
 		if(ConfigurationUI.editMode) {
 			popup.show(e.getComponent(), e.getX(), e.getY());
@@ -73,7 +73,7 @@ public class RulePanel{
 	}	
 	
 	
-	//Method that forwards rule Parameters to rule Egg
+	//Method that forwards Rule Parameters to ruleEgg
 	static void forwardEggLabelUpdate(String name, int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		for(int i = 0; i < listOfEggs.size(); i++) {
 			String ern = listOfEggs.get(i).eggName;

@@ -26,16 +26,8 @@ public class StateMachinePanel {
 
 	}
 
-	// method that adds a new State to the smPanel
-	void addNewState(String stateLabel, MouseEvent e) {
-		StateMachineState state = new StateMachineState(stateLabel);
-		smPanel.add(state);
-		state.setLocation(e.getX(), e.getY());
-		StateMachineMovement sm = new StateMachineMovement(state);
-		listOfStates.add(state);
-		stateCounter++;
-	}
 
+	// method that adds a new State to the smPanel 
 	static void addNewState(String stateLabel, int x, int y) {
 		StateMachineState state = new StateMachineState(stateLabel);
 		smPanel.add(state);
@@ -43,57 +35,10 @@ public class StateMachinePanel {
 		StateMachineMovement sm = new StateMachineMovement(state);
 		listOfStates.add(state);
 	}
-
-	// method that adds a ArrayList with source and destination of a new Transition
-	// to the transitionList and calls drawTransition
-	static void addNewTransition(StateMachineState s, StateMachineState d) {
-		StateMachineTransition transition = new StateMachineTransition(s, d);
-		drawTransition(s, d);
-	}
-
-	// method that draws a transition (arrow) from a source s to a destination d
-	static void drawTransition(StateMachineState s, StateMachineState d) {
-		int sX = (int) s.getLocation().getX();
-		int sY = (int) s.getLocation().getY();
-		int dX = (int) d.getLocation().getX();
-		int dY = (int) d.getLocation().getY();
-		Arrow a = new Arrow(sX, sY, dX, dY);
-		a.draw(smPanel.getGraphics());
-	}
-
-	// method that repaints the Transitions by executing drawTransition for all
-	// source destination pairs in the transitionList
-	static void repaintTransitions() {
-		// smPanel.repaint();
-		for (int i = 0; i < listOfTransitions.size(); i++) {
-			StateMachineState s = listOfTransitions.get(i).source;
-			StateMachineState d = listOfTransitions.get(i).destination;
-			drawTransition(s, d);
-		}
-	}
-
-	// method that deletes a state from the smPanel
-	static void deleteState(StateMachineState state) {
-		smPanel.remove(state);
-		for (int i = 0; i < listOfTransitions.size(); i++) {
-			if (listOfTransitions.get(i).contains(state)) {
-				listOfTransitions.remove(i);
-				i--;
-			}
-		}
-		smPanel.repaint();
-		repaintTransitions();
-	}
-
-	// method that deletes a Transition from the smPanel
-	void deleteTransition() {
-
-	}
-
+	
 	// creates a Standard StateMachine
 	static void createStandardSM(String parameterType1, String parameterType2) {
-		createStandardSMStates(parameterType1, parameterType2);
-		createStandardSMTransitions();				
+		createStandardSMStates(parameterType1, parameterType2);	
 		StateMachineEditor.show();
 	}
 
@@ -152,9 +97,4 @@ public class StateMachinePanel {
 		addNewState(s9, smPanel.getWidth() / 2 - 188, smPanel.getHeight() / 2 + 75);
 	}
 	
-	static void createStandardSMTransitions() {
-		for(int i = 0; i < listOfStates.size(); i++) {
-			addNewTransition(listOfStates.get(0), listOfStates.get(i));
-		}
-	}
 }
