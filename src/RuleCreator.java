@@ -124,12 +124,45 @@ public class RuleCreator {
 		mainBox.add(buttonBox);
 		
 		rc.add(mainBox);
+		
+		//ActionListener of the cancelButton that closes the RuleCreator and resets the StateMachinePanel
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				hide();
+				StateMachinePanel.smPanel.removeAll();
+				alreadyOpendSME = false;
+			}
+		});
+		
+		//ActionListener of the createButton that creates a new Rule, closes the RuleCreator and resets the StateMachinePanel
+		createButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				hide();
+				StateMachinePanel.smPanel.removeAll();
+				alreadyOpendSME = false;
+			}
+		});
+		
+		
 	}
 	
 	//method that sets rc-visibility to true
 	void show() {
 		rc.setVisible(true);
 	}
+	
+	//method that sets rc-visibility to false and deletes all inputs made
+		void hide() {
+			rc.setVisible(false);
+			ruleNameTF.setText("");
+			outputTF.setText("");
+			greenOutputTF.setText("");
+			yellowOutputTF.setText("");
+			redOutputTF.setText("");
+			delayTF.setText("");
+		}
 	
 	//method that fills the input combo boxes
 	void fillInputComboBox() {
@@ -142,4 +175,11 @@ public class RuleCreator {
 			}
 		}
 	}
+	
+	//Method that creates a new Rule bases on the inputs to made in the RuleCreator and the StateMachinePanel
+	void crateRule() {
+	
+	}	
+	
 }
+

@@ -24,17 +24,6 @@ public class StateMachinePanel {
 
 		smPanel.setBackground(Color.WHITE);
 
-		// mouseListener:if addStateMode is true adds a new state to the panel on mouse
-		// click
-		smPanel.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				if (StateMachineEditorMenu.addStateMode) {
-					addNewState(Integer.toString(stateCounter), e);
-					StateMachineEditor.show();
-				}
-
-			}
-		});
 	}
 
 	// method that adds a new State to the smPanel

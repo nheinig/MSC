@@ -27,22 +27,7 @@ public class StateMachineState extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
-					if (StateMachineEditorMenu.addTransitionMode) {
-						// action if it is the source of a transition
-						if (StateMachinePanel.isSource) {
-							StateMachinePanel.source = getStateMachineState();
-						} else
-						// action if it is the destination of a transition
-						{
-							StateMachinePanel.destination = getStateMachineState();
-							StateMachinePanel.addNewTransition(StateMachinePanel.source, StateMachinePanel.destination);
-						}
-						// swap between source and destination
-						StateMachinePanel.isSource = !StateMachinePanel.isSource;
-					} else if (StateMachineEditorMenu.deleteMode) {
-						StateMachinePanel.deleteState(getStateMachineState());
-						StateMachinePanel.repaintTransitions();
-					} else if (StateMachineEditorMenu.addStateMode) {
+					if (StateMachineEditorMenu.changeOutputMode) {
 						changeOutputColor();										
 					}
 				}
