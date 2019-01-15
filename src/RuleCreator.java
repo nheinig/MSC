@@ -213,11 +213,11 @@ public class RuleCreator {
 	void crateRule() throws Exception {
 		// create an empty source file
 		File sourceFile = new File("src/" + ruleNameTF.getText() + ".java");
-		sourceFile.deleteOnExit();
+		//sourceFile.deleteOnExit();
 
 		// generate the source code, using the source filename as the classname
 		String classname = sourceFile.getName().split("\\.")[0];
-		String sourceCode = "import java.sql.Timestamp;\r\n" + "import java.util.ArrayList;\r\n" + "\r\n"
+		String sourceCode = "import java.sql.Timestamp;\r\n" + "import java.util.ArrayList;\r\n" + "import java.awt.Color;\r\n" + "\r\n"
 				+ "public class " + classname + " extends Rule {\r\n" + "\r\n" + "	Timestamp "
 				+ inputCB1.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n"
 				+ "	Timestamp " + inputCB2.getSelectedItem().toString()
@@ -232,7 +232,7 @@ public class RuleCreator {
 
 				"	// Method to update the state based on newParameter\r\n" + "	@Override\r\n"
 				+ "	void updateState(Parameter newParameter) {\r\n" + "		prevState = state;\r\n"
-
+				+ " 	ruleResult.timestamp = newParameter.timestamp; \r\n"
 				+ "		// what happens when the Parameter is of the type " + inputCB1.getSelectedItem().toString()
 				+ "\r\n" + "		if (newParameter.parameterType.equals(\"" + inputCB1.getSelectedItem().toString()
 				+ "\")) {\r\n" + "       " + inputCB1.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n"
@@ -944,12 +944,19 @@ public class RuleCreator {
 				
 				
 				"	// method to evaluate the state machine\r\n" + "	@Override\r\n"
-				+ "	void evaluateStateMachine() {\r\n" + "		if (state > 6){ \r\n" 
-				+ " " 
-				
-				+ "		}\r\n" 
+				+ "	void evaluateStateMachine() {\r\n" 
+				+ "		Timestamp tempTS = new Timestamp(System.currentTimeMillis()); \r\n"
+				+ "		if (state > 6 && tempTS.getTime() - stateTS.getTime() >= " + delayTF.getText() + "){ \r\n" 
+				+ "			if(Color.decode(stateOutputList.get(state).get(1)) == Color.YELLOW){ \r\n"
+				+ " 			ruleResult.parameterValue = \"" + yellowOutputTF.getText() + "\"; \r\n"
+				+ "			} else if (Color.decode(stateOutputList.get(state).get(1)) == Color.RED){ \r\n"
+				+ "				ruleResult.parameterValue = \"" + redOutputTF.getText() + "\"; \r\n" 
+				+ "			} \r\n"
+				+ "		} else { \r\n ruleResult.parameterValue = \"" + greenOutputTF.getText() + "\";} \r\n"
+				+ 
+				"				\r\n" 
 
-				+ "		System.out.println(\"PVT-Alarm: \" + ruleResult.parameterValue);\r\n"
+				+ "		System.out.println(\"" + outputTF.getText() + ": \" + ruleResult.parameterValue);\r\n"
 				+ "		InferenceControll.handleNewAlarm(ruleResult);\r\n" + "	}\r\n" + "\r\n" +
 
 				
