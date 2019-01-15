@@ -60,8 +60,8 @@ public class InferenceControll {
 		InputFuzzyfier infu = new InputFuzzyfier();
 		
 		// register Rule for persons and spo2 value at IC
-		//PersonSpO2Rule pspo2 = new PersonSpO2Rule();
-		//ruleList.add(pspo2);
+		PersonsSpO2Rule pspo2 = new PersonsSpO2Rule();
+		ruleList.add(pspo2);
 
 		// register Rule for persons and tube value at IC
 		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
