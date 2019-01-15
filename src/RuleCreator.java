@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -896,40 +897,40 @@ public class RuleCreator {
 				"	@Override\r\n" + "	void fillStateOutputList() {\r\n"
 				+ "ArrayList<String> tempStateList0 = new ArrayList<String>();" + "\r\n" + "tempStateList0.add(\""
 				+ StateMachinePanel.listOfStates.get(0).stateLabel.getText() + "\");" + "\r\n" + "tempStateList0.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");" + "\r\n"
+				+ getOutput(0)+ "\");" + "\r\n"
 				+ "ArrayList<String> tempStateList1 = new ArrayList<String>();" + "\r\n" + "tempStateList1.add(\""
 				+ StateMachinePanel.listOfStates.get(1).stateLabel.getText() + "\");\r\n" + "\r\n"+ "tempStateList1.add(\"" 
-				+ StateMachinePanel.listOfStates.get(1).getBackground()+ "\");\r\n"
+				+ getOutput(1)+ "\");\r\n"
 				+ "ArrayList<String> tempStateList2 = new ArrayList<String>();" + "\r\n" + "tempStateList2.add(\""
 				+ StateMachinePanel.listOfStates.get(2).stateLabel.getText() + "\");" + "\r\n" + "tempStateList2.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(2) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList3 = new ArrayList<String>();" + "\r\n" + "tempStateList3.add(\""
 				+ StateMachinePanel.listOfStates.get(3).stateLabel.getText() + "\");" + "\r\n" + "tempStateList3.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");" + "\r\n"
+				+ getOutput(3) + "\");" + "\r\n"
 				+ "ArrayList<String> tempStateList4 = new ArrayList<String>();" + "\r\n" + "tempStateList4.add(\""
 				+ StateMachinePanel.listOfStates.get(4).stateLabel.getText() + "\");" + "\r\n" + "tempStateList4.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(4) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList5 = new ArrayList<String>();" + "\r\n" + "tempStateList5.add(\""
 				+ StateMachinePanel.listOfStates.get(5).stateLabel.getText() + "\");" + "\r\n" + "tempStateList5.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(5) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList6 = new ArrayList<String>();" + "\r\n" + "tempStateList6.add(\""
 				+ StateMachinePanel.listOfStates.get(6).stateLabel.getText() + "\");" + "\r\n" + "tempStateList6.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(6) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList7 = new ArrayList<String>();" + "\r\n" + "tempStateList7.add(\""
 				+ StateMachinePanel.listOfStates.get(7).stateLabel.getText() + "\");" + "\r\n" + "tempStateList7.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(7) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList8 = new ArrayList<String>();" + "\r\n" + "tempStateList8.add(\""
 				+ StateMachinePanel.listOfStates.get(8).stateLabel.getText() + "\");" + "\r\n" + "tempStateList8.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(8) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList9 = new ArrayList<String>();" + "\r\n" + "tempStateList9.add(\""
 				+ StateMachinePanel.listOfStates.get(9).stateLabel.getText() + "\");" + "\r\n" + "tempStateList9.add(\""
-				+ StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ getOutput(9) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList10 = new ArrayList<String>();" + "\r\n" + "tempStateList10.add(\""
 				+ StateMachinePanel.listOfStates.get(10).stateLabel.getText() + "\");" + "\r\n"
-				+ "tempStateList10.add(\"" + StateMachinePanel.listOfStates.get(0).getBackground() + "\");	" + "\r\n"
+				+ "tempStateList10.add(\"" + getOutput(10) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList11 = new ArrayList<String>();" + "\r\n" + "tempStateList11.add(\""
 				+ StateMachinePanel.listOfStates.get(11).stateLabel.getText() + "\");" + "\r\n"
-				+ "tempStateList11.add(\"" + StateMachinePanel.listOfStates.get(0).getBackground()+ "\");" + "\r\n"
+				+ "tempStateList11.add(\"" + getOutput(11)+ "\");" + "\r\n"
 				+ "\r\n" + "		\r\n" + "		stateOutputList.add(tempStateList0);\r\n"
 				+ "		stateOutputList.add(tempStateList1);\r\n" + "		stateOutputList.add(tempStateList2);\r\n"
 				+ "		stateOutputList.add(tempStateList3);\r\n" + "		stateOutputList.add(tempStateList4);\r\n"
@@ -946,12 +947,8 @@ public class RuleCreator {
 				"	// method to evaluate the state machine\r\n" + "	@Override\r\n"
 				+ "	void evaluateStateMachine() {\r\n" 
 				+ "		Timestamp tempTS = new Timestamp(System.currentTimeMillis()); \r\n"
-				+ "		if (state > 6 && tempTS.getTime() - stateTS.getTime() >= " + delayTF.getText() + "){ \r\n" 
-				+ "			if(Color.getColor(stateOutputList.get(state - 6).get(1)) == Color.YELLOW){ \r\n"
-				+ " 			ruleResult.parameterValue = \"" + yellowOutputTF.getText() + "\"; \r\n"
-				+ "			} else if (Color.getColor(stateOutputList.get(state - 6).get(1)) == Color.RED){ \r\n"
-				+ "				ruleResult.parameterValue = \"" + redOutputTF.getText() + "\"; \r\n" 
-				+ "			} \r\n"
+				+ "		if (state > 6){ \r\n" 
+				+ " 			ruleResult.parameterValue = " + "stateOutputList.get(state - 6).get(1)" + "; \r\n" 
 				+ "		} else { \r\n ruleResult.parameterValue = \"" + greenOutputTF.getText() + "\";} \r\n"
 				+ 
 				"				\r\n" 
@@ -988,6 +985,16 @@ public class RuleCreator {
 		writer.write(sourceCode);
 		writer.close();
 
+	}
+	
+	String getOutput(int state) {
+		if(StateMachinePanel.listOfStates.get(state).getBackground() == Color.RED) {
+			return redOutputTF.getText().toString();
+		} else if(StateMachinePanel.listOfStates.get(state).getBackground() == Color.YELLOW) {
+			return yellowOutputTF.getText().toString();
+		} else {
+			return greenOutputTF.getText().toString();
+		}
 	}
 
 }
