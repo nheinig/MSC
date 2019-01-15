@@ -29,94 +29,94 @@ PersonsSpO2Rule() {
            // persons is none
 			if (newParameter.parameterValue.equals("none")) {
 if (state == 0 || state == 1 || state == 2 || state == 3) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 1;
 					} else {
 						state = 17;
 					}
 				} else if (state == 4) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 7;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 5) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 8;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 6) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 9;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 7) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 7;
 					} else {
 						state = 17;
 					}
 				} else if (state == 8) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 8;
 					} else {
 						state = 17;
 					}
 				} else if (state == 9) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 9;
 					} else {
 						state = 17;
 					}
 				} else if (state == 10) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 7;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 11) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 8;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 12) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 9;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 13) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 7;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 14) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 8;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 15) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 9;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 16) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						if (listOfLastInputs.get(0).parameterType.equals("spo2")
 								&& listOfLastInputs.get(0).parameterValue.equals("critical")) {
 							state = 7;
@@ -149,94 +149,94 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
 			// persons is one
 			else if (newParameter.parameterValue.equals("one")) {
 if (state == 0 || state == 1 || state == 2 || state == 3) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 2;
 					} else {
 						state = 17;
 					}
 				} else if (state == 4) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 10;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 5) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 11;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 6) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 12;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 7) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 10;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 8) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 11;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 9) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 12;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 10) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 10;
 					} else {
 						state = 17;
 					}
 				} else if (state == 11) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 11;
 					} else {
 						state = 17;
 					}
 				} else if (state == 12) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 12;
 					} else {
 						state = 17;
 					}
 				} else if (state == 13) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 10;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 14) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 11;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 15) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 12;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 16) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						if (listOfLastInputs.get(0).parameterType.equals("spo2")
 								&& listOfLastInputs.get(0).parameterValue.equals("critical")) {
 							state = 10;
@@ -269,93 +269,93 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
            // persons is many
            else if (newParameter.parameterValue.equals("many")) {
 if (state == 0 || state == 1 || state == 2 || state == 3) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 3;
 					} else {
 						state = 17;
 					}
 				} else if (state == 4) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 13;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 5) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 14;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 6) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 15;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 7) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 13;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 8) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 14;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 9) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 5;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 10) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 13;
 					} else {
 						state = 17;
 					}
 				} else if (state == 11) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 14;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 12) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 15;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 17;
 					}
 				} else if (state == 13) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 13;
 					} else {
 						state = 17;
 					}
 				} else if (state == 14) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 14;
 					} else {
 						state = 17;
 					}
 				} else if (state == 15) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						state = 15;
 					} else {
 						state = 17;
 					}
 				} else if (state == 16) {
-					if (personsTS.getTime() - spo2TS.getTime() < 5000) {
+					if (personsTS.getTime() - spo2TS.getTime() < 2000) {
 						if (listOfLastInputs.get(0).parameterType.equals("spo2")
 								&& listOfLastInputs.get(0).parameterValue.equals("critical")) {
 							state = 13;
@@ -391,94 +391,94 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
 			// spo2 is critical
 			if (newParameter.parameterValue.equals("critical")) {
 if (state == 0 || state == 4 || state == 5 || state == 6) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 4;
 					} else {
 						state = 16;
 					}
 				} else if (state == 1) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 7;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 2) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 10;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 3) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 13;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 7) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 7;
 					} else {
 						state = 16;
 					}
 				} else if (state == 8) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 7;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 9) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 7;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 10) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 10;
 					} else {
 						state = 16;
 					}
 				} else if (state == 11) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 10;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 12) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 10;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 13) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 13;
 					} else {
 						state = 16;
 					}
 				} else if (state == 14) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 13;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 15) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 13;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 17) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						if (listOfLastInputs.get(0).parameterType.equals("persons")
 								&& listOfLastInputs.get(0).parameterValue.equals("none")) {
 							state = 7;
@@ -511,94 +511,94 @@ if (state == 0 || state == 4 || state == 5 || state == 6) {
 			// spo2 is low
 			else if (newParameter.parameterValue.equals("low")) {
 if (state == 0 || state == 4 || state == 5 || state == 6) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 5;
 					} else {
 						state = 16;
 					}
 				} else if (state == 1) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 8;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 2) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 11;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 3) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 14;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 7) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 8;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 8) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 8;
 					} else {
 						state = 16;
 					}
 				} else if (state == 9) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 8;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 10) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 11;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 11) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 11;
 					} else {
 						state = 16;
 					}
 				} else if (state == 12) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 11;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 13) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 14;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 14) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 14;
 					} else {
 						state = 16;
 					}
 				} else if (state == 15) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 14;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 17) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						if (listOfLastInputs.get(0).parameterType.equals("persons")
 								&& listOfLastInputs.get(0).parameterValue.equals("none")) {
 							state = 8;
@@ -631,94 +631,94 @@ if (state == 0 || state == 4 || state == 5 || state == 6) {
 			// spo2 is normal
 			else if (newParameter.parameterValue.equals("normal")) {
 if (state == 0 || state == 4 || state == 5 || state == 6) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 6;
 					} else {
 						state = 16;
 					}
 				} else if (state == 1) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 9;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 2) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 12;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 3) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 15;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 7) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 9;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 8) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 9;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 9) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 9;
 					} else {
 						state = 16;
 					}
 				} else if (state == 10) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 12;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 11) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 12;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 12) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 12;
 					} else {
 						state = 16;
 					}
 				} else if (state == 13) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 15;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 14) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 15;
 						stateTS = new Timestamp(System.currentTimeMillis());
 					} else {
 						state = 16;
 					}
 				} else if (state == 15) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						state = 15;
 					} else {
 						state = 16;
 					}
 				} else if (state == 17) {
-					if (spo2TS.getTime() - personsTS.getTime() < 5000) {
+					if (spo2TS.getTime() - personsTS.getTime() < 2000) {
 						if (listOfLastInputs.get(0).parameterType.equals("persons")
 								&& listOfLastInputs.get(0).parameterValue.equals("none")) {
 							state = 9;
@@ -763,7 +763,8 @@ tempStateList0.add("java.awt.Color[r=0,g=255,b=0]");
 ArrayList<String> tempStateList1 = new ArrayList<String>();
 tempStateList1.add("persons == none && spo2 == critical");
 
-tempStateList1.add("java.awt.Color[r=255,g=0,b=0]");ArrayList<String> tempStateList2 = new ArrayList<String>();
+tempStateList1.add("java.awt.Color[r=255,g=0,b=0]");
+ArrayList<String> tempStateList2 = new ArrayList<String>();
 tempStateList2.add("persons == none && spo2 == low");
 tempStateList2.add("java.awt.Color[r=0,g=255,b=0]");	
 ArrayList<String> tempStateList3 = new ArrayList<String>();
@@ -817,10 +818,10 @@ tempStateList11.add("java.awt.Color[r=0,g=255,b=0]");
 	@Override
 	void evaluateStateMachine() {
 		Timestamp tempTS = new Timestamp(System.currentTimeMillis()); 
-		if (state > 6 && tempTS.getTime() - stateTS.getTime() >= 5000){ 
-			if(Color.decode(stateOutputList.get(state).get(1)) == Color.YELLOW){ 
+		if (state > 6){ 
+			if(state == 13|| state == 14 || state == 16 || state == 17  ){ 
  			ruleResult.parameterValue = "local"; 
-			} else if (Color.decode(stateOutputList.get(state).get(1)) == Color.RED){ 
+			} else if (state == 7 || state == 10 ){ 
 				ruleResult.parameterValue = "hnr"; 
 			} 
 		} else { 

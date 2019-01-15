@@ -2,14 +2,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.awt.Color;
 
-public class PersonVentilationTubeRule extends Rule {
+public class PersonsVentilationTubeRule extends Rule {
 
 	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
 	Timestamp tubeTS = new Timestamp(System.currentTimeMillis());
 	Timestamp stateTS = new Timestamp(System.currentTimeMillis());
 
-PersonVentilationTubeRule() {
-		setRuleName("PersonVentilationTubeRule");
+PersonsVentilationTubeRule() {
+		setRuleName("PersonsVentilationTubeRule");
 		ruleResult = new Parameter("pvResult", null, null, null);
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
@@ -759,41 +759,40 @@ if (state == 0 || state == 4 || state == 5 || state == 6) {
 	void fillStateOutputList() {
 ArrayList<String> tempStateList0 = new ArrayList<String>();
 tempStateList0.add("init");
-tempStateList0.add("java.awt.Color[r=0,g=255,b=0]");
+tempStateList0.add("-16711936");
 ArrayList<String> tempStateList1 = new ArrayList<String>();
-tempStateList1.add("persons == none && tube == disconnected");
+tempStateList1.add("persons == none && spo2 == critical");
 
-tempStateList1.add("java.awt.Color[r=255,g=0,b=0]");
-ArrayList<String> tempStateList2 = new ArrayList<String>();
-tempStateList2.add("persons == none && tube == unknown");
-tempStateList2.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList1.add("-65536");ArrayList<String> tempStateList2 = new ArrayList<String>();
+tempStateList2.add("persons == none && spo2 == low");
+tempStateList2.add("-16711936");	
 ArrayList<String> tempStateList3 = new ArrayList<String>();
-tempStateList3.add("persons == none && tube == connected");
-tempStateList3.add("java.awt.Color[r=0,g=255,b=0]");
+tempStateList3.add("persons == none && spo2 == normal");
+tempStateList3.add("-16711936");
 ArrayList<String> tempStateList4 = new ArrayList<String>();
-tempStateList4.add("persons == one && tube == disconnected");
-tempStateList4.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList4.add("persons == one && spo2 == critical");
+tempStateList4.add("-16711936");	
 ArrayList<String> tempStateList5 = new ArrayList<String>();
-tempStateList5.add("persons == one && tube == unknown");
-tempStateList5.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList5.add("persons == one && spo2 == low");
+tempStateList5.add("-16711936");	
 ArrayList<String> tempStateList6 = new ArrayList<String>();
-tempStateList6.add("persons == one && tube == connected");
-tempStateList6.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList6.add("persons == one && spo2 == normal");
+tempStateList6.add("-16711936");	
 ArrayList<String> tempStateList7 = new ArrayList<String>();
-tempStateList7.add("persons == many && tube == disconnected");
-tempStateList7.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList7.add("persons == many && spo2 == critical");
+tempStateList7.add("-16711936");	
 ArrayList<String> tempStateList8 = new ArrayList<String>();
-tempStateList8.add("persons == many && tube == unknown");
-tempStateList8.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList8.add("persons == many && spo2 == low");
+tempStateList8.add("-16711936");	
 ArrayList<String> tempStateList9 = new ArrayList<String>();
-tempStateList9.add("persons == many && tube == connected");
-tempStateList9.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList9.add("persons == many && spo2 == normal");
+tempStateList9.add("-16711936");	
 ArrayList<String> tempStateList10 = new ArrayList<String>();
 tempStateList10.add("personsMissing");
-tempStateList10.add("java.awt.Color[r=0,g=255,b=0]");	
+tempStateList10.add("-16711936");	
 ArrayList<String> tempStateList11 = new ArrayList<String>();
-tempStateList11.add("tubeMissing");
-tempStateList11.add("java.awt.Color[r=0,g=255,b=0]");
+tempStateList11.add("spo2Missing");
+tempStateList11.add("-16711936");
 
 		
 		stateOutputList.add(tempStateList0);
@@ -818,12 +817,12 @@ tempStateList11.add("java.awt.Color[r=0,g=255,b=0]");
 	@Override
 	void evaluateStateMachine() {
 		Timestamp tempTS = new Timestamp(System.currentTimeMillis()); 
-		if (state > 6){ 
-			if(state == 13|| state == 14 || state == 16 || state == 17  ){ 
+		if (state > 6 && tempTS.getTime() - stateTS.getTime() >= 1000){ 
+			if(Integer.parseInt(stateOutputList.get(state - 6).get(1)) == Color.YELLOW.getRGB()){ 
  			ruleResult.parameterValue = "local"; 
-			} else if (state == 7 || state == 10 ){ 
+			} else if (Integer.parseInt(stateOutputList.get(state - 6).get(1)) == Color.RED.getRGB()){ 
 				ruleResult.parameterValue = "hnr"; 
-			}
+			} 
 		} else { 
  ruleResult.parameterValue = "none";} 
 				
