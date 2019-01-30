@@ -22,7 +22,6 @@ PersonVentilationTubeRule() {
 	@Override
 	void updateState(Parameter newParameter) {
 		prevState = state;
- 	ruleResult.timestamp = newParameter.timestamp; 
 		// what happens when the Parameter is of the type persons
 		if (newParameter.parameterType.equals("persons")) {
        personsTS = newParameter.timestamp;
@@ -750,6 +749,7 @@ if (state == 0 || state == 4 || state == 5 || state == 6) {
 				}
 			}			}
 		}
+	 	ruleResult.timestamp = newParameter.timestamp;
 		evaluateStateMachine();
 	}
 
