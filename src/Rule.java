@@ -7,6 +7,7 @@ public class Rule {
 	String ruleName;
 	
 	boolean ruleRegistered = false;
+	boolean isLastRule = false;
 	
 	ArrayList<String> listOfParametersNeeded = new ArrayList<String>();
 	ArrayList<String> listOfOutputs = new ArrayList<String>();	
@@ -102,6 +103,10 @@ public class Rule {
 
 	public void setRuleName(String ruleName) {
 		this.ruleName = ruleName;
+	}
+	
+	public void changeIsLastRule(boolean isLast) {
+		this.isLastRule = isLast;
 	}
 	
 }

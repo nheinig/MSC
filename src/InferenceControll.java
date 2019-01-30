@@ -117,4 +117,15 @@ public class InferenceControll {
 		return pv;
 	}
 
+	//declares a Rule as Last rule if it gets Marked as such in the UserInterface
+	static void declareLastRule(String ruleName) {
+		for(int i = 0; i < ruleList.size(); i++) {
+			if(ruleList.get(i).ruleName.equals(ruleName)) {
+				ruleList.get(i).changeIsLastRule(true);
+			} else {
+				ruleList.get(i).changeIsLastRule(false);
+			}
+		}
+	}
+	
 }

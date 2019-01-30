@@ -7,6 +7,9 @@ import javax.swing.*;
 
 public class RuleEgg extends JPanel {
 
+	JPopupMenu rePopup = new JPopupMenu();
+	JMenuItem setLast = new JMenuItem("Set as Last Rule");
+	
 	RuleOverview ro;
 	boolean isMarked = false;
 	String eggName;
@@ -38,6 +41,24 @@ public class RuleEgg extends JPanel {
 		setSize(200, 200);
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		
+		//adds a mouseListener thats opens a pop up menu when right clicked on FuzzyfierEgg
+				this.addMouseListener(new MouseAdapter() {
+					public void mouseReleased(MouseEvent e) {
+						if(e.isPopupTrigger()) {
+							doPop(e);
+						}
+					
+					}
+				});
+				
+
+				setLast.addMouseListener(new MouseAdapter() {
+					public void mousePressed(MouseEvent e) {
+						InferenceControll.declareLastRule(eggName);
+					}
+				});
 
 		nameLabel = new JLabel(eggName);
 		stateLabel = new JLabel("State: ");
@@ -73,7 +94,7 @@ public class RuleEgg extends JPanel {
 
 		add(labelBox);
 
-		addMouseListener(new MouseAdapter() {
+		addMouseListener(new MouseAdapter() {			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
@@ -113,5 +134,12 @@ public class RuleEgg extends JPanel {
 		ConfigurationUI.ui.setVisible(true);
 	}
 	
+
+	// Method to show the pop up menu
+	public void doPop(MouseEvent e) {
+		if (ConfigurationUI.editMode) {
+			rePopup.show(e.getComponent(), e.getX(), e.getY());
+		}
+	}
 
 }
