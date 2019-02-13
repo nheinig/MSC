@@ -85,7 +85,7 @@ public class RulePanel{
 	}
 	
 	//creates the Egg for the Fuzzyfier
-	static void createFuzzyfierEgg(FuzzyfierEgg fe) {
+	static void createDiscreterEgg(DiscreterEgg fe) {
 		eggPanel.add(fe);
 		ConfigurationUI.ui.setVisible(true);
 	}

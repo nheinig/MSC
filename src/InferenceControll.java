@@ -57,7 +57,7 @@ public class InferenceControll {
 	public static void main(String[] args) {
 
 		//initialize the InputFuzzyfier
-		InputFuzzyfier infu = new InputFuzzyfier();
+		Discreter infu = new Discreter();
 		
 		// register Rule for persons and spo2 value at IC
 		PersonsSpO2Rule pspo2 = new PersonsSpO2Rule();

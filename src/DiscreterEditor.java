@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class FuzzyfierEditor {
+public class DiscreterEditor {
 	JFrame fe = new JFrame("FuzzyfierEditor");
 	
 	Box mainBox = Box.createVerticalBox();
@@ -23,17 +23,17 @@ public class FuzzyfierEditor {
 	JLabel tubeLBLabel = new JLabel("TubeLB: ");
 	JLabel tubeUBLabel = new JLabel("TubeUB: ");
 	
-	JTextField personsLBTF = new JTextField(String.valueOf(InputFuzzyfier.getPersonsLB()));
-	JTextField personsUBTF = new JTextField(String.valueOf(InputFuzzyfier.getPersonsUB()));
-	JTextField spo2LBTF = new JTextField(String.valueOf(InputFuzzyfier.getSpO2LB()));
-	JTextField spo2UBTF = new JTextField(String.valueOf(InputFuzzyfier.getSpO2UB()));
-	JTextField tubeLBTF = new JTextField(String.valueOf(InputFuzzyfier.getTubeLB()));
-	JTextField tubeUBTF = new JTextField(String.valueOf(InputFuzzyfier.getTubeUB()));
+	JTextField personsLBTF = new JTextField(String.valueOf(Discreter.getPersonsLB()));
+	JTextField personsUBTF = new JTextField(String.valueOf(Discreter.getPersonsUB()));
+	JTextField spo2LBTF = new JTextField(String.valueOf(Discreter.getSpO2LB()));
+	JTextField spo2UBTF = new JTextField(String.valueOf(Discreter.getSpO2UB()));
+	JTextField tubeLBTF = new JTextField(String.valueOf(Discreter.getTubeLB()));
+	JTextField tubeUBTF = new JTextField(String.valueOf(Discreter.getTubeUB()));
 	
 	JButton applyButton = new JButton("Apply");
 	
 	
-	public FuzzyfierEditor(){
+	public DiscreterEditor(){
 		
 
 		fe.setSize(400, 400);
@@ -102,12 +102,12 @@ public class FuzzyfierEditor {
 	}
 	
 	void updateBounds() {
-		InputFuzzyfier.setPersonsLB(Double.parseDouble(personsLBTF.getText()));
-		InputFuzzyfier.setPersonsUB(Double.parseDouble(personsUBTF.getText()));
-		InputFuzzyfier.setSpO2LB(Double.parseDouble(spo2LBTF.getText()));
-		InputFuzzyfier.setSpO2UB(Double.parseDouble(spo2UBTF.getText()));
-		InputFuzzyfier.setTubeLB(Double.parseDouble(tubeLBTF.getText()));
-		InputFuzzyfier.setTubeUB(Double.parseDouble(tubeUBTF.getText()));
+		Discreter.setPersonsLB(Double.parseDouble(personsLBTF.getText()));
+		Discreter.setPersonsUB(Double.parseDouble(personsUBTF.getText()));
+		Discreter.setSpO2LB(Double.parseDouble(spo2LBTF.getText()));
+		Discreter.setSpO2UB(Double.parseDouble(spo2UBTF.getText()));
+		Discreter.setTubeLB(Double.parseDouble(tubeLBTF.getText()));
+		Discreter.setTubeUB(Double.parseDouble(tubeUBTF.getText()));
 	}
 	
 	void show() {

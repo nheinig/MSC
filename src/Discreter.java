@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class InputFuzzyfier {
+public class Discreter {
 
-	//list of all parameterTypes of the fuzzyfied Inputs
+	//list of all parameterTypes of the discrete Inputs
 	static ArrayList<String> listOfOutputs = new ArrayList<String>();
 	static ArrayList<ArrayList<String>> listOfOutputValues = new ArrayList<ArrayList<String>>();
 	
-	FuzzyfierEgg fe;
+	DiscreterEgg de;
 	
 	//lower and upper bounds for all InputTypes
 	static double personsLB = 0;
@@ -19,7 +19,7 @@ public class InputFuzzyfier {
 	static double tubeUB = 97;
 	
 	
-	InputFuzzyfier(){
+	Discreter(){
 		ArrayList<String> personsValues = new ArrayList<String>();
 		personsValues.add("persons");
 		personsValues.add("none");
@@ -46,15 +46,15 @@ public class InputFuzzyfier {
 		listOfOutputValues.add(listOfOutputValues.size(), personsValues);
 		listOfOutputValues.add(listOfOutputValues.size(), spo2Values);
 		listOfOutputValues.add(listOfOutputValues.size(), tubeValues);	
-		initializeFuzzyfier();
+		initializeDiscreter();
 		
-		fe = new FuzzyfierEgg(this);
-		ConfigurationUI.forwardFuzzyfier(fe);
+		de = new DiscreterEgg(this);
+		ConfigurationUI.forwardDiscreter(de);
 	}
 	
 	
 	//Method that adds all entries from the listOfOutputTypes to the listOfAvailableParameters in the InferenceControll
-	void initializeFuzzyfier() {
+	void initializeDiscreter() {
 		for(int i = 0; i < listOfOutputs.size(); i++) {
 			InferenceControll.addAvailableParameter(listOfOutputs.get(i));
 			InferenceControll.addAvailableParameterValues(listOfOutputValues.get(i));
@@ -63,7 +63,7 @@ public class InputFuzzyfier {
 	}
 	
 	
-	//method that handles new Inputs and forwards them to the right fuzzyfier based on the inputType
+	//method that handles new Inputs and forwards them to the right parameter discreter based on the inputType
 	void handleInput(Input in) {
 		switch (in.inputType) {
 		case "persons":
@@ -82,7 +82,7 @@ public class InputFuzzyfier {
 	}
 		
 
-	//Method that fuzzyfies Inputs with the inputType "persons"
+	//Method that handles Inputs with the inputType "persons"
 	Parameter handlePersonsInput(Input in) {
 		Parameter newPersonsParameter = new Parameter("persons", in.timestamp, null, null);
 		if(in.inputValue <= personsLB) {
@@ -96,7 +96,7 @@ public class InputFuzzyfier {
 		return newPersonsParameter;				
 	}
 
-	//Method that fuzzyfies Inputs with the inputType "spo2"
+	//Method that handles Inputs with the inputType "spo2"
 	Parameter handleSpO2Input(Input in) {
 		Parameter newSpO2Parameter = new Parameter("spo2", in.timestamp, null, null);
 		if(in.inputValue <= spo2LB) {
@@ -110,7 +110,7 @@ public class InputFuzzyfier {
 		return newSpO2Parameter;		
 	}
 	
-	//Method that fuzzyfies Inputs with the inputType "tube"
+	//Method that handles Inputs with the inputType "tube"
 	Parameter handleTubeInput(Input in) {
 		Parameter newTubeParameter = new Parameter("tube", in.timestamp, null, null);
 		if(in.inputValue <= tubeLB) {

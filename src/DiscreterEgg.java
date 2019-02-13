@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
-public class FuzzyfierEgg extends JPanel {
+public class DiscreterEgg extends JPanel {
 
 	JPopupMenu ffPopup = new JPopupMenu();
 	JMenuItem edit = new JMenuItem("Edit Fuzzyfier");
@@ -34,9 +34,9 @@ public class FuzzyfierEgg extends JPanel {
 	Box input2Box = Box.createHorizontalBox();
 	Box input3Box = Box.createHorizontalBox();
 	
-	FuzzyfierEditor fe = new FuzzyfierEditor();
+	DiscreterEditor fe = new DiscreterEditor();
 
-	public FuzzyfierEgg(InputFuzzyfier fuzzyfier) {
+	public DiscreterEgg(Discreter fuzzyfier) {
 
 		setSize(200, 200);
 		setBackground(Color.WHITE);

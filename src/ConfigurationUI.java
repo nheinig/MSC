@@ -48,8 +48,8 @@ public class ConfigurationUI {
 		RulePanel.addNewEgg(re);
 	}
 	
-	static void forwardFuzzyfier(FuzzyfierEgg fe) {
-		RulePanel.createFuzzyfierEgg(fe);
+	static void forwardDiscreter(DiscreterEgg fe) {
+		RulePanel.createDiscreterEgg(fe);
 	}
 	
 	// Method to create the Configuration UI
