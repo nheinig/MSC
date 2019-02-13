@@ -63,13 +63,11 @@ public class InferenceControll {
 		PersonsSpO2Rule pspo2 = new PersonsSpO2Rule();
 		ruleList.add(pspo2);
 
-		// register Rule for persons and tube value at IC
+		//register Rule for persons and tube value at IC
 		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
 		ruleList.add(pvt);
 
-		// register MetaRule at IC
-		MetaRule meta = new MetaRule();
-		ruleList.add(meta);
+		
 
 		ConfigurationUI cUI = new ConfigurationUI(listOfAvailableParameters);
 		cUI.updateParameterStrings(listOfAvailableParameters);
@@ -91,7 +89,7 @@ public class InferenceControll {
 			
 			//forward Alarm to MetaRule
 			if(!listOfAlarms.isEmpty()) {
-				meta.handleNewInput(listOfAlarms.get(0));
+				//meta.handleNewInput(listOfAlarms.get(0));
 				listOfAlarms.remove(0);		
 			}
 		}
