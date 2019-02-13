@@ -56,8 +56,8 @@ public class Discreter {
 	//Method that adds all entries from the listOfOutputTypes to the listOfAvailableParameters in the InferenceControll
 	void initializeDiscreter() {
 		for(int i = 0; i < listOfOutputs.size(); i++) {
-			InferenceControll.addAvailableParameter(listOfOutputs.get(i));
-			InferenceControll.addAvailableParameterValues(listOfOutputValues.get(i));
+			InferenceControl.addAvailableParameter(listOfOutputs.get(i));
+			InferenceControl.addAvailableParameterValues(listOfOutputValues.get(i));
 		}
 	}
 	

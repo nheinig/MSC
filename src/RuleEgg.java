@@ -56,7 +56,7 @@ public class RuleEgg extends JPanel {
 
 				setLast.addMouseListener(new MouseAdapter() {
 					public void mousePressed(MouseEvent e) {
-						InferenceControll.declareLastRule(eggName);
+						InferenceControl.declareLastRule(eggName);
 					}
 				});
 

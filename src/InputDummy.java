@@ -75,7 +75,7 @@ public class InputDummy {
 	//forwards listOfParameterValues with dummyData to InferenceControll
 	static void forwardParameter() {
 		while(!listOfParameterValues.isEmpty()) {
-			InferenceControll.handleNewParameterValue(listOfParameterValues.get(0));
+			InferenceControl.handleNewParameterValue(listOfParameterValues.get(0));
 			listOfParameterValues.remove(0);
 		}
 	}

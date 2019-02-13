@@ -40,7 +40,7 @@ public class ConfigurationUI {
 	
 	//fetches the ruleList from the InferenceControll and saves them as ruleList
 	void fetchRuleList() {
-		ruleList = InferenceControll.getRuleList();
+		ruleList = InferenceControl.getRuleList();
 	}	
 	
 	//forwards a RuleEgg to the RulePanel where it is added

@@ -56,22 +56,22 @@ public class StateMachinePanel {
 		// search for the first parameterType in the
 		// InferenceControll.listOfParameterValues to get the possible values for
 		// ParameterType1
-		for (int i = 0; i < InferenceControll.listOfParameterValues.size(); i++) {
-			if (InferenceControll.listOfParameterValues.get(i).contains(parameterType1)) {
-				p1v1 = InferenceControll.listOfParameterValues.get(i).get(1);
-				p1v2 = InferenceControll.listOfParameterValues.get(i).get(2);
-				p1v3 = InferenceControll.listOfParameterValues.get(i).get(3);
+		for (int i = 0; i < InferenceControl.listOfParameterValues.size(); i++) {
+			if (InferenceControl.listOfParameterValues.get(i).contains(parameterType1)) {
+				p1v1 = InferenceControl.listOfParameterValues.get(i).get(1);
+				p1v2 = InferenceControl.listOfParameterValues.get(i).get(2);
+				p1v3 = InferenceControl.listOfParameterValues.get(i).get(3);
 				break;
 			}
 		}
 		// search for the first parameterType in the
 		// InferenceControll.listOfParameterValues to get the possible values for
 		// ParameterType2
-		for (int i = 0; i < InferenceControll.listOfParameterValues.size(); i++) {
-			if (InferenceControll.listOfParameterValues.get(i).contains(parameterType2)) {
-				p2v1 = InferenceControll.listOfParameterValues.get(i).get(1);
-				p2v2 = InferenceControll.listOfParameterValues.get(i).get(2);
-				p2v3 = InferenceControll.listOfParameterValues.get(i).get(3);
+		for (int i = 0; i < InferenceControl.listOfParameterValues.size(); i++) {
+			if (InferenceControl.listOfParameterValues.get(i).contains(parameterType2)) {
+				p2v1 = InferenceControl.listOfParameterValues.get(i).get(1);
+				p2v2 = InferenceControl.listOfParameterValues.get(i).get(2);
+				p2v3 = InferenceControl.listOfParameterValues.get(i).get(3);
 				break;
 			}
 		}

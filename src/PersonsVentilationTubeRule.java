@@ -12,8 +12,8 @@ PersonsVentilationTubeRule() {
 		setRuleName("PersonsVentilationTubeRule");
 		ruleResult = new Parameter("pvResult", null, null, null);
 		initializeRule();
-		InferenceControll.addAvailableParameter(getOutputType());
-		InferenceControll.addAvailableParameterValues(listOfOutputs);
+		InferenceControl.addAvailableParameter(getOutputType());
+		InferenceControl.addAvailableParameterValues(listOfOutputs);
 		RuleEgg ruleEgg = new RuleEgg(this);
 		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
@@ -831,7 +831,7 @@ tempStateList11.add("bad");
  ruleResult.parameterValue = "nomal";} 
 				
 		System.out.println("pvResult: " + ruleResult.parameterValue);
-		InferenceControll.handleNewAlarm(ruleResult);
+		InferenceControl.handleNewAlarm(ruleResult);
 	}
 
 	@Override

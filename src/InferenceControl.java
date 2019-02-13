@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class InferenceControll {
+public class InferenceControl {
 
 	static ArrayList<ArrayList<String>> listOfParameterValues = new ArrayList<ArrayList<String>>();
 	static ArrayList<String> listOfAvailableParameters = new ArrayList<String>();
@@ -100,9 +100,9 @@ public class InferenceControll {
 	//Method that returns a parameterValue from the listOfParameterValues based on the ParameterType pt and the Index i		
 	static String getParameterValue(String pt, int i) {
 		String pv = "";
-		for (int j = 0; j < InferenceControll.listOfParameterValues.size(); j++) {
-			if (InferenceControll.listOfParameterValues.get(j).contains(pt)) {
-				pv = InferenceControll.listOfParameterValues.get(j).get(i);
+		for (int j = 0; j < InferenceControl.listOfParameterValues.size(); j++) {
+			if (InferenceControl.listOfParameterValues.get(j).contains(pt)) {
+				pv = InferenceControl.listOfParameterValues.get(j).get(i);
 			}
 		}
 		return pv;

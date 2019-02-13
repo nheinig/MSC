@@ -12,8 +12,8 @@ PersonsSpO2Rule() {
 		setRuleName("PersonsSpO2Rule");
 		ruleResult = new Parameter("psResult", null, null, null);
 		initializeRule();
-		InferenceControll.addAvailableParameter(getOutputType());
-		InferenceControll.addAvailableParameterValues(listOfOutputs);
+		InferenceControl.addAvailableParameter(getOutputType());
+		InferenceControl.addAvailableParameterValues(listOfOutputs);
 		RuleEgg ruleEgg = new RuleEgg(this);
 		ConfigurationUI.forwardRuleEgg(ruleEgg);
 	}
@@ -828,7 +828,7 @@ tempStateList11.add("local");
  ruleResult.parameterValue = "none";} 
 				
 		System.out.println("psResult: " + ruleResult.parameterValue);
-		InferenceControll.handleNewAlarm(ruleResult);
+		InferenceControl.handleNewAlarm(ruleResult);
 	}
 
 	@Override

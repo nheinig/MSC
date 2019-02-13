@@ -71,19 +71,7 @@ public class Rule {
 		return null;
 	}
 	
-	
-	//-----------------
-	//getter and setter
-	//-----------------
-	
-	ArrayList<String> getParametersNeeded(){
-		return listOfParametersNeeded;
-	}
-	
-	String getRuleResultType() {
-		return ruleResult.parameterType;
-	}
-	
+
 
 	//Method that updates the Labels of a RuleEgg
 	void updateEggLabels() {
@@ -92,6 +80,14 @@ public class Rule {
 	//--------------
 	//getter/ setter
 	//--------------
+	
+	ArrayList<String> getParametersNeeded(){
+		return listOfParametersNeeded;
+	}
+	
+	String getRuleResultType() {
+		return ruleResult.parameterType;
+	}
 		
 	
 	public String getRuleName() {
@@ -102,7 +98,7 @@ public class Rule {
 		this.ruleName = ruleName;
 	}
 	
-	public void changeIsLastRule(boolean isLast) {
+	public void setIsLastRule(boolean isLast) {
 		this.isLastRule = isLast;
 	}
 	
