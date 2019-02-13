@@ -9,7 +9,6 @@ public class InferenceControl {
 
 	static ArrayList<Rule> ruleList = new ArrayList<Rule>();
 
-
 	// helper method that prints out the listOfParameters
 	static void printValueLists() {
 		for (int i = 0; i < listOfNewParameters.size(); i++) {
@@ -37,30 +36,26 @@ public class InferenceControl {
 			listOfAvailableParameters.add(parameter);
 		}
 	}
-	
+
 	// adds available Parameters (from data stream and rules) to an ArrayList
-		static void addAvailableParameterValues(ArrayList<String> pvList) {
-			if (!listOfParameterValues.contains(pvList)) {
-				listOfParameterValues.add(pvList);
-			}
+	static void addAvailableParameterValues(ArrayList<String> pvList) {
+		if (!listOfParameterValues.contains(pvList)) {
+			listOfParameterValues.add(pvList);
 		}
-	
-		
+	}
 
 	public static void main(String[] args) {
 
-		//initialize the InputFuzzyfier
+		// initialize the InputFuzzyfier
 		Discreter infu = new Discreter();
-		
+
 		// register Rule for persons and spo2 value at IC
 		PersonsSpO2Rule pspo2 = new PersonsSpO2Rule();
 		ruleList.add(pspo2);
 
-		//register Rule for persons and tube value at IC
+		// register Rule for persons and tube value at IC
 		PersonsVentilationTubeRule pvt = new PersonsVentilationTubeRule();
 		ruleList.add(pvt);
-
-		
 
 		ConfigurationUI cUI = new ConfigurationUI(listOfAvailableParameters);
 		cUI.updateParameterStrings(listOfAvailableParameters);
@@ -79,25 +74,25 @@ public class InferenceControl {
 				}
 			}
 			listOfNewParameters.remove(0);
-			
-			//forward Alarm to MetaRule
-			if(!listOfAlarms.isEmpty()) {
-				//meta.handleNewInput(listOfAlarms.get(0));
-				listOfAlarms.remove(0);		
+
+			// forward Alarm to MetaRule
+			if (!listOfAlarms.isEmpty()) {
+				// meta.handleNewInput(listOfAlarms.get(0));
+				listOfAlarms.remove(0);
 			}
 		}
 	}
-	
-	
-	//--------------
-	//getter/ setter
-	//--------------
-	
-	static ArrayList<Rule> getRuleList(){
+
+	// --------------
+	// getter/ setter
+	// --------------
+
+	static ArrayList<Rule> getRuleList() {
 		return ruleList;
 	}
-	
-	//Method that returns a parameterValue from the listOfParameterValues based on the ParameterType pt and the Index i		
+
+	// Method that returns a parameterValue from the listOfParameterValues based on
+	// the ParameterType pt and the Index i
 	static String getParameterValue(String pt, int i) {
 		String pv = "";
 		for (int j = 0; j < InferenceControl.listOfParameterValues.size(); j++) {
@@ -108,15 +103,15 @@ public class InferenceControl {
 		return pv;
 	}
 
-	//declares a Rule as Last rule if it gets Marked as such in the UserInterface
+	// declares a Rule as Last rule if it gets Marked as such in the UserInterface
 	static void declareLastRule(String ruleName) {
-		for(int i = 0; i < ruleList.size(); i++) {
-			if(ruleList.get(i).ruleName.equals(ruleName)) {
+		for (int i = 0; i < ruleList.size(); i++) {
+			if (ruleList.get(i).ruleName.equals(ruleName)) {
 				ruleList.get(i).changeIsLastRule(true);
 			} else {
 				ruleList.get(i).changeIsLastRule(false);
 			}
 		}
 	}
-	
+
 }

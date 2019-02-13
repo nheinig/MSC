@@ -33,7 +33,7 @@ public class DiscreterEgg extends JPanel {
 	Box input1Box = Box.createHorizontalBox();
 	Box input2Box = Box.createHorizontalBox();
 	Box input3Box = Box.createHorizontalBox();
-	
+
 	DiscreterEditor fe = new DiscreterEditor();
 
 	public DiscreterEgg(Discreter discreter) {
@@ -43,44 +43,45 @@ public class DiscreterEgg extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		ffPopup.add(edit);
-		
-		//adds a mouseListener thats opens a pop up menu when right clicked on DiscreterEgg
-				this.addMouseListener(new MouseAdapter() {
-					public void mouseReleased(MouseEvent e) {
-						if(e.isPopupTrigger()) {
-							doPop(e);
-						}
-					
-					}
-				});
-				
-				edit.addMouseListener(new MouseAdapter() {
-					public void mousePressed(MouseEvent e) {
-						fe.show();
-					}
-				});
-		
+
+		// adds a mouseListener thats opens a pop up menu when right clicked on
+		// DiscreterEgg
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					doPop(e);
+				}
+
+			}
+		});
+
+		edit.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				fe.show();
+			}
+		});
+
 		nameLabel = new JLabel(eggName);
 		input1Label = new JLabel("Input1: ");
 		input2Label = new JLabel("Input2: ");
 		input3Label = new JLabel("Input3: ");
 
-
 		input1ValueLabel = new JLabel(discreter.listOfOutputs.get(0));
 		input2ValueLabel = new JLabel(discreter.listOfOutputs.get(1));
 		input3ValueLabel = new JLabel(discreter.listOfOutputs.get(2));
-		
+
 		nameBox.add(nameLabel);
 		input1Box.add(input1Label);
 		input1Box.add(input1ValueLabel);
 
 		input2Box.add(input2Label);
 		input2Box.add(input2ValueLabel);
-		
+
 		input3Box.add(input3Label);
 		input3Box.add(input3ValueLabel);
-		
-		labelBox.add(nameBox);;
+
+		labelBox.add(nameBox);
+		;
 		labelBox.add(input1Box);
 		labelBox.add(input2Box);
 		labelBox.add(input3Box);
@@ -92,7 +93,7 @@ public class DiscreterEgg extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
 					if (!ConfigurationUI.editMode) {
-						if(!ConfigurationUI.editMode) {
+						if (!ConfigurationUI.editMode) {
 							isMarked = !isMarked;
 							markEgg();
 						}

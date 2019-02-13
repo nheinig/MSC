@@ -9,11 +9,11 @@ public class RuleEgg extends JPanel {
 
 	JPopupMenu rePopup = new JPopupMenu();
 	JMenuItem setLast = new JMenuItem("Set as Last Rule");
-	
+
 	RuleOverview ro;
 	boolean isMarked = false;
 	String eggName;
-	
+
 	Box labelBox = Box.createVerticalBox();
 	JLabel nameLabel;
 	static JLabel stateLabel;
@@ -25,7 +25,7 @@ public class RuleEgg extends JPanel {
 	JLabel prevStateValueLabel;
 	JLabel input1ValueLabel;
 	JLabel input2ValueLabel;
-	
+
 	Box nameBox = Box.createHorizontalBox();
 	Box stateBox = Box.createHorizontalBox();
 	Box prevStateBox = Box.createHorizontalBox();
@@ -35,30 +35,29 @@ public class RuleEgg extends JPanel {
 	public RuleEgg(Rule rule) {
 
 		eggName = rule.getRuleName();
-	
+
 		ro = new RuleOverview(rule);
 
 		setSize(200, 200);
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
-		
-		//adds a mouseListener thats opens a pop up menu when right clicked on FuzzyfierEgg
-				this.addMouseListener(new MouseAdapter() {
-					public void mouseReleased(MouseEvent e) {
-						if(e.isPopupTrigger()) {
-							doPop(e);
-						}
-					
-					}
-				});
-				
 
-				setLast.addMouseListener(new MouseAdapter() {
-					public void mousePressed(MouseEvent e) {
-						InferenceControl.declareLastRule(eggName);
-					}
-				});
+		// adds a mouseListener thats opens a pop up menu when right clicked on
+		// FuzzyfierEgg
+		this.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					doPop(e);
+				}
+
+			}
+		});
+
+		setLast.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				InferenceControl.declareLastRule(eggName);
+			}
+		});
 
 		nameLabel = new JLabel(eggName);
 		stateLabel = new JLabel("State: ");
@@ -66,26 +65,25 @@ public class RuleEgg extends JPanel {
 		input1Label = new JLabel("Input1: ");
 		input2Label = new JLabel("Input2: ");
 
-
 		stateValueLabel = new JLabel(Integer.toString(rule.state));
 		prevStateValueLabel = new JLabel(Integer.toString(rule.prevState));
 		input1ValueLabel = new JLabel("null");
 		input2ValueLabel = new JLabel("null");
-		
+
 		nameBox.add(nameLabel);
-		
+
 		stateBox.add(stateLabel);
 		stateBox.add(stateValueLabel);
-		
+
 		prevStateBox.add(prevStateLabel);
 		prevStateBox.add(prevStateValueLabel);
-		
+
 		input1Box.add(input1Label);
 		input1Box.add(input1ValueLabel);
-		
+
 		input2Box.add(input2Label);
 		input2Box.add(input2ValueLabel);
-		
+
 		labelBox.add(nameBox);
 		labelBox.add(stateBox);
 		labelBox.add(prevStateBox);
@@ -94,13 +92,13 @@ public class RuleEgg extends JPanel {
 
 		add(labelBox);
 
-		addMouseListener(new MouseAdapter() {			
+		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
 					if (!ConfigurationUI.editMode) {
 						ro.showOverview();
-						if(!ConfigurationUI.editMode) {
+						if (!ConfigurationUI.editMode) {
 							isMarked = !isMarked;
 							markEgg();
 						}
@@ -112,28 +110,27 @@ public class RuleEgg extends JPanel {
 
 	}
 
-	//(un-)marks an egg when clicked on
+	// (un-)marks an egg when clicked on
 	void markEgg() {
-		if(isMarked) {
+		if (isMarked) {
 			this.setBackground(Color.GRAY);
 		} else {
 			this.setBackground(Color.WHITE);
 		}
 	}
-	
-	//method that updates the eggLabels when a new input was handled
+
+	// method that updates the eggLabels when a new input was handled
 	void updateLabels(int s, int ps, Parameter p1, Parameter p2, Parameter result) {
 		stateValueLabel.setText(Integer.toString(s));
 		prevStateValueLabel.setText(Integer.toString(ps));
-		if(p1 != null) {
+		if (p1 != null) {
 			input1ValueLabel.setText(p1.parameterType + " = " + p1.parameterValue);
 		}
-		if(p2 != null) {
+		if (p2 != null) {
 			input2ValueLabel.setText(p2.parameterType + " = " + p2.parameterValue);
 		}
 		ConfigurationUI.ui.setVisible(true);
 	}
-	
 
 	// Method to show the pop up menu
 	public void doPop(MouseEvent e) {

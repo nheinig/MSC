@@ -214,15 +214,15 @@ public class RuleCreator {
 	void crateRule() throws Exception {
 		// create an empty source file
 		File sourceFile = new File("src/" + ruleNameTF.getText() + ".java");
-		//sourceFile.deleteOnExit();
+		// sourceFile.deleteOnExit();
 
 		// generate the source code, using the source filename as the classname
 		String classname = sourceFile.getName().split("\\.")[0];
-		String sourceCode = "import java.sql.Timestamp;\r\n" + "import java.util.ArrayList;\r\n" + "import java.awt.Color;\r\n" + "\r\n"
-				+ "public class " + classname + " extends Rule {\r\n" + "\r\n" + "	Timestamp "
-				+ inputCB1.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "	Timestamp " + inputCB2.getSelectedItem().toString()
-				+ "TS = new Timestamp(System.currentTimeMillis());\r\n"
+		String sourceCode = "import java.sql.Timestamp;\r\n" + "import java.util.ArrayList;\r\n"
+				+ "import java.awt.Color;\r\n" + "\r\n" + "public class " + classname + " extends Rule {\r\n" + "\r\n"
+				+ "	Timestamp " + inputCB1.getSelectedItem().toString()
+				+ "TS = new Timestamp(System.currentTimeMillis());\r\n" + "	Timestamp "
+				+ inputCB2.getSelectedItem().toString() + "TS = new Timestamp(System.currentTimeMillis());\r\n"
 				+ "	Timestamp stateTS = new Timestamp(System.currentTimeMillis());\r\n" + "\r\n" + classname
 				+ "() {\r\n" + "		setRuleName(\"" + classname + "\");\r\n"
 				+ "		ruleResult = new Parameter(\"" + outputTF.getText() + "\", null, null, null);\r\n"
@@ -344,15 +344,10 @@ public class RuleCreator {
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 9;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + 
-				"					}\r\n" + 
-				"				} else if (state == 17) {\r\n" + 
-				"					state = 17;\r\n" + 
-				"				}\r\n" + 
-				"\r\n" + 
-				"			} "+
-				"			// " + inputCB1.getSelectedItem().toString() + " is "
-				+ InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\r\n"
+				+ "						}\r\n" + "					}\r\n"
+				+ "				} else if (state == 17) {\r\n" + "					state = 17;\r\n"
+				+ "				}\r\n" + "\r\n" + "			} " + "			// " + inputCB1.getSelectedItem().toString()
+				+ " is " + InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\r\n"
 				+ "			else if (newParameter.parameterValue.equals(\""
 				+ InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\")) {\r\n"
 				+ "if (state == 0 || state == 1 || state == 2 || state == 3) {\r\n" + "					if ("
@@ -454,14 +449,9 @@ public class RuleCreator {
 				+ "								&& listOfLastInputs.get(1).parameterValue.equals(\""
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 12;\r\n"
-				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "	}\r\n" + 
-				"					}\r\n" + 
-				"				} else if (state == 17) {\r\n" + 
-				"					state = 17;\r\n" + 
-				"				}\r\n" + 
-				"\r\n" + 
-				"			}\r\n" +
+				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n" + "	}\r\n"
+				+ "					}\r\n" + "				} else if (state == 17) {\r\n"
+				+ "					state = 17;\r\n" + "				}\r\n" + "\r\n" + "			}\r\n" +
 
 				"           // " + inputCB1.getSelectedItem().toString() + " is "
 				+ InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\r\n"
@@ -566,13 +556,8 @@ public class RuleCreator {
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 15;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "				}\r\n" + 
-				"					}\r\n" + 
-				"				} else if (state == 17) {\r\n" + 
-				"					state = 17;\r\n" + 
-				"				}\r\n" + 
-				"\r\n" + 
-				"			}\r\n" 
+				+ "				}\r\n" + "					}\r\n" + "				} else if (state == 17) {\r\n"
+				+ "					state = 17;\r\n" + "				}\r\n" + "\r\n" + "			}\r\n"
 				+ "		// what happens if the Parameter is of the type " + inputCB2.getSelectedItem().toString()
 				+ "\r\n" + "		else if (newParameter.parameterType.equals(\""
 				+ inputCB2.getSelectedItem().toString() + "\")) {\r\n" + "			"
@@ -681,14 +666,9 @@ public class RuleCreator {
 				+ InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 13;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "					}\r\n" + 
-				"				}\r\n" + 
-				"			}\r\n" + 
-				"		} else if (state == 16) {\r\n" + 
-				"			state = 16;\r\n" + 
-				"\r\n" + 
-				"		}"
-				+"			// " + inputCB2.getSelectedItem().toString() + " is "
+				+ "					}\r\n" + "				}\r\n" + "			}\r\n"
+				+ "		} else if (state == 16) {\r\n" + "			state = 16;\r\n" + "\r\n" + "		}"
+				+ "			// " + inputCB2.getSelectedItem().toString() + " is "
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\r\n"
 				+ "			else if (newParameter.parameterValue.equals(\""
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
@@ -792,14 +772,9 @@ public class RuleCreator {
 				+ InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 14;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}		}\r\n" + 
-				"				}\r\n" + 
-				"			}\r\n" + 
-				"		} else if (state == 16) {\r\n" + 
-				"			state = 16;\r\n" + 
-				"\r\n" + 
-				"		}"
-				+"			// " + inputCB2.getSelectedItem().toString() + " is "
+				+ "						}		}\r\n" + "				}\r\n" + "			}\r\n"
+				+ "		} else if (state == 16) {\r\n" + "			state = 16;\r\n" + "\r\n" + "		}"
+				+ "			// " + inputCB2.getSelectedItem().toString() + " is "
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\r\n"
 				+ "			else if (newParameter.parameterValue.equals(\""
 				+ InferenceControl.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
@@ -903,88 +878,71 @@ public class RuleCreator {
 				+ InferenceControl.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 15;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + "						}\r\n" + 
-						"					} else if (state == 16) {\r\n" + 
-						"						state = 16;\r\n" + 
-						"					}\r\n" + 
-						"				}\r\n" + 
-						"			}\r\n" 
- 				+ "		evaluateStateMachine();\r\n" + "	}\r\n" + "\r\n" + "	\r\n" + "	\r\n" +
+				+ "						}\r\n" + "						}\r\n"
+				+ "					} else if (state == 16) {\r\n" + "						state = 16;\r\n"
+				+ "					}\r\n" + "				}\r\n" + "			}\r\n"
+				+ "		evaluateStateMachine();\r\n" + "	}\r\n" + "\r\n" + "	\r\n" + "	\r\n" +
 
 				"	@Override\r\n" + "	void fillStateOutputList() {\r\n"
 				+ "ArrayList<String> tempStateList0 = new ArrayList<String>();" + "\r\n" + "tempStateList0.add(\""
 				+ StateMachinePanel.listOfStates.get(0).stateLabel.getText() + "\");" + "\r\n" + "tempStateList0.add(\""
-				+ getOutput(0)+ "\");" + "\r\n"
-				+ "ArrayList<String> tempStateList1 = new ArrayList<String>();" + "\r\n" + "tempStateList1.add(\""
-				+ StateMachinePanel.listOfStates.get(1).stateLabel.getText() + "\");\r\n" + "\r\n"+ "tempStateList1.add(\"" 
-				+ getOutput(1)+ "\");\r\n"
+				+ getOutput(0) + "\");" + "\r\n" + "ArrayList<String> tempStateList1 = new ArrayList<String>();"
+				+ "\r\n" + "tempStateList1.add(\"" + StateMachinePanel.listOfStates.get(1).stateLabel.getText()
+				+ "\");\r\n" + "\r\n" + "tempStateList1.add(\"" + getOutput(1) + "\");\r\n"
 				+ "ArrayList<String> tempStateList2 = new ArrayList<String>();" + "\r\n" + "tempStateList2.add(\""
 				+ StateMachinePanel.listOfStates.get(2).stateLabel.getText() + "\");" + "\r\n" + "tempStateList2.add(\""
-				+ getOutput(2) + "\");	" + "\r\n"
-				+ "ArrayList<String> tempStateList3 = new ArrayList<String>();" + "\r\n" + "tempStateList3.add(\""
-				+ StateMachinePanel.listOfStates.get(3).stateLabel.getText() + "\");" + "\r\n" + "tempStateList3.add(\""
-				+ getOutput(3) + "\");" + "\r\n"
+				+ getOutput(2) + "\");	" + "\r\n" + "ArrayList<String> tempStateList3 = new ArrayList<String>();"
+				+ "\r\n" + "tempStateList3.add(\"" + StateMachinePanel.listOfStates.get(3).stateLabel.getText() + "\");"
+				+ "\r\n" + "tempStateList3.add(\"" + getOutput(3) + "\");" + "\r\n"
 				+ "ArrayList<String> tempStateList4 = new ArrayList<String>();" + "\r\n" + "tempStateList4.add(\""
 				+ StateMachinePanel.listOfStates.get(4).stateLabel.getText() + "\");" + "\r\n" + "tempStateList4.add(\""
-				+ getOutput(4) + "\");	" + "\r\n"
-				+ "ArrayList<String> tempStateList5 = new ArrayList<String>();" + "\r\n" + "tempStateList5.add(\""
-				+ StateMachinePanel.listOfStates.get(5).stateLabel.getText() + "\");" + "\r\n" + "tempStateList5.add(\""
-				+ getOutput(5) + "\");	" + "\r\n"
+				+ getOutput(4) + "\");	" + "\r\n" + "ArrayList<String> tempStateList5 = new ArrayList<String>();"
+				+ "\r\n" + "tempStateList5.add(\"" + StateMachinePanel.listOfStates.get(5).stateLabel.getText() + "\");"
+				+ "\r\n" + "tempStateList5.add(\"" + getOutput(5) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList6 = new ArrayList<String>();" + "\r\n" + "tempStateList6.add(\""
 				+ StateMachinePanel.listOfStates.get(6).stateLabel.getText() + "\");" + "\r\n" + "tempStateList6.add(\""
-				+ getOutput(6) + "\");	" + "\r\n"
-				+ "ArrayList<String> tempStateList7 = new ArrayList<String>();" + "\r\n" + "tempStateList7.add(\""
-				+ StateMachinePanel.listOfStates.get(7).stateLabel.getText() + "\");" + "\r\n" + "tempStateList7.add(\""
-				+ getOutput(7) + "\");	" + "\r\n"
+				+ getOutput(6) + "\");	" + "\r\n" + "ArrayList<String> tempStateList7 = new ArrayList<String>();"
+				+ "\r\n" + "tempStateList7.add(\"" + StateMachinePanel.listOfStates.get(7).stateLabel.getText() + "\");"
+				+ "\r\n" + "tempStateList7.add(\"" + getOutput(7) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList8 = new ArrayList<String>();" + "\r\n" + "tempStateList8.add(\""
 				+ StateMachinePanel.listOfStates.get(8).stateLabel.getText() + "\");" + "\r\n" + "tempStateList8.add(\""
-				+ getOutput(8) + "\");	" + "\r\n"
-				+ "ArrayList<String> tempStateList9 = new ArrayList<String>();" + "\r\n" + "tempStateList9.add(\""
-				+ StateMachinePanel.listOfStates.get(9).stateLabel.getText() + "\");" + "\r\n" + "tempStateList9.add(\""
-				+ getOutput(9) + "\");	" + "\r\n"
+				+ getOutput(8) + "\");	" + "\r\n" + "ArrayList<String> tempStateList9 = new ArrayList<String>();"
+				+ "\r\n" + "tempStateList9.add(\"" + StateMachinePanel.listOfStates.get(9).stateLabel.getText() + "\");"
+				+ "\r\n" + "tempStateList9.add(\"" + getOutput(9) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList10 = new ArrayList<String>();" + "\r\n" + "tempStateList10.add(\""
 				+ StateMachinePanel.listOfStates.get(10).stateLabel.getText() + "\");" + "\r\n"
 				+ "tempStateList10.add(\"" + getOutput(10) + "\");	" + "\r\n"
 				+ "ArrayList<String> tempStateList11 = new ArrayList<String>();" + "\r\n" + "tempStateList11.add(\""
 				+ StateMachinePanel.listOfStates.get(11).stateLabel.getText() + "\");" + "\r\n"
-				+ "tempStateList11.add(\"" + getOutput(11)+ "\");" + "\r\n"
-				+ "\r\n" + "		\r\n" + "		stateOutputList.add(tempStateList0);\r\n"
-				+ "		stateOutputList.add(tempStateList1);\r\n" + "		stateOutputList.add(tempStateList2);\r\n"
-				+ "		stateOutputList.add(tempStateList3);\r\n" + "		stateOutputList.add(tempStateList4);\r\n"
-				+ "		stateOutputList.add(tempStateList5);\r\n" + "		stateOutputList.add(tempStateList6);\r\n"
-				+ "		stateOutputList.add(tempStateList7);\r\n" + "		stateOutputList.add(tempStateList8);\r\n"
-				+ "		stateOutputList.add(tempStateList9);\r\n" + "		stateOutputList.add(tempStateList10);\r\n"
+				+ "tempStateList11.add(\"" + getOutput(11) + "\");" + "\r\n" + "\r\n" + "		\r\n"
+				+ "		stateOutputList.add(tempStateList0);\r\n" + "		stateOutputList.add(tempStateList1);\r\n"
+				+ "		stateOutputList.add(tempStateList2);\r\n" + "		stateOutputList.add(tempStateList3);\r\n"
+				+ "		stateOutputList.add(tempStateList4);\r\n" + "		stateOutputList.add(tempStateList5);\r\n"
+				+ "		stateOutputList.add(tempStateList6);\r\n" + "		stateOutputList.add(tempStateList7);\r\n"
+				+ "		stateOutputList.add(tempStateList8);\r\n" + "		stateOutputList.add(tempStateList9);\r\n"
+				+ "		stateOutputList.add(tempStateList10);\r\n"
 				+ "		stateOutputList.add(tempStateList11);	}\r\n" + "	\r\n" +
-				
-				
+
 				"	@Override\r\n" + "	void showStateMachine() {\r\n" + "		\r\n" + "	}\r\n" + "	\r\n" +
 
-				
-				
 				"	// method to evaluate the state machine\r\n" + "	@Override\r\n"
-				+ "	void evaluateStateMachine() {\r\n" 
+				+ "	void evaluateStateMachine() {\r\n"
 				+ "		Timestamp tempTS = new Timestamp(System.currentTimeMillis()); \r\n"
-				+ "		if (state > 6){ \r\n" 
-				+ " 			ruleResult.parameterValue = " + "stateOutputList.get(state - 6).get(1)" + "; \r\n" 
+				+ "		if (state > 6){ \r\n" + " 			ruleResult.parameterValue = "
+				+ "stateOutputList.get(state - 6).get(1)" + "; \r\n"
 				+ "		} else { \r\n ruleResult.parameterValue = \"" + greenOutputTF.getText() + "\";} \r\n"
-				+ 
-				"				\r\n" 
+				+ "				\r\n"
 
 				+ "		System.out.println(\"" + outputTF.getText() + ": \" + ruleResult.parameterValue);\r\n"
 				+ "		InferenceControll.handleNewAlarm(ruleResult);\r\n" + "	}\r\n" + "\r\n" +
 
-				
-				
-				
-				
 				"	@Override\r\n" + "	void initializeRule() {\r\n" + "		this.listOfParametersNeeded.add(\""
 				+ inputCB1.getSelectedItem().toString() + "\");\r\n" + "		this.listOfParametersNeeded.add(\""
 				+ inputCB2.getSelectedItem().toString() + "\");\r\n"
 				+ "		listOfOutputs.add(ruleResult.parameterType);\r\n" + "		listOfOutputs.add(\""
 				+ greenOutputTF.getText().toString() + "\");\r\n" + "		listOfOutputs.add(\""
 				+ yellowOutputTF.getText().toString() + "\");\r\n" + "		listOfOutputs.add(\""
-				+ redOutputTF.getText().toString() + "\");\r\n" 
-				+ "		fillStateOutputList(); 	\r\n }\r\n" + "\r\n" +
+				+ redOutputTF.getText().toString() + "\");\r\n" + "		fillStateOutputList(); 	\r\n }\r\n" + "\r\n" +
 
 				"	@Override\r\n" + "	String getOutputType() {\r\n" + "		return ruleResult.parameterType;\r\n"
 				+ "	}\r\n" + "\r\n" +
@@ -1004,11 +962,11 @@ public class RuleCreator {
 		writer.close();
 
 	}
-	
+
 	String getOutput(int state) {
-		if(StateMachinePanel.listOfStates.get(state).getBackground() == Color.RED) {
+		if (StateMachinePanel.listOfStates.get(state).getBackground() == Color.RED) {
 			return redOutputTF.getText().toString();
-		} else if(StateMachinePanel.listOfStates.get(state).getBackground() == Color.YELLOW) {
+		} else if (StateMachinePanel.listOfStates.get(state).getBackground() == Color.YELLOW) {
 			return yellowOutputTF.getText().toString();
 		} else {
 			return greenOutputTF.getText().toString();

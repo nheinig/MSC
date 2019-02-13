@@ -62,7 +62,8 @@ public class Discreter {
 	}
 	
 	
-	//method that handles new Inputs and forwards them to the right parameter discreter based on the inputType
+	// method that handles new Inputs and forwards them to the right parameter
+	// discreter based on the inputType
 	void handleInput(Input in) {
 		switch (in.inputType) {
 		case "persons":

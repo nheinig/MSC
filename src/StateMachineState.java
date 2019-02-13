@@ -28,7 +28,7 @@ public class StateMachineState extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				if (contains(e.getX(), e.getY())) {
 					if (StateMachineEditorMenu.changeOutputMode) {
-						changeOutputColor();										
+						changeOutputColor();
 					}
 				}
 			}
@@ -36,7 +36,7 @@ public class StateMachineState extends JPanel {
 	}
 
 	void changeOutputColor() {
-		if(getBackground() == Color.GREEN) {
+		if (getBackground() == Color.GREEN) {
 			setBackground(Color.YELLOW);
 		} else if (getBackground() == Color.YELLOW) {
 			setBackground(Color.RED);
@@ -44,7 +44,7 @@ public class StateMachineState extends JPanel {
 			setBackground(Color.GREEN);
 		}
 	}
-	
+
 	// getter for the StateMachineState
 	StateMachineState getStateMachineState() {
 		return this;

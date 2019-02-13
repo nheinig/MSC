@@ -22,8 +22,7 @@ public class StateMachineEditor {
 		createSMEditor();
 	}
 
-	
-	//method that crates/fills the smEditor
+	// method that crates and fills the smEditor
 	void createSMEditor() {
 
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -34,12 +33,12 @@ public class StateMachineEditor {
 		smEditor.add(mainPanel);
 	}
 
-	//method that sets the visibility of the smEditor to true
+	// method that sets the visibility of the smEditor to true
 	static void show() {
 		smEditor.setVisible(true);
 	}
 
-	//method that sets the visibility of the smEditor to false
+	// method that sets the visibility of the smEditor to false
 	static void hide() {
 		smEditor.setVisible(false);
 	}

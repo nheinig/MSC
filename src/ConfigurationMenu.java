@@ -8,46 +8,44 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class ConfigurationMenu extends JPanel {
-	
+
 	Box menuBox = Box.createVerticalBox();
-	
+
 	static Box overviewBox = Box.createVerticalBox();
-	Box menuButtonBox = Box.createVerticalBox();	
-	
+	Box menuButtonBox = Box.createVerticalBox();
+
 	JButton editButton = new JButton("Toggle Editmode");
 
+	public ConfigurationMenu() {
+		setPreferredSize(new Dimension(300, 600));
+		createMenu();
+		add(menuBox);
+	}
 
-    public ConfigurationMenu()
-    {
-    	setPreferredSize(new Dimension(300,600));
-        createMenu();
-        add(menuBox);
-    }
-    
-	//creates the Menu (fills the menuBox)
+	// creates the Menu (fills the menuBox)
 	public void createMenu() {
-		menuButtonBox.add(editButton);	
+		menuButtonBox.add(editButton);
 		editButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ConfigurationUI.editMode = !ConfigurationUI.editMode;
-				if(ConfigurationUI.editMode) {
+				if (ConfigurationUI.editMode) {
 					editButton.setBackground(Color.green);
 				} else {
 					editButton.setBackground(null);
 				}
 			}
 		});
-		
-		menuBox.setSize(200,800);
-		
+
+		menuBox.setSize(200, 800);
+
 		menuBox.add(overviewBox);
-		menuBox.add(menuButtonBox);	
+		menuBox.add(menuButtonBox);
 
-        overviewBox.setSize(250, 600);
-        menuButtonBox.setSize(250,200);
+		overviewBox.setSize(250, 600);
+		menuButtonBox.setSize(250, 200);
 
-        overviewBox.setAlignmentX(LEFT_ALIGNMENT);
-        menuButtonBox.setAlignmentX(LEFT_ALIGNMENT);
+		overviewBox.setAlignmentX(LEFT_ALIGNMENT);
+		menuButtonBox.setAlignmentX(LEFT_ALIGNMENT);
 	}
 }

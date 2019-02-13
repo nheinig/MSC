@@ -8,7 +8,7 @@ public class PersonsSpO2Rule extends Rule {
 	Timestamp spo2TS = new Timestamp(System.currentTimeMillis());
 	Timestamp stateTS = new Timestamp(System.currentTimeMillis());
 
-PersonsSpO2Rule() {
+	PersonsSpO2Rule() {
 		setRuleName("PersonsSpO2Rule");
 		ruleResult = new Parameter("psResult", null, null, null);
 		initializeRule();
@@ -22,13 +22,13 @@ PersonsSpO2Rule() {
 	@Override
 	void updateState(Parameter newParameter) {
 		prevState = state;
- 	ruleResult.timestamp = newParameter.timestamp; 
+		ruleResult.timestamp = newParameter.timestamp;
 		// what happens when the Parameter is of the type persons
 		if (newParameter.parameterType.equals("persons")) {
-       personsTS = newParameter.timestamp;
-           // persons is none
+			personsTS = newParameter.timestamp;
+			// persons is none
 			if (newParameter.parameterValue.equals("none")) {
-if (state == 0 || state == 1 || state == 2 || state == 3) {
+				if (state == 0 || state == 1 || state == 2 || state == 3) {
 					if (personsTS.getTime() - spo2TS.getTime() < 1000) {
 						state = 1;
 					} else {
@@ -145,10 +145,11 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
 					} else if (state == 17) {
 						state = 17;
 					}
-				}			}
+				}
+			}
 			// persons is one
 			else if (newParameter.parameterValue.equals("one")) {
-if (state == 0 || state == 1 || state == 2 || state == 3) {
+				if (state == 0 || state == 1 || state == 2 || state == 3) {
 					if (personsTS.getTime() - spo2TS.getTime() < 1000) {
 						state = 2;
 					} else {
@@ -261,14 +262,15 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
 								&& listOfLastInputs.get(1).parameterValue.equals("normal")) {
 							state = 12;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} 
+						}
 					} else if (state == 17) {
 						state = 17;
 					}
-				}			}
-           // persons is many
-           else if (newParameter.parameterValue.equals("many")) {
-if (state == 0 || state == 1 || state == 2 || state == 3) {
+				}
+			}
+			// persons is many
+			else if (newParameter.parameterValue.equals("many")) {
+				if (state == 0 || state == 1 || state == 2 || state == 3) {
 					if (personsTS.getTime() - spo2TS.getTime() < 1000) {
 						state = 3;
 					} else {
@@ -384,418 +386,419 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
 					} else if (state == 17) {
 						state = 17;
 					}
-				}           }
-		// what happens when the Parameter is of the type spo2
-		else if (newParameter.parameterType.equals("spo2")) {
-			spo2TS = newParameter.timestamp;
-			// spo2 is critical
-			if (newParameter.parameterValue.equals("critical")) {
-if (state == 0 || state == 4 || state == 5 || state == 6) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 4;
-					} else {
-						state = 16;
-					}
-				} else if (state == 1) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 7;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 2) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 10;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 3) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 13;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 7) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 7;
-					} else {
-						state = 16;
-					}
-				} else if (state == 8) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 7;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 9) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 7;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 10) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 10;
-					} else {
-						state = 16;
-					}
-				} else if (state == 11) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 10;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 12) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 10;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 13) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 13;
-					} else {
-						state = 16;
-					}
-				} else if (state == 14) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 13;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 15) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 13;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 17) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("none")) {
+				}
+			}
+			// what happens when the Parameter is of the type spo2
+			else if (newParameter.parameterType.equals("spo2")) {
+				spo2TS = newParameter.timestamp;
+				// spo2 is critical
+				if (newParameter.parameterValue.equals("critical")) {
+					if (state == 0 || state == 4 || state == 5 || state == 6) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 4;
+						} else {
+							state = 16;
+						}
+					} else if (state == 1) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
 							state = 7;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("one")) {
+						} else {
+							state = 16;
+						}
+					} else if (state == 2) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
 							state = 10;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("many")) {
+						} else {
+							state = 16;
+						}
+					} else if (state == 3) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
 							state = 13;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("none")) {
+						} else {
+							state = 16;
+						}
+					} else if (state == 7) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 7;
+						} else {
+							state = 16;
+						}
+					} else if (state == 8) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
 							state = 7;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("one")) {
+						} else {
+							state = 16;
+						}
+					} else if (state == 9) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 7;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 10) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 10;
+						} else {
+							state = 16;
+						}
+					} else if (state == 11) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
 							state = 10;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("many")) {
+						} else {
+							state = 16;
+						}
+					} else if (state == 12) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 10;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 13) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 13;
+						} else {
+							state = 16;
+						}
+					} else if (state == 14) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
 							state = 13;
 							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
 						}
-					} else if (state == 16) {
-						state = 16;
-					}
-				} 			}
-			// spo2 is low
-			else if (newParameter.parameterValue.equals("low")) {
-if (state == 0 || state == 4 || state == 5 || state == 6) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 5;
-					} else {
-						state = 16;
-					}
-				} else if (state == 1) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 8;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 2) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 11;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 3) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 14;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 7) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 8;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 8) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 8;
-					} else {
-						state = 16;
-					}
-				} else if (state == 9) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 8;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 10) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 11;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 11) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 11;
-					} else {
-						state = 16;
-					}
-				} else if (state == 12) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 11;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 13) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 14;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 14) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 14;
-					} else {
-						state = 16;
-					}
-				} else if (state == 15) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 14;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 17) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("none")) {
-							state = 8;
+					} else if (state == 15) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 13;
 							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("one")) {
-							state = 11;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("many")) {
-							state = 14;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("none")) {
-							state = 8;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("one")) {
-							state = 11;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("many")) {
-							state = 14;
-							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
 						}
-					} else if (state == 16) {
-						state = 16;
-					}
-				}			}
-			// spo2 is normal
-			else if (newParameter.parameterValue.equals("normal")) {
-if (state == 0 || state == 4 || state == 5 || state == 6) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 6;
-					} else {
-						state = 16;
-					}
-				} else if (state == 1) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 9;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 2) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 12;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 3) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 15;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 7) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 9;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 8) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 9;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 9) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 9;
-					} else {
-						state = 16;
-					}
-				} else if (state == 10) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 12;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 11) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 12;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 12) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 12;
-					} else {
-						state = 16;
-					}
-				} else if (state == 13) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 15;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 14) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 15;
-						stateTS = new Timestamp(System.currentTimeMillis());
-					} else {
-						state = 16;
-					}
-				} else if (state == 15) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						state = 15;
-					} else {
-						state = 16;
-					}
-				} else if (state == 17) {
-					if (spo2TS.getTime() - personsTS.getTime() < 1000) {
-						if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("none")) {
-							state = 9;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("one")) {
-							state = 12;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(0).parameterType.equals("persons")
-								&& listOfLastInputs.get(0).parameterValue.equals("many")) {
-							state = 15;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("none")) {
-							state = 9;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("one")) {
-							state = 12;
-							stateTS = new Timestamp(System.currentTimeMillis());
-						} else if (listOfLastInputs.get(1).parameterType.equals("persons")
-								&& listOfLastInputs.get(1).parameterValue.equals("many")) {
-							state = 15;
-							stateTS = new Timestamp(System.currentTimeMillis());
+					} else if (state == 17) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("none")) {
+								state = 7;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("one")) {
+								state = 10;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("many")) {
+								state = 13;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("none")) {
+								state = 7;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("one")) {
+								state = 10;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("many")) {
+								state = 13;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							}
+						} else if (state == 16) {
+							state = 16;
 						}
-					} else if (state == 16) {
-						state = 16;
 					}
 				}
-			}			}
+				// spo2 is low
+				else if (newParameter.parameterValue.equals("low")) {
+					if (state == 0 || state == 4 || state == 5 || state == 6) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 5;
+						} else {
+							state = 16;
+						}
+					} else if (state == 1) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 8;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 2) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 11;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 3) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 14;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 7) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 8;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 8) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 8;
+						} else {
+							state = 16;
+						}
+					} else if (state == 9) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 8;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 10) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 11;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 11) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 11;
+						} else {
+							state = 16;
+						}
+					} else if (state == 12) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 11;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 13) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 14;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 14) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 14;
+						} else {
+							state = 16;
+						}
+					} else if (state == 15) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 14;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 17) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("none")) {
+								state = 8;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("one")) {
+								state = 11;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("many")) {
+								state = 14;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("none")) {
+								state = 8;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("one")) {
+								state = 11;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("many")) {
+								state = 14;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							}
+						} else if (state == 16) {
+							state = 16;
+						}
+					}
+				}
+				// spo2 is normal
+				else if (newParameter.parameterValue.equals("normal")) {
+					if (state == 0 || state == 4 || state == 5 || state == 6) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 6;
+						} else {
+							state = 16;
+						}
+					} else if (state == 1) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 9;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 2) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 12;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 3) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 15;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 7) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 9;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 8) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 9;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 9) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 9;
+						} else {
+							state = 16;
+						}
+					} else if (state == 10) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 12;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 11) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 12;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 12) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 12;
+						} else {
+							state = 16;
+						}
+					} else if (state == 13) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 15;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 14) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 15;
+							stateTS = new Timestamp(System.currentTimeMillis());
+						} else {
+							state = 16;
+						}
+					} else if (state == 15) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							state = 15;
+						} else {
+							state = 16;
+						}
+					} else if (state == 17) {
+						if (spo2TS.getTime() - personsTS.getTime() < 1000) {
+							if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("none")) {
+								state = 9;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("one")) {
+								state = 12;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(0).parameterType.equals("persons")
+									&& listOfLastInputs.get(0).parameterValue.equals("many")) {
+								state = 15;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("none")) {
+								state = 9;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("one")) {
+								state = 12;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							} else if (listOfLastInputs.get(1).parameterType.equals("persons")
+									&& listOfLastInputs.get(1).parameterValue.equals("many")) {
+								state = 15;
+								stateTS = new Timestamp(System.currentTimeMillis());
+							}
+						} else if (state == 16) {
+							state = 16;
+						}
+					}
+				}
+			}
 		}
 		evaluateStateMachine();
 	}
 
-	
-	
 	@Override
 	void fillStateOutputList() {
-ArrayList<String> tempStateList0 = new ArrayList<String>();
-tempStateList0.add("init");
-tempStateList0.add("none");
-ArrayList<String> tempStateList1 = new ArrayList<String>();
-tempStateList1.add("persons == none && spo2 == critical");
+		ArrayList<String> tempStateList0 = new ArrayList<String>();
+		tempStateList0.add("init");
+		tempStateList0.add("none");
+		ArrayList<String> tempStateList1 = new ArrayList<String>();
+		tempStateList1.add("persons == none && spo2 == critical");
 
-tempStateList1.add("hnr");
-ArrayList<String> tempStateList2 = new ArrayList<String>();
-tempStateList2.add("persons == none && spo2 == low");
-tempStateList2.add("none");	
-ArrayList<String> tempStateList3 = new ArrayList<String>();
-tempStateList3.add("persons == none && spo2 == normal");
-tempStateList3.add("none");
-ArrayList<String> tempStateList4 = new ArrayList<String>();
-tempStateList4.add("persons == one && spo2 == critical");
-tempStateList4.add("hnr");	
-ArrayList<String> tempStateList5 = new ArrayList<String>();
-tempStateList5.add("persons == one && spo2 == low");
-tempStateList5.add("none");	
-ArrayList<String> tempStateList6 = new ArrayList<String>();
-tempStateList6.add("persons == one && spo2 == normal");
-tempStateList6.add("none");	
-ArrayList<String> tempStateList7 = new ArrayList<String>();
-tempStateList7.add("persons == many && spo2 == critical");
-tempStateList7.add("local");	
-ArrayList<String> tempStateList8 = new ArrayList<String>();
-tempStateList8.add("persons == many && spo2 == low");
-tempStateList8.add("local");	
-ArrayList<String> tempStateList9 = new ArrayList<String>();
-tempStateList9.add("persons == many && spo2 == normal");
-tempStateList9.add("none");	
-ArrayList<String> tempStateList10 = new ArrayList<String>();
-tempStateList10.add("personsMissing");
-tempStateList10.add("local");	
-ArrayList<String> tempStateList11 = new ArrayList<String>();
-tempStateList11.add("spo2Missing");
-tempStateList11.add("local");
+		tempStateList1.add("hnr");
+		ArrayList<String> tempStateList2 = new ArrayList<String>();
+		tempStateList2.add("persons == none && spo2 == low");
+		tempStateList2.add("none");
+		ArrayList<String> tempStateList3 = new ArrayList<String>();
+		tempStateList3.add("persons == none && spo2 == normal");
+		tempStateList3.add("none");
+		ArrayList<String> tempStateList4 = new ArrayList<String>();
+		tempStateList4.add("persons == one && spo2 == critical");
+		tempStateList4.add("hnr");
+		ArrayList<String> tempStateList5 = new ArrayList<String>();
+		tempStateList5.add("persons == one && spo2 == low");
+		tempStateList5.add("none");
+		ArrayList<String> tempStateList6 = new ArrayList<String>();
+		tempStateList6.add("persons == one && spo2 == normal");
+		tempStateList6.add("none");
+		ArrayList<String> tempStateList7 = new ArrayList<String>();
+		tempStateList7.add("persons == many && spo2 == critical");
+		tempStateList7.add("local");
+		ArrayList<String> tempStateList8 = new ArrayList<String>();
+		tempStateList8.add("persons == many && spo2 == low");
+		tempStateList8.add("local");
+		ArrayList<String> tempStateList9 = new ArrayList<String>();
+		tempStateList9.add("persons == many && spo2 == normal");
+		tempStateList9.add("none");
+		ArrayList<String> tempStateList10 = new ArrayList<String>();
+		tempStateList10.add("personsMissing");
+		tempStateList10.add("local");
+		ArrayList<String> tempStateList11 = new ArrayList<String>();
+		tempStateList11.add("spo2Missing");
+		tempStateList11.add("local");
 
-		
 		stateOutputList.add(tempStateList0);
 		stateOutputList.add(tempStateList1);
 		stateOutputList.add(tempStateList2);
@@ -807,26 +810,28 @@ tempStateList11.add("local");
 		stateOutputList.add(tempStateList8);
 		stateOutputList.add(tempStateList9);
 		stateOutputList.add(tempStateList10);
-		stateOutputList.add(tempStateList11);	}
-	
+		stateOutputList.add(tempStateList11);
+	}
+
 	@Override
 	void showStateMachine() {
-		
+
 	}
-	
+
 	// method to evaluate the state machine
 	@Override
 	void evaluateStateMachine() {
-		Timestamp tempTS = new Timestamp(System.currentTimeMillis()); 
-		if (state > 6){
-			if(state == 13|| state == 14 || state == 16 || state == 17  ){ 
- 			ruleResult.parameterValue = "local"; 
-			} else if (state == 7 || state == 10 ){ 
-				ruleResult.parameterValue = "hnr"; 
+		Timestamp tempTS = new Timestamp(System.currentTimeMillis());
+		if (state > 6) {
+			if (state == 13 || state == 14 || state == 16 || state == 17) {
+				ruleResult.parameterValue = "local";
+			} else if (state == 7 || state == 10) {
+				ruleResult.parameterValue = "hnr";
 			}
-		} else { 
- ruleResult.parameterValue = "none";} 
-				
+		} else {
+			ruleResult.parameterValue = "none";
+		}
+
 		System.out.println("psResult: " + ruleResult.parameterValue);
 		InferenceControl.handleNewAlarm(ruleResult);
 	}

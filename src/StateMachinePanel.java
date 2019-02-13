@@ -24,8 +24,7 @@ public class StateMachinePanel {
 
 	}
 
-
-	// method that adds a new State to the smPanel 
+	// method that adds a new State to the smPanel
 	static void addNewState(String stateLabel, int x, int y) {
 		StateMachineState state = new StateMachineState(stateLabel);
 		smPanel.add(state);
@@ -33,14 +32,14 @@ public class StateMachinePanel {
 		StateMachineMovement sm = new StateMachineMovement(state);
 		listOfStates.add(state);
 	}
-	
+
 	// creates a Standard StateMachine
 	static void createStandardSM(String parameterType1, String parameterType2) {
-		createStandardSMStates(parameterType1, parameterType2);	
+		createStandardSMStates(parameterType1, parameterType2);
 		StateMachineEditor.show();
 	}
 
-	//method that creates the States for the StandardSM based on the parameterTypes
+	// method that creates the States for the StandardSM based on the parameterTypes
 	static void createStandardSMStates(String parameterType1, String parameterType2) {
 		addNewState("init", 20, smPanel.getHeight() / 2);
 
@@ -86,9 +85,9 @@ public class StateMachinePanel {
 		String s8 = parameterType1 + " == " + p1v3 + " && " + parameterType2 + " == " + p2v2;
 		String s9 = parameterType1 + " == " + p1v3 + " && " + parameterType2 + " == " + p2v3;
 
-		addNewState(s1, smPanel.getWidth() / 4 + 20 , 20);
+		addNewState(s1, smPanel.getWidth() / 4 + 20, 20);
 		addNewState(s2, smPanel.getWidth() / 4 + 20, smPanel.getHeight() / 2);
-		addNewState(s3, smPanel.getWidth() / 4 + 20 , smPanel.getHeight() - 50);
+		addNewState(s3, smPanel.getWidth() / 4 + 20, smPanel.getHeight() - 50);
 		addNewState(s4, smPanel.getWidth() / 2 + 20, 20);
 		addNewState(s5, smPanel.getWidth() / 2 + 20, smPanel.getHeight() / 2);
 		addNewState(s6, smPanel.getWidth() / 2 + 20, smPanel.getHeight() - 50);
@@ -98,5 +97,5 @@ public class StateMachinePanel {
 		addNewState(p1Missing, 20, 20);
 		addNewState(p2Missing, 20, smPanel.getHeight() - 50);
 	}
-	
+
 }
