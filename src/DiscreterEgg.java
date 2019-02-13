@@ -12,10 +12,10 @@ import javax.swing.JPopupMenu;
 public class DiscreterEgg extends JPanel {
 
 	JPopupMenu ffPopup = new JPopupMenu();
-	JMenuItem edit = new JMenuItem("Edit Fuzzyfier");
+	JMenuItem edit = new JMenuItem("Edit Discreter");
 
 	boolean isMarked = false;
-	String eggName = "Fuzzyfier";
+	String eggName = "Discreter";
 
 	Box labelBox = Box.createVerticalBox();
 	JLabel nameLabel;
@@ -36,7 +36,7 @@ public class DiscreterEgg extends JPanel {
 	
 	DiscreterEditor fe = new DiscreterEditor();
 
-	public DiscreterEgg(Discreter fuzzyfier) {
+	public DiscreterEgg(Discreter discreter) {
 
 		setSize(200, 200);
 		setBackground(Color.WHITE);
@@ -44,7 +44,7 @@ public class DiscreterEgg extends JPanel {
 
 		ffPopup.add(edit);
 		
-		//adds a mouseListener thats opens a pop up menu when right clicked on FuzzyfierEgg
+		//adds a mouseListener thats opens a pop up menu when right clicked on DiscreterEgg
 				this.addMouseListener(new MouseAdapter() {
 					public void mouseReleased(MouseEvent e) {
 						if(e.isPopupTrigger()) {
@@ -66,9 +66,9 @@ public class DiscreterEgg extends JPanel {
 		input3Label = new JLabel("Input3: ");
 
 
-		input1ValueLabel = new JLabel(fuzzyfier.listOfOutputs.get(0));
-		input2ValueLabel = new JLabel(fuzzyfier.listOfOutputs.get(1));
-		input3ValueLabel = new JLabel(fuzzyfier.listOfOutputs.get(2));
+		input1ValueLabel = new JLabel(discreter.listOfOutputs.get(0));
+		input2ValueLabel = new JLabel(discreter.listOfOutputs.get(1));
+		input3ValueLabel = new JLabel(discreter.listOfOutputs.get(2));
 		
 		nameBox.add(nameLabel);
 		input1Box.add(input1Label);
