@@ -14,8 +14,6 @@ public class StateMachinePanel {
 	static boolean isSource = true;
 	static StateMachineState source;
 	static StateMachineState destination;
-	static ArrayList<Arrow> arrowList = new ArrayList<>();
-	static ArrayList<StateMachineTransition> listOfTransitions = new ArrayList<StateMachineTransition>();
 	static ArrayList<StateMachineState> listOfStates = new ArrayList<StateMachineState>();
 
 	StateMachinePanel() {
