@@ -64,7 +64,7 @@ public class InferenceControll {
 		ruleList.add(pspo2);
 
 		//register Rule for persons and tube value at IC
-		PersonVentilationTubeRule pvt = new PersonVentilationTubeRule();
+		PersonsVentilationTubeRule pvt = new PersonsVentilationTubeRule();
 		ruleList.add(pvt);
 
 		

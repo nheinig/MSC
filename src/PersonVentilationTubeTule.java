@@ -2,14 +2,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.awt.Color;
 
-public class PersonVentilationTubeRule extends Rule {
+public class PersonVentilationTubeTule extends Rule {
 
 	Timestamp personsTS = new Timestamp(System.currentTimeMillis());
 	Timestamp tubeTS = new Timestamp(System.currentTimeMillis());
 	Timestamp stateTS = new Timestamp(System.currentTimeMillis());
 
-PersonVentilationTubeRule() {
-		setRuleName("PersonVentilationTubeRule");
+PersonVentilationTubeTule() {
+		setRuleName("PersonVentilationTubeTule");
 		ruleResult = new Parameter("pvResult", null, null, null);
 		initializeRule();
 		InferenceControll.addAvailableParameter(getOutputType());
@@ -23,7 +23,7 @@ PersonVentilationTubeRule() {
 	void updateState(Parameter newParameter) {
 		prevState = state;
  	ruleResult.timestamp = newParameter.timestamp; 
-		// what happens when the Parameter is of the type persons
+		// what happens if the Parameter is of the type persons
 		if (newParameter.parameterType.equals("persons")) {
        personsTS = newParameter.timestamp;
            // persons is none
@@ -385,7 +385,8 @@ if (state == 0 || state == 1 || state == 2 || state == 3) {
 						state = 17;
 					}
 				}           }
-		// what happens when the Parameter is of the type tube
+       }
+		// what happens if the Parameter is of the type tube
 		else if (newParameter.parameterType.equals("tube")) {
 			tubeTS = newParameter.timestamp;
 			// tube is disconnected
@@ -749,7 +750,6 @@ if (state == 0 || state == 4 || state == 5 || state == 6) {
 					}
 				}
 			}			}
-		}
 		evaluateStateMachine();
 	}
 
@@ -763,10 +763,10 @@ tempStateList0.add("normal");
 ArrayList<String> tempStateList1 = new ArrayList<String>();
 tempStateList1.add("persons == none && tube == disconnected");
 
-tempStateList1.add("critical");
+tempStateList1.add("normal");
 ArrayList<String> tempStateList2 = new ArrayList<String>();
 tempStateList2.add("persons == none && tube == unknown");
-tempStateList2.add("bad");	
+tempStateList2.add("normal");	
 ArrayList<String> tempStateList3 = new ArrayList<String>();
 tempStateList3.add("persons == none && tube == connected");
 tempStateList3.add("normal");
@@ -775,7 +775,7 @@ tempStateList4.add("persons == one && tube == disconnected");
 tempStateList4.add("critical");	
 ArrayList<String> tempStateList5 = new ArrayList<String>();
 tempStateList5.add("persons == one && tube == unknown");
-tempStateList5.add("bad");	
+tempStateList5.add("normal");	
 ArrayList<String> tempStateList6 = new ArrayList<String>();
 tempStateList6.add("persons == one && tube == connected");
 tempStateList6.add("normal");	
@@ -790,7 +790,7 @@ tempStateList9.add("persons == many && tube == connected");
 tempStateList9.add("normal");	
 ArrayList<String> tempStateList10 = new ArrayList<String>();
 tempStateList10.add("personsMissing");
-tempStateList10.add("critical");	
+tempStateList10.add("bad");	
 ArrayList<String> tempStateList11 = new ArrayList<String>();
 tempStateList11.add("tubeMissing");
 tempStateList11.add("bad");
@@ -835,7 +835,8 @@ tempStateList11.add("bad");
 		listOfOutputs.add("normal");
 		listOfOutputs.add("bad");
 		listOfOutputs.add("critical");
-	}
+		fillStateOutputList(); 	
+ }
 
 	@Override
 	String getOutputType() {

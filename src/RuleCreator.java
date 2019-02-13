@@ -234,7 +234,7 @@ public class RuleCreator {
 				"	// Method to update the state based on newParameter\r\n" + "	@Override\r\n"
 				+ "	void updateState(Parameter newParameter) {\r\n" + "		prevState = state;\r\n"
 				+ " 	ruleResult.timestamp = newParameter.timestamp; \r\n"
-				+ "		// what happens when the Parameter is of the type " + inputCB1.getSelectedItem().toString()
+				+ "		// what happens if the Parameter is of the type " + inputCB1.getSelectedItem().toString()
 				+ "\r\n" + "		if (newParameter.parameterType.equals(\"" + inputCB1.getSelectedItem().toString()
 				+ "\")) {\r\n" + "       " + inputCB1.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n"
 				+
@@ -344,11 +344,13 @@ public class RuleCreator {
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 9;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + "					} else if (state == 17) {\r\n"
-				+ "						state = 17;\r\n" + "					}\r\n" + "				}" +
-
-				"			}\r\n" +
-
+				+ "						}\r\n" + 
+				"					}\r\n" + 
+				"				} else if (state == 17) {\r\n" + 
+				"					state = 17;\r\n" + 
+				"				}\r\n" + 
+				"\r\n" + 
+				"			} "+
 				"			// " + inputCB1.getSelectedItem().toString() + " is "
 				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 2) + "\r\n"
 				+ "			else if (newParameter.parameterValue.equals(\""
@@ -453,9 +455,13 @@ public class RuleCreator {
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 12;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						} \r\n" + "					} else if (state == 17) {\r\n"
-				+ "						state = 17;\r\n" + "					}\r\n" + "				}"
-				+ "			}\r\n" +
+				+ "	}\r\n" + 
+				"					}\r\n" + 
+				"				} else if (state == 17) {\r\n" + 
+				"					state = 17;\r\n" + 
+				"				}\r\n" + 
+				"\r\n" + 
+				"			}\r\n" +
 
 				"           // " + inputCB1.getSelectedItem().toString() + " is "
 				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\r\n"
@@ -560,11 +566,14 @@ public class RuleCreator {
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 15;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + "					} else if (state == 17) {\r\n"
-				+ "						state = 17;\r\n" + "					}\r\n" + "				}"
-				+ "           }\r\n" +
-
-				"		// what happens when the Parameter is of the type " + inputCB2.getSelectedItem().toString()
+				+ "				}\r\n" + 
+				"					}\r\n" + 
+				"				} else if (state == 17) {\r\n" + 
+				"					state = 17;\r\n" + 
+				"				}\r\n" + 
+				"\r\n" + 
+				"			}\r\n" 
+				+ "		// what happens if the Parameter is of the type " + inputCB2.getSelectedItem().toString()
 				+ "\r\n" + "		else if (newParameter.parameterType.equals(\""
 				+ inputCB2.getSelectedItem().toString() + "\")) {\r\n" + "			"
 				+ inputCB2.getSelectedItem().toString() + "TS = newParameter.timestamp;\r\n" + "			// "
@@ -672,11 +681,14 @@ public class RuleCreator {
 				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 13;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + "					} else if (state == 16) {\r\n"
-				+ "						state = 16;\r\n" + "					}\r\n" + "				} "
-				+ "			}\r\n" +
-
-				"			// " + inputCB2.getSelectedItem().toString() + " is "
+				+ "					}\r\n" + 
+				"				}\r\n" + 
+				"			}\r\n" + 
+				"		} else if (state == 16) {\r\n" + 
+				"			state = 16;\r\n" + 
+				"\r\n" + 
+				"		}"
+				+"			// " + inputCB2.getSelectedItem().toString() + " is "
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\r\n"
 				+ "			else if (newParameter.parameterValue.equals(\""
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 2) + "\")) {\r\n"
@@ -780,11 +792,14 @@ public class RuleCreator {
 				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 14;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + "					} else if (state == 16) {\r\n"
-				+ "						state = 16;\r\n" + "					}\r\n" + "				}"
-				+ "			}\r\n" +
-
-				"			// " + inputCB2.getSelectedItem().toString() + " is "
+				+ "						}		}\r\n" + 
+				"				}\r\n" + 
+				"			}\r\n" + 
+				"		} else if (state == 16) {\r\n" + 
+				"			state = 16;\r\n" + 
+				"\r\n" + 
+				"		}"
+				+"			// " + inputCB2.getSelectedItem().toString() + " is "
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\r\n"
 				+ "			else if (newParameter.parameterValue.equals(\""
 				+ InferenceControll.getParameterValue(inputCB2.getSelectedItem().toString(), 3) + "\")) {\r\n"
@@ -888,11 +903,13 @@ public class RuleCreator {
 				+ InferenceControll.getParameterValue(inputCB1.getSelectedItem().toString(), 3) + "\")) {\r\n"
 				+ "							state = 15;\r\n"
 				+ "							stateTS = new Timestamp(System.currentTimeMillis());\r\n"
-				+ "						}\r\n" + "					} else if (state == 16) {\r\n"
-				+ "						state = 16;\r\n" + "					}\r\n" + "				}\r\n"
-				+ "			}" + "			}\r\n" +
-
-				"		}\r\n" + "		evaluateStateMachine();\r\n" + "	}\r\n" + "\r\n" + "	\r\n" + "	\r\n" +
+				+ "						}\r\n" + "						}\r\n" + 
+						"					} else if (state == 16) {\r\n" + 
+						"						state = 16;\r\n" + 
+						"					}\r\n" + 
+						"				}\r\n" + 
+						"			}\r\n" 
+ 				+ "		evaluateStateMachine();\r\n" + "	}\r\n" + "\r\n" + "	\r\n" + "	\r\n" +
 
 				"	@Override\r\n" + "	void fillStateOutputList() {\r\n"
 				+ "ArrayList<String> tempStateList0 = new ArrayList<String>();" + "\r\n" + "tempStateList0.add(\""
@@ -966,7 +983,8 @@ public class RuleCreator {
 				+ "		listOfOutputs.add(ruleResult.parameterType);\r\n" + "		listOfOutputs.add(\""
 				+ greenOutputTF.getText().toString() + "\");\r\n" + "		listOfOutputs.add(\""
 				+ yellowOutputTF.getText().toString() + "\");\r\n" + "		listOfOutputs.add(\""
-				+ redOutputTF.getText().toString() + "\");\r\n" + "	}\r\n" + "\r\n" +
+				+ redOutputTF.getText().toString() + "\");\r\n" 
+				+ "		fillStateOutputList(); 	\r\n }\r\n" + "\r\n" +
 
 				"	@Override\r\n" + "	String getOutputType() {\r\n" + "		return ruleResult.parameterType;\r\n"
 				+ "	}\r\n" + "\r\n" +
