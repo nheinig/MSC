@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class DiscreterEditor {
-	JFrame fe = new JFrame("FuzzyfierEditor");
+	JFrame fe = new JFrame("DiscreterEditor");
 	
 	Box mainBox = Box.createVerticalBox();
 	Box personsBox = Box.createHorizontalBox();

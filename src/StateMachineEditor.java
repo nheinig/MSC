@@ -11,8 +11,6 @@ public class StateMachineEditor {
 
 	static JFrame smEditor = new JFrame("StateMachineEditor");
 
-	ArrayList<State> listOfStates = new ArrayList<State>();
-
 	StateMachineEditorMenu menuPanel = new StateMachineEditorMenu();
 
 	StateMachinePanel stateMachinePanel = new StateMachinePanel();

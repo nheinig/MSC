@@ -58,7 +58,6 @@ public class Discreter {
 		for(int i = 0; i < listOfOutputs.size(); i++) {
 			InferenceControll.addAvailableParameter(listOfOutputs.get(i));
 			InferenceControll.addAvailableParameterValues(listOfOutputValues.get(i));
-			System.out.println("HERERERERER   " + listOfOutputValues.get(i));
 		}
 	}
 	

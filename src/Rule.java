@@ -14,7 +14,6 @@ public class Rule {
 	ArrayList<Parameter> listOfLastInputs = new ArrayList<Parameter>();
 	ArrayList<ArrayList<String>> stateOutputList = new ArrayList<ArrayList<String>>();
 	
-	Timestamp stateTS = new Timestamp(System.currentTimeMillis());
 	
 	Parameter ruleResult;	
 	
@@ -72,8 +71,6 @@ public class Rule {
 		return null;
 	}
 	
-	void test() {		
-	}
 	
 	//-----------------
 	//getter and setter

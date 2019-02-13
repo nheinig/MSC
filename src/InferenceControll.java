@@ -9,7 +9,6 @@ public class InferenceControll {
 
 	static ArrayList<Rule> ruleList = new ArrayList<Rule>();
 
-	static String alarm = "None";
 
 	// helper method that prints out the listOfParameters
 	static void printValueLists() {
@@ -30,12 +29,6 @@ public class InferenceControll {
 	static void handleNewAlarm(Parameter alarm) {
 		listOfAlarms.add(alarm);
 		// todo add event
-	}
-
-
-	// set the alarm type
-	static void setAlarm(String alarmtype) {
-		alarm = alarmtype;
 	}
 
 	// adds available Parameters (from data stream and rules) to an ArrayList
