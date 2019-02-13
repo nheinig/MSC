@@ -71,15 +71,10 @@ public class Rule {
 		return null;
 	}
 	
-
-
-	//Method that updates the Labels of a RuleEgg
-	void updateEggLabels() {
-	}
-
-	//--------------
-	//getter/ setter
-	//--------------
+	
+	//-----------------
+	//getter and setter
+	//-----------------
 	
 	ArrayList<String> getParametersNeeded(){
 		return listOfParametersNeeded;
@@ -88,6 +83,15 @@ public class Rule {
 	String getRuleResultType() {
 		return ruleResult.parameterType;
 	}
+	
+
+	//Method that updates the Labels of a RuleEgg
+	void updateEggLabels() {
+	}
+
+	//--------------
+	//getter/ setter
+	//--------------
 		
 	
 	public String getRuleName() {
@@ -98,7 +102,7 @@ public class Rule {
 		this.ruleName = ruleName;
 	}
 	
-	public void setIsLastRule(boolean isLast) {
+	public void changeIsLastRule(boolean isLast) {
 		this.isLastRule = isLast;
 	}
 	
